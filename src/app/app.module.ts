@@ -59,10 +59,11 @@ import {AppRoutingModule} from './app-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { ClientComponent } from './components/client/client.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { FooterComponent } from './components/client/footer/footer.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent],
+  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
