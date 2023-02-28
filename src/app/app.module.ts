@@ -64,11 +64,11 @@ import { ShopComponent } from './components/client/shop/shop.component';
 import { ProductListComponent } from './components/client/shop/product-list/product-list.component';
 import { CategoryComponent } from './components/client/shop/category/category.component';
 import { ProductItemComponent } from './components/client/shop/product-list/product-item/product-item.component';
-import { CategoryItemComponent } from './components/client/shop/category/category-item/category-item.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent, CategoryItemComponent],
+  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
