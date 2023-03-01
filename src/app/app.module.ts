@@ -65,10 +65,11 @@ import { ProductListComponent } from './components/client/shop/product-list/prod
 import { CategoryComponent } from './components/client/shop/category/category.component';
 import { ProductItemComponent } from './components/client/shop/product-list/product-item/product-item.component';
 import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/client/header/header.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent],
+  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, HeaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
