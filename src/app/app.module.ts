@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdbAccordionModule} from 'mdb-angular-ui-kit/accordion';
@@ -65,12 +64,13 @@ import { ProductListComponent } from './components/client/shop/product-list/prod
 import { CategoryComponent } from './components/client/shop/category/category.component';
 import { ProductItemComponent } from './components/client/shop/product-list/product-item/product-item.component';
 import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/client/header/header.component';
 import { ProductDetailsComponent } from './components/client/shop/product-list/product-item/product-details/product-details.component';
 import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, ProductDetailsComponent],
+  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, ProductDetailsComponent, HeaderComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -126,6 +126,7 @@ import {FormsModule} from "@angular/forms";
         AppRoutingModule,
         FormsModule,
     ],
+
   providers: [MdbCookiesManagementService, MdbStorageManagementService, MdbScrollStatusService],
   bootstrap: [AppComponent],
 })
