@@ -67,10 +67,12 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/client/header/header.component';
 import { ProductDetailsComponent } from './components/client/shop/product-list/product-item/product-details/product-details.component';
 import {FormsModule} from "@angular/forms";
+import { CartComponent } from './components/client/cart/cart.component';
+import { CartItemComponent } from './components/client/cart/cart-item/cart-item.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, ProductDetailsComponent, HeaderComponent],
+  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, ProductDetailsComponent, HeaderComponent, CartComponent, CartItemComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
