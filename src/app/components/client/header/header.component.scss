@@ -1,9 +1,15 @@
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-image: url(//bizweb.dktcdn.net/100/438/408/themes/897269/assets/background-header.png?1677654583593);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   box-shadow: 0 6px 12px 0 rgb(0 0 0 / 5%);
   padding-bottom: 5px;
+  z-index: 999;
+  transition: all .5s;
 
   .top {
     padding-top: 5px;
@@ -78,7 +84,7 @@ header {
     .right {
       width: 380px;
       display: flex;
-      justify-content: left;
+      justify-content: end;
       align-items: center;
 
       a {
@@ -118,12 +124,252 @@ header {
         width: 40px;
         background: #FCAF17;
         border-radius: 100px;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
         margin-left: 7px;
-        padding: 0 7px;
+        padding: 3px 7px;
         text-transform: uppercase;
         color: #000;
+      }
+    }
+  }
+
+  .under {
+    display: flex;
+    align-items: center;
+
+    .left {
+      width: calc(100% - 300px);
+
+      #mega-menu {
+        #main-menu {
+          position: relative;
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+
+          & > li {
+            padding: 0 19px;
+
+            & > a {
+              position: relative;
+              display: block;
+              text-decoration: none;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 35px;
+              color: #11006F;
+              text-align: left;
+              text-transform: uppercase;
+            }
+
+            & > a.sale {
+              color: #CD151C;
+            }
+
+            & > a:after {
+              position: absolute;
+              content: '';
+              width: 0;
+              height: 4px;
+              background: #fcaf17;
+              bottom: -5px;
+              left: -5px;
+              border-top-right-radius: 5px;
+              border-top-left-radius: 5px;
+              transition: all 0.4s ease;
+            }
+
+            &:hover > :not(a.sale) {
+              color: #fcaf17;
+            }
+
+            &:hover > a:after {
+              width: calc(100% + 10px) !important;
+            }
+
+            &:hover > .sub-menu {
+              display: flex;
+            }
+
+            & .sub-menu {
+              position: absolute;
+              display: none;
+              top: 40px;
+              left: 0;
+              background-color: #fff;
+              list-style: none;
+              margin: 0;
+              padding: 20px;
+              width: 1240px;
+              z-index: 200;
+
+              & > li.mega-menu {
+                width: calc(100% - 250px);
+
+                & a {
+                  color: #000;
+                }
+
+                & a:hover {
+                  color: #fcaf17;
+                }
+
+                & > ul {
+                  display: flex;
+                  flex-wrap: wrap;
+                  width: 100%;
+                  padding: 0;
+                  list-style: none;
+
+                  & > li {
+                    flex-basis: 20%;
+                    padding: 0 15px;
+
+                    & > a {
+                      font-size: 14px;
+                      font-weight: 500;
+                      display: block;
+                      margin-bottom: 15px;
+                      text-transform: uppercase;
+                    }
+
+                    ul {
+                      padding: 0;
+                      margin-bottom: 20px;
+                      list-style: none;
+
+                      li {
+                        margin-bottom: 10px;
+                        font-size: 14px;
+                        text-transform: capitalize;
+                      }
+                    }
+                  }
+                }
+              }
+
+              & .thumbnail {
+                width: 200px;
+                margin: 32px 32px 0 0;
+
+                & img {
+                  border-radius: 8px;
+                  width: 100%;
+                  height: auto;
+                  display: block;
+                }
+              }
+            }
+
+          }
+
+          li:first-child {
+            padding-left: 0;
+            padding-right: 19px;
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      width: 400px;
+
+      .user {
+        position: relative;
+
+        a {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          color: #11006F;
+
+          span {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .9px;
+
+            span {
+              padding: 0 5px;
+            }
+          }
+
+          img {
+            display: block;
+            width: 28px;
+            height: 28px;
+            margin-right: 5px;
+          }
+        }
+
+        .list-action {
+          display: none;
+          position: absolute;
+          margin-top: 10px;
+          right: 0;
+
+          ul {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+            background: #FFF;
+            min-width: 170px;
+
+            li {
+              padding: 0 10px;
+
+              a {
+                display: block;
+                padding: 5px;
+                width: 150px;
+                font-size: 14px;
+                color: #000;
+              }
+
+              &:first-child > a {
+                border-bottom: 1px #dde1ef solid;
+                color: #fcaf17;
+                font-size: 15px;
+                font-weight: 500;
+              }
+
+              &.logout {
+                padding-top: 10px;
+
+                a {
+                  padding: 10px 0 10px 35px;
+                  border-top: 1px solid #DDE1EF;
+                  background: url(https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/logout.svg) left 5px center no-repeat;
+                }
+              }
+
+              &:hover > a {
+                color: #fcaf17;
+              }
+            }
+          }
+        }
+
+        &:hover > .list-action {
+          display: block;
+        }
+
+        &:after {
+          position: absolute;
+          content: '';
+          bottom: -10px;
+          right: -5px;
+          height: 12px;
+          width: 100%;
+        }
       }
     }
   }
