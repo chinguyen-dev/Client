@@ -69,6 +69,7 @@ import { ProductDetailsComponent } from './components/client/shop/product-list/p
 import {FormsModule} from "@angular/forms";
 import { CartComponent } from './components/client/cart/cart.component';
 import { CartItemComponent } from './components/client/cart/cart-item/cart-item.component';
+import {ClientRoutingModule} from "./components/client/client.routing.module";
 
 
 @NgModule({
@@ -126,6 +127,7 @@ import { CartItemComponent } from './components/client/cart/cart-item/cart-item.
         MdbEcommerceGalleryModule,
         MdbColorPickerModule,
         AppRoutingModule,
+        ClientRoutingModule,
         FormsModule,
     ],
 
