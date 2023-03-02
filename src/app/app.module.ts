@@ -66,10 +66,11 @@ import { CategoryComponent } from './components/client/shop/category/category.co
 import { ProductItemComponent } from './components/client/shop/product-list/product-item/product-item.component';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/client/header/header.component';
+import { CartComponent } from './components/client/header/cart/cart.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, HeaderComponent],
+  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, HeaderComponent, CartComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
