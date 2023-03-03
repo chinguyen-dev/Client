@@ -1,0 +1,114 @@
+li {
+  display: flex;
+  margin-bottom: 15px;
+}
+li a {
+  flex-basis: 20%;
+  display: block;
+  width: 83px;
+}
+li a img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-right: 10px;
+}
+li .box-infor {
+  position: relative;
+  flex-basis: 80%;
+  padding-left: 15px;
+}
+li .box-infor .infor-item {
+  margin-bottom: 9px;
+  padding-right: 30px;
+}
+li .box-infor .infor-item a {
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  min-height: 20px;
+  max-height: 40px;
+  margin-bottom: 4px;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  width: 100%;
+  overflow: hidden;
+}
+li .box-infor .infor-item a:hover {
+  color: #fcaf17;
+}
+li .box-infor .infor-item a.remove {
+  background: url(https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/remove_cart_nor.svg) center center no-repeat;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+}
+li .box-infor .infor-item a.remove:hover {
+  background-image: url(https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/remove_cart.svg);
+}
+li .box-infor .infor-item span.price {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fcaf17;
+  margin-bottom: 5px;
+  display: block;
+}
+li .box-infor .infor-item span.size {
+  font-size: 14px;
+  vertical-align: top;
+  line-height: 26px;
+  color: #363636;
+  background: #F8F8F8;
+  border-radius: 13px;
+  padding: 7px 14px;
+}
+li .box-infor .box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+li .box-infor .box .qty button {
+  border: 1px solid #7A7A9D;
+  color: #222;
+  line-height: 24px;
+  padding: 0;
+  margin: 0;
+  width: 31px;
+  background-color: #fff;
+  height: 26px;
+}
+li .box-infor .box .qty button:first-child {
+  border-radius: 13px 0 0 13px;
+}
+li .box-infor .box .qty button:last-child {
+  border-radius: 0 13px 13px 0;
+}
+li .box-infor .box .qty input {
+  width: 35px;
+  height: 26px;
+  padding: 0;
+  text-align: center;
+  border: 1px solid #7A7A9D;
+  border-left: 0;
+  border-right: 0;
+}
+li .box-infor .box .qty input:focus-visible {
+  outline: none;
+}
+li .box-infor .box .total {
+  font-size: 14px;
+  color: #000;
+  text-align: right;
+}
+li .box-infor .box .total span {
+  font-size: 16px;
+  font-weight: 500;
+  color: red;
+}
+
+/*# sourceMappingURL=cart-header-item.component.css.map */

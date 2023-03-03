@@ -1,0 +1,34 @@
+footer {
+  background: #2a2a86 top center;
+  padding: 25px 0 0;
+  color: #FFF;
+  font-size: 14px;
+}
+footer .under {
+  color: #FFF;
+  font-size: 13px;
+  text-align: center;
+  padding-bottom: 16px;
+}
+footer .under > a {
+  color: #fcaf17;
+}
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+footer ul li {
+  line-height: 28px;
+}
+footer ul li > a {
+  color: #fff;
+}
+footer ul li:hover > a {
+  color: #fcaf17;
+}
+footer h6 {
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=footer.component.css.map */

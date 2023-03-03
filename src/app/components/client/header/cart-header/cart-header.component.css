@@ -1,0 +1,94 @@
+.cart {
+  margin-right: 20px;
+  position: relative;
+}
+.cart a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #11006F;
+}
+.cart a .number {
+  position: absolute;
+  top: -4px;
+  left: 17px;
+  height: 19px;
+  line-height: 19px;
+  background: #fcaf17;
+  color: #11006F;
+  width: 20px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 13px;
+}
+.cart a .title {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+.cart a img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+}
+.cart .cart-item {
+  display: none;
+  position: absolute;
+  right: -122px;
+  margin-top: 20px;
+  width: 477px;
+  background-color: #fff;
+  z-index: 100;
+}
+.cart .cart-item > img {
+  position: absolute;
+  top: -10px;
+  left: 310px;
+}
+.cart .cart-item ul.list-item {
+  position: relative;
+  list-style: none;
+  padding: 15px 15px 0;
+  max-height: 360px;
+  overflow-y: auto;
+  margin: 0;
+}
+.cart .cart-item .under {
+  padding: 10px;
+}
+.cart .cart-item .under .subtotal {
+  color: #000;
+  font-size: 15px;
+  border-top: 1px #ebebeb solid;
+  padding-top: 10px;
+  text-align: right;
+  margin-bottom: 15px;
+}
+.cart .cart-item .under .subtotal span {
+  color: red;
+  font-weight: 500;
+}
+.cart .cart-item .under button {
+  width: 100%;
+  background-color: #fcaf17;
+  color: #fff;
+  text-align: center;
+  line-height: 46px;
+  padding: 0;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+}
+.cart:hover > .cart-item {
+  display: block;
+}
+.cart:after {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 100%;
+}
+
+/*# sourceMappingURL=cart-header.component.css.map */
