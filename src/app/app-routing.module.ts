@@ -1,17 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {log} from "util";
-import {LoginComponent} from "./components/login/login.component";
 import {ClientComponent} from "./components/client/client.component";
-const routes: Routes = [
-  {
-    path: '',  component: ClientComponent,
-
 import {AdminComponent} from "./components/admin/admin.component";
 import {DashboardComponent} from "./components/admin/dashboard/dashboard.component";
-import {LoginComponent} from "./components/login/login.component";
-import {RegisterComponent} from "./components/register/register.component";
 import {ShopComponent} from "./components/client/shop/shop.component";
+import {CartComponent} from "./components/client/cart/cart.component";
+import {LoginComponent} from "./components/login/login.component";
+import {
+  ProductDetailsComponent
+} from "./components/client/shop/product-list/product-item/product-details/product-details.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 const routes: Routes = [
   {
@@ -23,8 +21,16 @@ const routes: Routes = [
   },
   {
     path: "", component: ClientComponent,
+    children: [
+      {path: '', component: ShopComponent},
+      {path: 'cart', component: CartComponent},
+      {path: 'account/login', component: LoginComponent},
+      {path: 'account/register', component: RegisterComponent},
+      {path: 'product', component: ProductDetailsComponent}
+    ]
   },
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
