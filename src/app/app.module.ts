@@ -56,21 +56,38 @@ import {MdbMultiItemCarouselModule} from 'mdb-angular-multi-item-carousel';
 import {MdbEcommerceGalleryModule} from 'mdb-angular-ecommerce-gallery';
 import {MdbColorPickerModule} from 'mdb-angular-color-picker';
 import {AppRoutingModule} from './app-routing.module';
-import { AdminComponent } from './components/admin/admin.component';
-import { ClientComponent } from './components/client/client.component';
-import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { FooterComponent } from './components/client/footer/footer.component';
-import { ShopComponent } from './components/client/shop/shop.component';
-import { ProductListComponent } from './components/client/shop/product-list/product-list.component';
-import { CategoryComponent } from './components/client/shop/category/category.component';
-import { ProductItemComponent } from './components/client/shop/product-list/product-item/product-item.component';
-import { LoginComponent } from './components/login/login.component';
-import { HeaderComponent } from './components/client/header/header.component';
-import { CartComponent } from './components/client/header/cart/cart.component';
+import {AdminComponent} from './components/admin/admin.component';
+import {ClientComponent} from './components/client/client.component';
+import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
+import {FooterComponent} from './components/client/footer/footer.component';
+import {ShopComponent} from './components/client/shop/shop.component';
+import {ProductListComponent} from './components/client/shop/product-list/product-list.component';
+import {CategoryComponent} from './components/client/shop/category/category.component';
+import {ProductItemComponent} from './components/client/shop/product-list/product-item/product-item.component';
+import {LoginComponent} from './components/login/login.component';
+import {HeaderComponent} from './components/client/header/header.component';
+import {CartComponent} from './components/client/header/cart/cart.component';
+import {CartItemComponent} from './components/client/header/cart/cart-item/cart-item.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, HeaderComponent, CartComponent],
+  declarations: [
+    AppComponent,
+    AdminComponent,
+    ClientComponent,
+    DashboardComponent,
+    FooterComponent,
+    ShopComponent,
+    ProductListComponent,
+    CategoryComponent,
+    ProductItemComponent,
+    LoginComponent,
+    HeaderComponent,
+    CartComponent,
+    CartItemComponent,
+    RegisterComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
