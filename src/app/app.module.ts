@@ -70,10 +70,12 @@ import {FormsModule} from "@angular/forms";
 import { CartComponent } from './components/client/cart/cart.component';
 import { CartItemComponent } from './components/client/cart/cart-item/cart-item.component';
 import {ClientRoutingModule} from "./components/client/client.routing.module";
-
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent, FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent,  LoginComponent, ProductDetailsComponent, HeaderComponent, CartComponent, CartItemComponent],
+  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent,
+  FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent, 
+  LoginComponent, ProductDetailsComponent, HeaderComponent, CartComponent, CartItemComponent,RegisterComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

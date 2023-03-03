@@ -1,4 +1,11 @@
-footer{
+footer {
   background-color: #2a2a86;
-  padding: 10px 0px 0px  0px;
+  padding: 25px 0px 0px 0px;
+  font-size: 14px;
+
+  ul {
+    li {
+      line-height: 28px;
+    }
+  }
 }

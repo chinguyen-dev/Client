@@ -1,0 +1,134 @@
+li {
+  display: flex;
+  margin-bottom: 15px;
+
+  a {
+    flex-basis: 20%;
+    display: block;
+    width: 83px;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-right: 10px;
+    }
+  }
+
+  .box-infor {
+    position: relative;
+    flex-basis: 80%;
+    padding-left: 15px;
+
+    .infor-item {
+      margin-bottom: 9px;
+      padding-right: 30px;
+
+      a {
+        color: #000;
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 20px;
+        min-height: 20px;
+        max-height: 40px;
+        margin-bottom: 4px;
+        display: block;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        width: 100%;
+        overflow: hidden;
+
+        &:hover {
+          color: #fcaf17;
+        }
+
+        &.remove {
+          background: url(https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/remove_cart_nor.svg) center center no-repeat;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 18px;
+          height: 18px;
+
+          &:hover {
+            background-image: url(https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/remove_cart.svg);
+          }
+        }
+      }
+
+      span {
+        &.price {
+          font-size: 16px;
+          font-weight: 500;
+          color: #fcaf17;
+          margin-bottom: 5px;
+          display: block;
+        }
+
+        &.size {
+          font-size: 14px;
+          vertical-align: top;
+          line-height: 26px;
+          color: #363636;
+          background: #F8F8F8;
+          border-radius: 13px;
+          padding: 7px 14px;
+        }
+      }
+    }
+
+    .box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .qty {
+        button {
+          border: 1px solid #7A7A9D;
+          color: #222;
+          line-height: 24px;
+          padding: 0;
+          margin: 0;
+          width: 31px;
+          background-color: #fff;
+          height: 26px;
+        }
+
+        button:first-child {
+          border-radius: 13px 0 0 13px;
+        }
+
+        button:last-child {
+          border-radius: 0 13px 13px 0;
+        }
+
+        input {
+          width: 35px;
+          height: 26px;
+          padding: 0;
+          text-align: center;
+          border: 1px solid #7A7A9D;
+          border-left: 0;
+          border-right: 0;
+
+          &:focus-visible {
+            outline: none;
+          }
+        }
+      }
+
+      .total {
+        font-size: 14px;
+        color: #000;
+        text-align: right;
+
+        span {
+          font-size: 16px;
+          font-weight: 500;
+          color: red;
+        }
+      }
+    }
+  }
+}
