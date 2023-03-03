@@ -1,0 +1,31 @@
+
+  <td class="d-flex">
+    <img
+      style="width: 24%; border-radius: 4px;"
+      src="https://bizweb.dktcdn.net/thumb/compact/100/438/408/products/quan-short-nam-nap-tui-sau-qsm6021-gsa-7.jpg" alt="">
+    <div class="d-flex flex-column justify-content-between ms-3">
+      <a href="" class="text-dark">Quần Sooc Nam Nắp Túi Sau</a>
+      <span>Ghi sáng/30</span>
+    </div>
+  </td>
+  <td>
+    <span class="fw-bold">399.000đ</span>
+  </td>
+  <td >
+    <div class="border-1 border d-flex justify-content-between align-items-center ">
+    <button style="border: none;"
+      type="button" (click)="minus()" class=" border-end flex-fill shadow-none" >-
+    </button>
+    <input [(ngModel)]="quantity" oninput="validity.valid||(value='1');" value="0" type="number" min="1" max="99" class=" text-center border-0 p-0 m-0 outline-none flex-fill" style="outline: none;">
+    <button style="border: none;"
+      type="button" (click)="plus()" class=" border-start flex-fill shadow-none">+
+    </button>
+    </div>
+  </td>
+  <td class="">
+     <div class="h-100 d-flex flex-column justify-content-between align-items-end">
+       <span class="fw-bold">1.197.000đ</span>
+       <i class="far fa-trash-alt fs-4 text-secondary" role="button"></i>
+     </div>
+  </td>
+

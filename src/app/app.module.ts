@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdbAccordionModule} from 'mdb-angular-ui-kit/accordion';
@@ -56,92 +55,84 @@ import {MdbMultiItemCarouselModule} from 'mdb-angular-multi-item-carousel';
 import {MdbEcommerceGalleryModule} from 'mdb-angular-ecommerce-gallery';
 import {MdbColorPickerModule} from 'mdb-angular-color-picker';
 import {AppRoutingModule} from './app-routing.module';
-import {AdminComponent} from './components/admin/admin.component';
-import {ClientComponent} from './components/client/client.component';
-import {DashboardComponent} from './components/admin/dashboard/dashboard.component';
-import {FooterComponent} from './components/client/footer/footer.component';
-import {ShopComponent} from './components/client/shop/shop.component';
-import {ProductListComponent} from './components/client/shop/product-list/product-list.component';
-import {CategoryComponent} from './components/client/shop/category/category.component';
-import {ProductItemComponent} from './components/client/shop/product-list/product-item/product-item.component';
-import {LoginComponent} from './components/login/login.component';
-import {HeaderComponent} from './components/client/header/header.component';
-import {CartComponent} from './components/client/header/cart/cart.component';
-import {CartItemComponent} from './components/client/header/cart/cart-item/cart-item.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ClientComponent } from './components/client/client.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { FooterComponent } from './components/client/footer/footer.component';
+import { ShopComponent } from './components/client/shop/shop.component';
+import { ProductListComponent } from './components/client/shop/product-list/product-list.component';
+import { CategoryComponent } from './components/client/shop/category/category.component';
+import { ProductItemComponent } from './components/client/shop/product-list/product-item/product-item.component';
+import { LoginComponent } from './components/login/login.component';
+import { HeaderComponent } from './components/client/header/header.component';
+import { ProductDetailsComponent } from './components/client/shop/product-list/product-item/product-details/product-details.component';
+import {FormsModule} from "@angular/forms";
+import { CartComponent } from './components/client/cart/cart.component';
+import { CartItemComponent } from './components/client/cart/cart-item/cart-item.component';
+import {ClientRoutingModule} from "./components/client/client.routing.module";
 import { RegisterComponent } from './components/register/register.component';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminComponent,
-    ClientComponent,
-    DashboardComponent,
-    FooterComponent,
-    ShopComponent,
-    ProductListComponent,
-    CategoryComponent,
-    ProductItemComponent,
-    LoginComponent,
-    HeaderComponent,
-    CartComponent,
-    CartItemComponent,
-    RegisterComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MdbAccordionModule,
-    MdbAutocompleteModule,
-    MdbCarouselModule,
-    MdbChartModule,
-    MdbCheckboxModule,
-    MdbCollapseModule,
-    MdbDatepickerModule,
-    MdbDropdownModule,
-    MdbFormsModule,
-    MdbInfiniteScrollModule,
-    MdbLazyLoadingModule,
-    MdbLightboxModule,
-    MdbLoadingModule,
-    MdbModalModule,
-    MdbNotificationModule,
-    MdbPopconfirmModule,
-    MdbPopoverModule,
-    MdbRadioModule,
-    MdbRangeModule,
-    MdbRatingModule,
-    MdbRippleModule,
-    MdbScrollbarModule,
-    MdbScrollspyModule,
-    MdbSelectModule,
-    MdbSidenavModule,
-    MdbSmoothScrollModule,
-    MdbStepperModule,
-    MdbStickyModule,
-    MdbTableModule,
-    MdbTabsModule,
-    MdbTimepickerModule,
-    MdbTooltipModule,
-    MdbValidationModule,
-    MdbMultiRangeModule,
-    MdbCalendarModule,
-    MdbWysiwygModule,
-    MdbDragAndDropModule,
-    MdbVectorMapModule,
-    MdbFileUploadModule,
-    MdbTreeviewModule,
-    MdbTransferModule,
-    MdbMentionModule,
-    MdbOnboardingModule,
-    MdbParallaxModule,
-    MdbInputMaskModule,
-    MdbCountdownModule,
-    MdbMultiItemCarouselModule,
-    MdbEcommerceGalleryModule,
-    MdbColorPickerModule,
-    AppRoutingModule,
-  ],
+  declarations: [AppComponent, AdminComponent, ClientComponent, DashboardComponent,
+  FooterComponent, ShopComponent, ProductListComponent,  CategoryComponent, ProductItemComponent, 
+  LoginComponent, ProductDetailsComponent, HeaderComponent, CartComponent, CartItemComponent,RegisterComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MdbAccordionModule,
+        MdbAutocompleteModule,
+        MdbCarouselModule,
+        MdbChartModule,
+        MdbCheckboxModule,
+        MdbCollapseModule,
+        MdbDatepickerModule,
+        MdbDropdownModule,
+        MdbFormsModule,
+        MdbInfiniteScrollModule,
+        MdbLazyLoadingModule,
+        MdbLightboxModule,
+        MdbLoadingModule,
+        MdbModalModule,
+        MdbNotificationModule,
+        MdbPopconfirmModule,
+        MdbPopoverModule,
+        MdbRadioModule,
+        MdbRangeModule,
+        MdbRatingModule,
+        MdbRippleModule,
+        MdbScrollbarModule,
+        MdbScrollspyModule,
+        MdbSelectModule,
+        MdbSidenavModule,
+        MdbSmoothScrollModule,
+        MdbStepperModule,
+        MdbStickyModule,
+        MdbTableModule,
+        MdbTabsModule,
+        MdbTimepickerModule,
+        MdbTooltipModule,
+        MdbValidationModule,
+        MdbMultiRangeModule,
+        MdbCalendarModule,
+        MdbWysiwygModule,
+        MdbDragAndDropModule,
+        MdbVectorMapModule,
+        MdbFileUploadModule,
+        MdbTreeviewModule,
+        MdbTransferModule,
+        MdbMentionModule,
+        MdbOnboardingModule,
+        MdbParallaxModule,
+        MdbInputMaskModule,
+        MdbCountdownModule,
+        MdbMultiItemCarouselModule,
+        MdbEcommerceGalleryModule,
+        MdbColorPickerModule,
+        AppRoutingModule,
+        ClientRoutingModule,
+        FormsModule,
+    ],
+
   providers: [MdbCookiesManagementService, MdbStorageManagementService, MdbScrollStatusService],
   bootstrap: [AppComponent],
 })
