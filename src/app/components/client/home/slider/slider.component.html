@@ -1,0 +1,7 @@
+<div class="box-slider">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let slider of sliders">
+      <img src="{{ slider.image }}" alt="">
+    </ng-template>
+  </owl-carousel-o>
+</div>

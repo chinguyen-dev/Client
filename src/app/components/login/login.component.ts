@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+
+  isEye = false;
+  type = 'password';
+
+  toggleEye() {
+    this.isEye = !this.isEye;
+    this.type = this.isEye ? 'text' : 'password';
+  }
 }

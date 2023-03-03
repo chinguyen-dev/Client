@@ -1,11 +1,39 @@
 footer {
-  background-color: #2a2a86;
-  padding: 25px 0px 0px 0px;
+  background: #2a2a86 top center;
+  padding: 25px 0 0;
+  color: #FFF;
   font-size: 14px;
 
+  & .under {
+    color: #FFF;
+    font-size: 13px;
+    text-align: center;
+    padding-bottom: 16px;
+
+    & > a {
+      color: #fcaf17;
+    }
+  }
+
   ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
     li {
       line-height: 28px;
+
+      & > a {
+        color: #fff;
+      }
+
+      &:hover > a {
+        color: #fcaf17;
+      }
     }
+  }
+
+  & h6 {
+    text-transform: uppercase;
   }
 }

@@ -69,11 +69,12 @@ import { ProductDetailsComponent} from './components/client/shop/product-list/pr
 import {FormsModule} from "@angular/forms";
 import {CartComponent} from './components/client/cart/cart.component';
 import {CartItemComponent} from './components/client/cart/cart-item/cart-item.component';
-import {ClientRoutingModule} from "./components/client/client.routing.module";
 import {RegisterComponent} from './components/register/register.component';
 import {CartHeaderComponent} from "./components/client/header/cart-header/cart-header.component";
 import { CartHeaderItemComponent} from "./components/client/header/cart-header/cart-header-item/cart-header-item.component";
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SliderComponent } from './components/client/home/slider/slider.component';
+import {HomeComponent} from "./components/client/home/home.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +93,9 @@ import { CartHeaderItemComponent} from "./components/client/header/cart-header/c
     CartItemComponent,
     RegisterComponent,
     CartHeaderComponent,
-    CartHeaderItemComponent
+    CartHeaderItemComponent,
+    SliderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -147,8 +150,8 @@ import { CartHeaderItemComponent} from "./components/client/header/cart-header/c
     MdbEcommerceGalleryModule,
     MdbColorPickerModule,
     AppRoutingModule,
-    ClientRoutingModule,
     FormsModule,
+    CarouselModule
   ],
 
   providers: [MdbCookiesManagementService, MdbStorageManagementService, MdbScrollStatusService],

@@ -10,6 +10,7 @@ import {
   ProductDetailsComponent
 } from "./components/client/shop/product-list/product-item/product-details/product-details.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {HomeComponent} from "./components/client/home/home.component";
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
   {
     path: "", component: ClientComponent,
     children: [
-      {path: '', component: ShopComponent},
+      {path: '', component: HomeComponent},
       {path: 'cart', component: CartComponent},
       {path: 'account/login', component: LoginComponent},
       {path: 'account/register', component: RegisterComponent},

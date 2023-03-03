@@ -1,33 +1,38 @@
-<div style="background-image: url('https://bizweb.dktcdn.net/100/438/408/themes/896213/assets/bg_login.jpg?1677575606938')"
-      class="p-5 d-flex justify-content-center"
->
-  <div class="p-4 d-flex bg-light rounded flex-column  justify-content-center align-items-center" style="width: 40%;">
-    <form action="" class=" d-flex flex-column gap-4" style="width:85%;">
-      <h4 class="text-uppercase text-center" style=" color: #11006f;">đăng <span class="text-warning">nhập</span></h4>
-      <mdb-form-control>
-        <input mdbInput type="text" id="email" class="form-control" />
-        <label mdbLabel class="form-label" for="email">Email</label>
-      </mdb-form-control>
-      <mdb-form-control>
-        <input mdbInput type="password" id="pass" class="form-control" />
-        <label mdbLabel class="form-label" for="pass"> Mật khẩu</label>
-      </mdb-form-control>
-      <button type="button" class="btn btn-warning">Đăng nhập</button>
+<div id="wp-login">
+  <div class="rounded">
+    <form action="">
+      <h4>đăng <span>nhập</span></h4>
+      <div class="form-input">
+        <input type="text" id="email" placeholder="Địa chỉ email">
+      </div>
+      <div class="form-input form-input--eye">
+        <input [type]="type" id="password" placeholder="Mật khẩu">
+        <span (click)="toggleEye()" *ngIf="!isEye; else openEye;"></span>
+        <ng-template #openEye>
+          <span class="open-eye" (click)="toggleEye()"></span>
+        </ng-template>
+      </div>
+      <div class="form-button">
+        <button type="button">Đăng nhập</button>
+      </div>
     </form>
-    <span class="text-warning mt-3">Quên mật khẩu</span>
-    <span class="mt-4">hoặc đăng nhập bằng</span>
-    <div class="mt-5 mb-5 ">
-      <a class="btn text-white me-4" style="background-color: #dd4b39;" href="#!" role="button">
+    <span>Quên mật khẩu</span>
+    <div class="separator-or">
+      <p>Hoặc đăng nhập bằng</p>
+    </div>
+    <div class="socials">
+      <a class="btn text-white me-4" style="background-color: #dd4b39;" href="#" role="button">
         <i class="fab fa-google me-2"></i>
         google
       </a>
-      <a class="btn text-white" style="background-color: #3b5998;" href="#!" role="button">
+      <a class="btn text-white" style="background-color: #3b5998;" href="#" role="button">
         <i class="fab fa-facebook me-2"></i>
         Facebook
       </a>
     </div>
-    <div class="mt-5 pb-5">
-      Bạn chưa có tài khoản? <a href="!" class="text-warning">Đăng ký ngay</a>
+    <div class="back-register">
+      Bạn đã có tài khoản?
+      <a href="" routerLink="/account/register">Đăng ký ngay!</a>
     </div>
   </div>
 </div>
