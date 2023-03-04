@@ -6,7 +6,9 @@ import {Component} from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  handle(num: number) {
-    console.log(num)
+  isModal: boolean = false;
+
+  hoverModal(value: boolean = false) {
+    this.isModal = value;
   }
 }
