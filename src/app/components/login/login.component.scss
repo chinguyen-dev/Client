@@ -25,7 +25,7 @@
           border: 1px solid #EAEBF3;
           box-shadow: none;
           border-radius: 3px;
-          font-family: var(--mdb-font-roboto);
+          font-family: 'SVN-Gilroy', serif;
 
           &:focus-visible {
             outline: none;
@@ -77,6 +77,7 @@
           outline: none;
           border-radius: 4px;
           font-size: 18px;
+          font-weight: bold;
           margin-bottom: 10px;
         }
       }
@@ -112,11 +113,12 @@
       text-align: center;
       color: #595959;
       font-size: 16px;
+      font-weight: 500;
       padding-bottom: 30px;
 
       a {
-        color: #fcaf17;
-        font-weight: 500;
+        color: var(--main-text-yellow);
+        font-weight: 600;
         letter-spacing: 1px;
 
         &:hover {
@@ -130,8 +132,8 @@
       text-align: center;
       margin-top: 12px;
       font-size: 16px;
-      font-weight: 500;
-      color: #FCAF17;
+      font-weight: 600;
+      color: var(--main-text-yellow);
     }
 
     & .separator-or {
@@ -160,11 +162,12 @@
     text-align: center;
     text-transform: uppercase;
     font-size: 26px;
+    font-weight: bold;
     margin-bottom: 30px;
-    color: #11006f;
+    color: var(--main-text);
 
     span {
-      color: #fcaf17;
+      color: var(--main-text-yellow);
     }
   }
 

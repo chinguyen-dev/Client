@@ -1,4 +1,7 @@
 #home-content {
+  max-width: 1240px;
+  margin: 0 auto;
+
   .promotion {
     position: relative;
     width: 100%;
@@ -17,7 +20,7 @@
       left: 260px;
       width: 248px;
       height: 62px;
-      background: #FFB801;
+      background: var(--main-text-yellow);
       font-size: 33px;
       font-weight: 500;
       border-radius: 20px;
@@ -30,7 +33,7 @@
       align-items: center;
       justify-content: center;
       padding-top: 30px;
-      margin-left: 30px;
+      margin-left: 100px;
 
       .sale {
         display: flex;
@@ -39,7 +42,6 @@
         padding: 0 20px;
         cursor: pointer;
         transition: all 0.4s ease;
-
 
         img {
           width: 90px;
@@ -53,7 +55,7 @@
           color: #11006F;
           font-size: 14px;
           padding: 0 10px;
-          font-weight: 500;
+          font-weight: 600;
         }
 
         &:hover p {
@@ -68,10 +70,6 @@
           transform: translateY(-5px);
           transition: all 0.4s ease;
         }
-      }
-
-      .sale:first-child {
-        margin-left: 30px;
       }
     }
   }

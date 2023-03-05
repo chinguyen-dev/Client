@@ -1,17 +1,17 @@
 footer {
-  background: #2a2a86 top center;
+  background: var(--main-text) top center;
   padding: 25px 0 0;
-  color: #FFF;
+  color: #fff;
   font-size: 14px;
 
   & .under {
-    color: #FFF;
+    color: #fff;
     font-size: 13px;
     text-align: center;
     padding-bottom: 16px;
 
     & > a {
-      color: #fcaf17;
+      color: var(--main-text-yellow);
     }
   }
 
@@ -28,7 +28,7 @@ footer {
       }
 
       &:hover > a {
-        color: #fcaf17;
+        color: var(--main-text-yellow);
       }
     }
   }

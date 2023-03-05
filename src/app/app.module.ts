@@ -75,6 +75,7 @@ import { CartHeaderItemComponent} from "./components/client/header/cart-header/c
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SliderComponent } from './components/client/home/slider/slider.component';
 import {HomeComponent} from "./components/client/home/home.component";
+import { ProductSliderComponent } from './components/client/home/product-slider/product-slider.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +96,8 @@ import {HomeComponent} from "./components/client/home/home.component";
     CartHeaderComponent,
     CartHeaderItemComponent,
     SliderComponent,
-    HomeComponent
+    HomeComponent,
+    ProductSliderComponent
   ],
   imports: [
     BrowserModule,

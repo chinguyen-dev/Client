@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #11006F;
+    color: var(--main-text);
 
     .number {
       position: absolute;
@@ -14,8 +14,8 @@
       left: 17px;
       height: 19px;
       line-height: 19px;
-      background: #fcaf17;
-      color: #11006F;
+      background: var(--main-text-yellow);
+      color: var(--main-text);
       width: 20px;
       border-radius: 50%;
       text-align: center;
@@ -24,9 +24,9 @@
 
     .title {
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: .9px;
+      letter-spacing: .8px;
     }
 
     img {
@@ -73,7 +73,7 @@
         margin-bottom: 15px;
 
         span {
-          color: red;
+          color: var(--main-text-red);
           font-weight: 500;
         }
       }
