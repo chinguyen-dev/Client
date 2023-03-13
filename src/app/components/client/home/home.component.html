@@ -1,5 +1,5 @@
 <div id="home-content">
-    <app-slider [sliders]="sliders" [customOptions]="options"></app-slider>
+  <app-slider></app-slider>
   <div class="promotion">
     <div class="special">đặc biệt</div>
     <div class="box-program-discount">
@@ -15,5 +15,5 @@
       </div>
     </div>
   </div>
-  <app-product-slider [productImg]="products" [customOptions]="productSlider"></app-product-slider>
+  <app-product-slider *ngFor="let item of category" [category]="item"></app-product-slider>
 </div>

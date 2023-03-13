@@ -1,14 +1,28 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {fromEvent, map, mapTo, merge} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-  isModal: boolean = false;
+export class HeaderComponent implements OnInit {
+  isModal: boolean | undefined;
 
-  hoverModal(value: boolean = false) {
-    this.isModal = value;
+
+  constructor(private http: HttpClient) {
+  }
+
+  ngOnInit(): void {
+    this.toggleModal();
+  }
+
+  toggleModal() {
+    const element = document.querySelectorAll('li.hover');
+    const hover$ = merge(
+      fromEvent(element, 'mouseover').pipe(map(() => true)),
+      fromEvent(element, 'mouseleave').pipe(map(() => false)),
+    ).subscribe(value => this.isModal = value);
   }
 }

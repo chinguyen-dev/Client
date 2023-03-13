@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Item} from "../model/Item";
 import {BehaviorSubject} from "rxjs";
 import {Product} from "../model/Product";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,12 @@ import {Product} from "../model/Product";
 export class CartService {
   items: Item[] = [];
   subject: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
+
   constructor() {
     this.getData()
     this.setData();
   }
+
   addToCart(product: Product, quantity: number) {
     let exItem = this.items.find(i => i.product.id == product.id);
     if (exItem == undefined) {
@@ -24,22 +27,25 @@ export class CartService {
     }
     this.setData();
   }
-  remove(item:Item){
-    let index = this.items.indexOf(item,0);
-    this.items.splice(index,1);
+
+  remove(item: Item) {
+    let index = this.items.indexOf(item, 0);
+    this.items.splice(index, 1);
     this.setData();
     this.subject.next(this.items);
   }
+
   minus(item: Item) {
-    let index = this.items.indexOf(item,0);
+    let index = this.items.indexOf(item, 0);
     let exItem = this.items[index];
-    if(exItem.quantity >0){
+    if (exItem.quantity > 0) {
       exItem.quantity--;
     }
     this.setData();
   }
+
   plus(item: Item) {
-    let index = this.items.indexOf(item,0);
+    let index = this.items.indexOf(item, 0);
     let exItem = this.items[index];
     exItem.quantity++;
     this.setData();
@@ -59,4 +65,7 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(this.items));
     this.subject.next(this.items);
   }
+
+
+
 }

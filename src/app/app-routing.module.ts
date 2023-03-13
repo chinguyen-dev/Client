@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {ClientComponent} from "./components/client/client.component";
 import {AdminComponent} from "./components/admin/admin.component";
 import {DashboardComponent} from "./components/admin/dashboard/dashboard.component";
-import {ShopComponent} from "./components/client/shop/shop.component";
 import {CartComponent} from "./components/client/cart/cart.component";
 import {LoginComponent} from "./components/login/login.component";
 import {
@@ -11,6 +10,7 @@ import {
 } from "./components/client/shop/product-list/product-item/product-details/product-details.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {HomeComponent} from "./components/client/home/home.component";
+import {ShopComponent} from "./components/client/shop/shop.component";
 
 const routes: Routes = [
   {
@@ -27,7 +27,8 @@ const routes: Routes = [
       {path: 'cart', component: CartComponent},
       {path: 'account/login', component: LoginComponent},
       {path: 'account/register', component: RegisterComponent},
-      {path: 'product', component: ProductDetailsComponent}
+      {path: 'product', component: ProductDetailsComponent},
+      {path: 'shop', component: ShopComponent},
     ]
   },
 ];
