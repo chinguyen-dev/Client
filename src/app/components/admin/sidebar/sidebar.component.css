@@ -1,0 +1,65 @@
+#sidebar {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: 250px;
+  background-image: linear-gradient(195deg, #42424a, #191919);
+  margin: 16px 0 16px 16px;
+  border-radius: 0.75rem;
+}
+#sidebar .sidebar-header {
+  height: 80px;
+}
+#sidebar .sidebar-header a {
+  display: block;
+  padding: 24px 32px;
+}
+#sidebar .sidebar-header a img {
+  border-radius: 32px;
+  width: 32px;
+  height: 32px;
+}
+#sidebar .sidebar-header a span {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-left: 8px;
+  color: white;
+}
+#sidebar .horizontal {
+  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0), #fff, hsla(0, 0%, 100%, 0));
+}
+#sidebar .nav-bar {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+#sidebar .nav-bar .nav-item {
+  margin-top: 3px;
+}
+#sidebar .nav-bar .nav-item.active a {
+  background-image: linear-gradient(195deg, #ec407a, #d81b60);
+}
+#sidebar .nav-bar .nav-item:hover a {
+  background-color: hsla(0, 0%, 78%, 0.2);
+}
+#sidebar .nav-bar .nav-item .nav-link {
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  margin: 0 16px;
+  font-size: 0.875rem;
+}
+#sidebar .nav-bar .nav-item .nav-link .material-icons {
+  font-family: Material Icons Round, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=sidebar.component.css.map */

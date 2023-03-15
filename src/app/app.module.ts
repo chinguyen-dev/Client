@@ -76,7 +76,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SliderComponent } from './components/client/home/slider/slider.component';
 import {HomeComponent} from "./components/client/home/home.component";
 import { ProductSliderComponent } from './components/client/home/product-slider/product-slider.component';
-import {ClientRoutingModule} from "./components/admin/admin.routing.module";
+import {ClientModule} from "./components/client/client.module";
+import {AdminModule} from "./components/admin/admin.module";
+import {SidebarComponent} from "./components/admin/sidebar/sidebar.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,7 +100,8 @@ import {ClientRoutingModule} from "./components/admin/admin.routing.module";
     CartHeaderItemComponent,
     SliderComponent,
     HomeComponent,
-    ProductSliderComponent
+    ProductSliderComponent,
+    SidebarComponent
   ],
     imports: [
         BrowserModule,
@@ -155,7 +158,8 @@ import {ClientRoutingModule} from "./components/admin/admin.routing.module";
         AppRoutingModule,
         FormsModule,
         CarouselModule,
-        ClientRoutingModule
+       ClientModule,
+        AdminModule
     ],
 
   providers: [MdbCookiesManagementService, MdbStorageManagementService, MdbScrollStatusService],
