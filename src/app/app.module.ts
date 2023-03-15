@@ -79,6 +79,7 @@ import { ProductSliderComponent } from './components/client/home/product-slider/
 import {ClientModule} from "./components/client/client.module";
 import {AdminModule} from "./components/admin/admin.module";
 import {SidebarComponent} from "./components/admin/sidebar/sidebar.component";
+import {AuthInterceptor} from "./services/auth.interceptor";
 @NgModule({
   declarations: [
     AppComponent,
@@ -162,7 +163,7 @@ import {SidebarComponent} from "./components/admin/sidebar/sidebar.component";
         AdminModule
     ],
 
-  providers: [MdbCookiesManagementService, MdbStorageManagementService, MdbScrollStatusService],
+  providers: [MdbCookiesManagementService, MdbStorageManagementService, MdbScrollStatusService, AuthInterceptor],
   bootstrap: [AppComponent],
 })
 export class AppModule {
