@@ -3,25 +3,25 @@
     <div class="form-register rounded">
       <p class="title">Chào mừng bạn đến với Yody!</p>
       <h1> đăng <span>ký</span></h1>
-      <form action="" id="form-register">
+      <form action="" #f="ngForm" (ngSubmit)="onSubmit(f)"  id="form-register">
         <div class="form-input">
-          <input type="text" id="full_name" placeholder="Họ và tên">
+          <input type="text" ngModel id="full_name" placeholder="Họ và tên" name="full_name">
         </div>
         <div class="form-input">
-          <input type="text" id="phone_number" placeholder="Số điện thoại">
+          <input type="text" ngModel id="phone_number" placeholder="Số điện thoại" name="phone_number">
         </div>
         <div class="form-input">
-          <input type="text" id="email" placeholder="Địa chỉ email">
+          <input type="text" ngModel id="email" placeholder="Địa chỉ email" name="email">
         </div>
         <div class="form-input form-input--eye">
-          <input [type]="type" id="password" placeholder="Mật khẩu">
+          <input [type]="type" ngModel id="password" placeholder="Mật khẩu" name="password">
           <span (click)="toggleEye()" *ngIf="!isEye; else openEye;"></span>
           <ng-template #openEye>
             <span class="open-eye" (click)="toggleEye()"></span>
           </ng-template>
         </div>
         <div class="form-button">
-          <button type="button">Đăng ký</button>
+          <button type="ngSubmit">Đăng ký</button>
         </div>
         <div class="box-social-login">
           <div class="separator-or">
