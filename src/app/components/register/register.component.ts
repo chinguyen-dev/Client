@@ -24,7 +24,6 @@ export class RegisterComponent {
   let email = f.control.get('email')?.value;
   let password = f.control.get('password')?.value;
   this.authService.register(fullName, email, password).subscribe( value =>{
-    this.authService.setCurrentUser(value);
     if (value) this.router.navigateByUrl('/account/login');
   })
 
