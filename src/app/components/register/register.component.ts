@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class RegisterComponent {
   constructor(private authService: AuthenticationService, private router: Router) {
   }
+
   isEye = false;
   type = 'password';
 
@@ -20,12 +21,9 @@ export class RegisterComponent {
   }
 
   onSubmit(f: NgForm) {
-  let fullName = f.control.get('full_name')?.value;
-  let email = f.control.get('email')?.value;
-  let password = f.control.get('password')?.value;
-  this.authService.register(fullName, email, password).subscribe( value =>{
-    if (value) this.router.navigateByUrl('/account/login');
-  })
+    this.authService.register(f.value).subscribe(value => {
+      if (value) this.router.navigateByUrl('/account/login');
+    })
 
   }
 }

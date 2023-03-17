@@ -9,7 +9,7 @@
     </div>
   </td>
   <td>
-    <span class="fw-bold">399.000đ</span>
+    <span class="fw-bold">{{item.product.price}}đ</span>
   </td>
   <td >
     <div class="border-1 border d-flex justify-content-between align-items-center ">
@@ -24,8 +24,8 @@
   </td>
   <td class="">
      <div class="h-100 d-flex flex-column justify-content-between align-items-end">
-       <span class="fw-bold">1.197.000đ</span>
-       <i class="far fa-trash-alt fs-4 text-secondary" role="button"></i>
+       <span class="fw-bold">{{item.product.price * item.quantity }}đ</span>
+       <i class="far fa-trash-alt fs-4 text-secondary" role="button" (click)="removeItem(item)"></i>
      </div>
   </td>
 
