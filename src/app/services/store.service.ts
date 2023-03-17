@@ -1,35 +1,32 @@
 import { Injectable } from '@angular/core';
+import {Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
-  TOKEN_KEY = 'auth-token';
-  USER_KEY = 'auth-user';
+  static TOKEN_KEY = 'auth-token';
+  static USER_KEY = 'auth-user';
   stored  = window.sessionStorage;
   constructor() { }
   signOut(): void {
     window.sessionStorage.clear();
   }public saveToken(token: string): void {
-    window.sessionStorage.removeItem(this.TOKEN_KEY);
-    window.sessionStorage.setItem(this.TOKEN_KEY, token);
+    window.sessionStorage.removeItem(StoreService.TOKEN_KEY);
+    window.sessionStorage.setItem(StoreService.TOKEN_KEY, token);
   }
 
   public getToken(): string | null {
-    return window.sessionStorage.getItem(this.TOKEN_KEY);
+    return window.sessionStorage.getItem(StoreService.TOKEN_KEY);
   }
 
   public saveUser(user: any): void {
-    window.sessionStorage.removeItem(this.USER_KEY);
-    window.sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    window.sessionStorage.removeItem(StoreService.USER_KEY);
+    window.sessionStorage.setItem(StoreService.USER_KEY, JSON.stringify(user));
   }
 
   public getUser(): any {
-    const user = window.sessionStorage.getItem(this.USER_KEY);
-    if (user) {
-      return JSON.parse(user);
-    }
-
-    return {};
+    const user = JSON.parse(window.sessionStorage.getItem(StoreService.USER_KEY) || 'null')
+    return user;
   }
 }

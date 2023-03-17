@@ -30,6 +30,9 @@
           &:focus-visible {
             outline: none;
           }
+          &.red-border {
+            border: red 1px solid;
+          }
 
           &:focus {
             border-color: #8C8C8C;

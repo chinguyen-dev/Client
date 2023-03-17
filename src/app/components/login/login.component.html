@@ -1,19 +1,22 @@
 <div id="wp-login">
   <div class="rounded">
-    <form action="">
+    <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h4>đăng <span>nhập</span></h4>
       <div class="form-input">
-        <input type="text" id="email" placeholder="Email">
+        <input type="text" id="email"  formControlName="email"
+               placeholder="Email" >
       </div>
       <div class="form-input form-input--eye">
-        <input [type]="type" id="password" placeholder="Mật khẩu">
+        <input [type]="type"  id="password" formControlName="password"
+
+               placeholder="Mật khẩu">
         <span (click)="toggleEye()" *ngIf="!isEye; else openEye;"></span>
         <ng-template #openEye>
           <span class="open-eye" (click)="toggleEye()"></span>
         </ng-template>
       </div>
       <div class="form-button">
-        <button type="button">Đăng nhập</button>
+        <button type="ngSubmit" class="btn btn-warning" [disabled]="!loginForm.valid">Đăng nhập</button>
       </div>
     </form>
     <span>Quên mật khẩu</span>

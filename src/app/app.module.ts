@@ -66,7 +66,7 @@ import {ProductItemComponent} from './components/client/shop/product-list/produc
 import {LoginComponent} from './components/login/login.component';
 import {HeaderComponent} from './components/client/header/header.component';
 import { ProductDetailsComponent} from './components/client/shop/product-list/product-item/product-details/product-details.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CartComponent} from './components/client/cart/cart.component';
 import {CartItemComponent} from './components/client/cart/cart-item/cart-item.component';
 import {RegisterComponent} from './components/register/register.component';
@@ -159,8 +159,9 @@ import {AuthInterceptor} from "./services/auth.interceptor";
         AppRoutingModule,
         FormsModule,
         CarouselModule,
-       ClientModule,
-        AdminModule
+        ClientModule,
+        AdminModule,
+        ReactiveFormsModule
     ],
 
   providers: [MdbCookiesManagementService, MdbStorageManagementService, MdbScrollStatusService, AuthInterceptor],

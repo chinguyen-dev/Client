@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
+import {AuthenticationRequest} from "../model/AuthenticationRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,8 @@ export class AuthenticationService {
   constructor(private http : HttpClient) {
 
   }
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(this.auth_api + 'login', {
-      username,
-      password
-    });
+  login(authenticationRequest: AuthenticationRequest): Observable<any> {
+    return this.http.post(this.auth_api + '/login', authenticationRequest);
   }
   setCurrentUser(user: any): void {
     window.sessionStorage.setItem('user', user);
@@ -24,7 +22,7 @@ export class AuthenticationService {
     return of(window.sessionStorage.getItem('user'));
   }
   register(fullName: string, email: string, password: string): Observable<any> {
-    return this.http.post(this.auth_api, {
+    return this.http.post(this.auth_api + '/register', {
       fullName,
       email,
       password

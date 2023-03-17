@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {fromEvent, map, mapTo, merge} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {StoreService} from "../../../services/store.service";
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class HeaderComponent implements OnInit {
   isModal: boolean | undefined;
-
+  user!: any
 
   constructor(private http: HttpClient) {
   }

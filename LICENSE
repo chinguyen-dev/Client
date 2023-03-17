@@ -1,6 +1,6 @@
 MDB 5 PRO version
 
-All MDBootstrap 5 products in paid version are licensed according to the End User
+All MDBootstrap 5 products in paid version are licensed according to the End AuthenticationRequest
 License Agreement (EULA) detailed below. By using products listed below (Product)
 from StartupFlow s.c. (MDB / MDBootstrap), you agree that this is a legally binding and
 valid contract and agree to be bound by it. You agree to abide by the intellectual
@@ -48,8 +48,8 @@ The user has a right to cancel the subscription without losing the right to use 
 package itself.
 
 
-User limits
-User limit for a license is specified on the checkout during the purchase. License holder
+AuthenticationRequest limits
+AuthenticationRequest limit for a license is specified on the checkout during the purchase. License holder
 (an owner of mdbootstrap account to which the license is assigned) has a right to allow
 usage for additional users in accordance with developer number specified in the order.
 
