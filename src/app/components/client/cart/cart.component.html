@@ -15,8 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr app-cart-item >
-
+        <tr *ngFor="let item of items" app-cart-item [item]="item" >
         </tr>
         </tbody>
       </table>
@@ -24,7 +23,7 @@
     <div class="bg-light p-3 rounded-5 col-3" style="height: fit-content;">
       <div class="d-flex justify-content-between align-items-center text-dart fw-bold">
         <span>Tổng đơn hàng (Tạm tính) :</span>
-        <span>269.000đ</span>
+        <span>{{total()}}đ</span>
       </div>
       <button class="btn p-3 fs-6  mt-3 text-light w-100" style="background-color: #fcaf17">Đặt hàng (2)</button>
     </div>
