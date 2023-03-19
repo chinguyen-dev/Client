@@ -10,7 +10,6 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class CategoryAdminComponent implements OnInit {
   dataSource: Category[] = [];
-  headers = ['Tên danh mục', 'Slug', 'parentId', 'createAt', 'updateAt'];
 
   constructor(private categoryService: CategoryService) {
   }
