@@ -9,7 +9,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./category-admin.component.scss']
 })
 export class CategoryAdminComponent implements OnInit {
-  dataSource: Category[] = [];
+  categories: Category[] = [];
 
   constructor(private categoryService: CategoryService) {
   }
@@ -19,14 +19,15 @@ export class CategoryAdminComponent implements OnInit {
   }
 
   public getCategories(): void {
-    // this.categoryService.getCategories().subscribe(
-    //   (response: Category[]) => {
-    //     this.dataSource = response;
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     console.log(error);
-    //   }
-    // );
+    this.categoryService.getCategories().subscribe(
+      (response: Category[]) => {
+        console.log(response)
+        this.categories = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
   }
 
 }
