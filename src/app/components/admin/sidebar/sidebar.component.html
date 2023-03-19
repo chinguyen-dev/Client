@@ -1,40 +1,16 @@
 <aside id="sidebar">
   <div class="sidebar-header">
-    <a href="">
+    <a href="" routerLink="/admin">
       <img src="//bizweb.dktcdn.net/100/438/408/themes/897269/assets/favicon.png?1677685430794" alt="">
       <span>Admin dashboard</span>
     </a>
   </div>
   <hr class="horizontal mt-0 mb-2">
   <ul class="nav-bar">
-    <li class="nav-item active">
-      <a href="" class="nav-link text-white">
-        <i class="material-icons">dashboard</i>
-        <span class="ms-1">Dashboard</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="" class="nav-link text-white">
-        <i class="material-icons">table_view</i>
-        <span class="ms-1">Sản phẩm</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="" class="nav-link text-white">
-        <i class="material-icons">palette</i>
-        <span class="ms-1">Màu sắc</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="" class="nav-link text-white">
-        <i class="material-icons">table_view</i>
-        <span class="ms-1">Danh mục</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="" class="nav-link text-white">
-        <i class="material-icons">tune</i>
-        <span class="ms-1">Tùy chọn</span>
+    <li *ngFor="let item of dataSource" class="nav-item">
+      <a class="nav-link text-white {{ item.isActive }}" routerLink="{{ item.url }}" (click)="isActive(item)">
+        <i class="material-icons">{{ item.material}}</i>
+        <span class="ms-1">{{ item.name }}</span>
       </a>
     </li>
   </ul>

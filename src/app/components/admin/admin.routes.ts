@@ -1,9 +1,16 @@
 import {Routes} from "@angular/router";
-import {AdminComponent} from "./admin.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {SidebarComponent} from "./sidebar/sidebar.component";
+import {AdminComponent} from "./admin.component";
 
-export const adminRoutes : Routes = [
+export const adminRoutes: Routes = [
+  {
+    path: 'admin', component: AdminComponent,
+    children: [
       {path: '', component: DashboardComponent},
-      {path: 'sidebar', component: SidebarComponent},
+      {
+        path: 'categories',
+        loadChildren: () => import('./category-admin/category-admin-routing.module').then(m => m.CategoryAdminRoutingModule)
+      }
+    ]
+  },
 ]

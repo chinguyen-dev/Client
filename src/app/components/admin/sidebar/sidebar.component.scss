@@ -46,10 +46,8 @@
     & .nav-item {
       margin-top: 3px;
 
-      &.active {
-        a {
-          background-image: linear-gradient(195deg, #ec407a, #d81b60);
-        }
+      & a.active {
+        background-image: linear-gradient(195deg, #ec407a, #d81b60);
       }
 
       &:hover {

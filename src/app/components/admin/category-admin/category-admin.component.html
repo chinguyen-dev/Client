@@ -1,0 +1,41 @@
+<div class="datatable container-fluid py-4">
+  <table
+    class="table datatable-table"
+    mdbTable
+    mdbTableSort
+    #table="mdbTable"
+    #sort="mdbTableSort"
+    [dataSource]="dataSource"
+    [pagination]="pagination"
+    [sort]="sort"
+  >
+    <thead class="datatable-header">
+    <tr>
+      <th *ngFor="let header of headers" [mdbTableSortHeader]="header" scope="col">
+        {{ header | titlecase }}
+      </th>
+    </tr>
+    </thead>
+    <tbody class="datatable-body">
+    <tr *ngFor="let data of table.data" scope="row">
+      <td>
+        {{ data.name }}
+      </td>
+      <td>
+        {{ data.slug }}
+      </td>
+      <td>
+        {{ data.parentId }}
+      </td>
+      <td>
+        {{ data.createAt }}
+      </td>
+      <td>
+        {{ data.updateAt }}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <mdb-table-pagination #pagination></mdb-table-pagination>
+</div>
+
