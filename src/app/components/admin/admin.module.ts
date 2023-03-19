@@ -8,19 +8,25 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CategoryAdminComponent} from "./category-admin/category-admin.component";
 import {AdminComponent} from "./admin.component";
+import { AddCategoryAdminComponent } from './category-admin/add-category-admin/add-category-admin.component';
+import {MdbFormsModule} from "mdb-angular-ui-kit/forms";
+import { ListCategoryAdminComponent } from './category-admin/list-category-admin/list-category-admin.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     SidebarComponent,
     DashboardComponent,
-    CategoryAdminComponent
+    CategoryAdminComponent,
+    AddCategoryAdminComponent,
+    ListCategoryAdminComponent
   ],
   imports: [
     CommonModule,
     CategoryAdminRoutingModule,
     RouterModule.forChild(adminRoutes),
     MdbTableModule,
+    MdbFormsModule,
   ]
 })
 export class AdminModule {

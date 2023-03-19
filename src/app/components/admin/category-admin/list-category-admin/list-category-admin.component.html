@@ -1,0 +1,40 @@
+<div class="table-responsive p-0">
+  <table class="table align-items-center mb-0">
+    <thead>
+    <tr>
+      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">stt</th>
+      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tên danh mục</th>
+      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Danh mục cha</th>
+      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">thời gian</th>
+      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+        <a href="" class="btn" routerLink="create">Thêm mới</a>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of categories; index as idx">
+      <td>
+        <div class="d-flex px-2 py-1">
+          <div class="d-flex flex-column justify-content-center">
+            <h6 class="mb-0 text-sm">{{ idx + 1 }}</h6>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="text-xs font-weight-bold mb-0">{{ item.name }}</p>
+      </td>
+      <td class="align-middle text-center text-sm">
+        <p class="text-xs font-weight-bold mb-0">{{ item.parentId }}</p>
+      </td>
+      <td class="align-middle text-center">
+        <span class="text-secondary text-xs font-weight-bold">{{ item.createAt | date:'short' }}</span>
+      </td>
+      <td class="align-middle d-flex align-items-center justify-content-center">
+        <a href="" class="text-secondary"><i class="material-icons">edit</i></a>
+        <a href="" class="text-secondary"><i class="material-icons">delete</i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
