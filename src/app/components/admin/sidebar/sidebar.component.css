@@ -41,7 +41,7 @@
 #sidebar .nav-bar .nav-item {
   margin-top: 3px;
 }
-#sidebar .nav-bar .nav-item.active a {
+#sidebar .nav-bar .nav-item a.active {
   background-image: linear-gradient(195deg, #ec407a, #d81b60);
 }
 #sidebar .nav-bar .nav-item:hover a {
