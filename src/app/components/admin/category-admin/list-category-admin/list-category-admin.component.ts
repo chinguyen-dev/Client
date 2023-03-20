@@ -8,7 +8,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   templateUrl: './list-category-admin.component.html',
   styleUrls: ['./list-category-admin.component.scss']
 })
-export class ListCategoryAdminComponent implements OnInit{
+export class ListCategoryAdminComponent implements OnInit {
   categories: any[] = [];
 
   constructor(private categoryService: CategoryService) {
@@ -20,33 +20,39 @@ export class ListCategoryAdminComponent implements OnInit{
 
 
   public getCategories(): void {
-    this.categoryService.getCategories().subscribe(
-      (response: Category[]) => {
+    this.categoryService.getCategories().subscribe({
+      next: (response: Category[]) => {
         this.categories = response;
-        this.transformData();
+        this.transformData(response);
       },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
+      error: (error: HttpErrorResponse) => console.log(error)
+    });
   }
 
-  public transformData() {
-    for (let item of this.categories) {
-      if (this.hasChild(item)) {
-        this.transformData();
+  public onDeleteCategory(id: number) {
+    this.categoryService.deleteCategory(id).subscribe({
+      next: (response: any) => this.getCategories(),
+      error: (error: HttpErrorResponse) => console.log(error)
+    })
+  }
+
+  public transformData(data: any) {
+    for (let item of data) {
+      if (item.parentId != 0) {
+        if (this.hasChild(data, item)) this.transformData(data)
       } else {
         item.parentId = item.name;
       }
     }
   }
 
-  public hasChild(category: Category) {
-    for (let item of this.categories)
+  public hasChild(data: any, category: Category) {
+    for (let item of data) {
       if (item.id == category.parentId) {
         category.parentId = item.name;
         return true;
       }
+    }
     return false;
   }
 }

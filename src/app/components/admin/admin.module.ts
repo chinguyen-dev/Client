@@ -11,6 +11,8 @@ import {AdminComponent} from "./admin.component";
 import { AddCategoryAdminComponent } from './category-admin/add-category-admin/add-category-admin.component';
 import {MdbFormsModule} from "mdb-angular-ui-kit/forms";
 import { ListCategoryAdminComponent } from './category-admin/list-category-admin/list-category-admin.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { UpdateCategoryAdminComponent } from './category-admin/update-category-admin/update-category-admin.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { ListCategoryAdminComponent } from './category-admin/list-category-admin
     DashboardComponent,
     CategoryAdminComponent,
     AddCategoryAdminComponent,
-    ListCategoryAdminComponent
+    ListCategoryAdminComponent,
+    UpdateCategoryAdminComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,8 @@ import { ListCategoryAdminComponent } from './category-admin/list-category-admin
     RouterModule.forChild(adminRoutes),
     MdbTableModule,
     MdbFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule {

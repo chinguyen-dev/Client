@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col-md-12">
-    <h5 class="ps-3 mb-3">Thêm danh mục</h5>
+    <h5 class="ps-3 mb-3">Chỉnh sửa danh mục</h5>
   </div>
   <div class="col-md-6">
     <form class="ps-3" (ngSubmit)="onSubmit()" [formGroup]="form">
-      <input type="text" formControlName="name" placeholder="Tên danh mục"/>
+      <input type="text" formControlName="name" placeholder="Tên danh mục" [ngModel]="category.name"/>
       <ng-container *ngIf="form.controls.name.invalid && form.controls.name.touched">
         <div *ngIf="form.controls.name.errors?.['required']">
           <small>* Vui lòng nhập tên danh mục.</small>
         </div>
       </ng-container>
-      <select formControlName="parentId" [ngModel]="0">
+      <select formControlName="parentId" [ngModel]="category.parentId">
         <option *ngFor="let item of categories" value="{{ item.id }}">{{ item.name }}</option>
       </select>
-      <button type="submit" class="btn" [disabled]="form.invalid">Thêm mới</button>
+      <button type="submit" class="btn" [disabled]="form.invalid">Cập nhật</button>
     </form>
   </div>
 </div>

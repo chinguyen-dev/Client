@@ -30,8 +30,8 @@
         <span class="text-secondary text-xs font-weight-bold">{{ item.createAt | date:'short' }}</span>
       </td>
       <td class="align-middle d-flex align-items-center justify-content-center">
-        <a href="" class="text-secondary"><i class="material-icons">edit</i></a>
-        <a href="" class="text-secondary"><i class="material-icons">delete</i></a>
+        <a href="" class="text-secondary" routerLink="update/{{ item.id }}"><i class="material-icons">edit</i></a>
+        <i class="material-icons text-secondary" (click)="onDeleteCategory(item.id)">delete</i>
       </td>
     </tr>
     </tbody>
