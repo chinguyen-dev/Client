@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {fromEvent, map, mapTo, merge} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {StoreService} from "../../../services/store.service";
+import {fromEvent, map, merge} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {CategoryService} from "../../../services/category.service";
+import {Category} from "../../../model/Category";
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,22 @@ import {StoreService} from "../../../services/store.service";
 })
 export class HeaderComponent implements OnInit {
   isModal: boolean | undefined;
-  user!: any
+  user!: any;
+  categories: Category[] | undefined;
 
-  constructor(private http: HttpClient) {
+  constructor(private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
     this.toggleModal();
+    this.getCategories();
+  }
+
+  public getCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: (res: Category[]) => this.categories = res,
+      error: err => console.log(err),
+    })
   }
 
   toggleModal() {
