@@ -6,7 +6,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-add-filter-bar-admin',
+  selector: 'app-add-category-admin',
   templateUrl: './add-category-admin.component.html',
   styleUrls: ['./add-category-admin.component.scss'],
 })

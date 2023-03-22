@@ -4,7 +4,7 @@ import {Category} from "../../../../model/Category";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
-  selector: 'app-list-filter-bar-admin',
+  selector: 'app-list-category-admin',
   templateUrl: './list-category-admin.component.html',
   styleUrls: ['./list-category-admin.component.scss']
 })
