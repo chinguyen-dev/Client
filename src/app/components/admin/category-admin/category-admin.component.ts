@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 
 @Component({
-  selector: 'app-category-admin',
+  selector: 'app-filter-bar-admin',
   templateUrl: './category-admin.component.html',
   styleUrls: ['./category-admin.component.scss']
 })

@@ -1,0 +1,84 @@
+$color-gray : #333;
+$color-white : #fff;
+$color-black : #000;
+$color-green: green;
+$color-red : red;
+$color-yellow: yellow;
+.title{
+  font-size: 16px;
+  font-weight: 500;
+}
+.product-type-list {
+  max-height: 300px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #333;
+  }
+
+}
+.filter-items-layout{
+  margin-bottom: 25px;
+  .filter-item {
+    background-color: #F2F2F2;
+    border-radius: 4px;
+    color: #7A7A9D;
+    line-height: 33px;
+    border: 1px #F2F2F2 solid;
+    padding: 0 12px;
+    font-size: 14px;
+    min-width: initial;
+    display: inline-block;
+    &:hover {
+      color: #fcaf17;
+      background: transparent;
+      border: 1px solid #fcaf17;
+      cursor: pointer;
+    }
+  }
+  .filter-item {
+    margin: 6px 6px 0 0;
+    .filter-color{
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .bg-color-green{
+      background-color: $color-green;
+      &:hover{
+        border: 1px solid $color-green;
+      }
+    }
+    .bg-color-black{
+      background-color: $color-black;
+      &:hover{
+        border: 1px solid $color-black;
+      }
+    }
+    .bg-color-red{
+      background-color: $color-red;
+      &:hover{
+        border: 1px solid $color-red;
+      }
+    }
+    .bg-color-yellow{
+      background-color: $color-yellow;
+      &:hover{
+        border: 1px solid $color-yellow;
+      }
+    }
+    .bg-color-white{
+      background-color: $color-white;
+      &:hover{
+        border: 1px solid $color-white;
+      }
+    }
+  }
+}
+

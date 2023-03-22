@@ -255,7 +255,7 @@ describe('MDB Sidenav', () => {
     expect(collapseElements[collapseElements.length - 1].classList.contains('show')).toBe(false);
   }));
 
-  it('should close other category list if accordion = true', fakeAsync(() => {
+  it('should close other filter-bar list if accordion = true', fakeAsync(() => {
     testComponent.accordion = true;
     fixture.detectChanges();
     flush();

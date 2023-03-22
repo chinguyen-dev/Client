@@ -238,7 +238,7 @@
         <div class="user">
           <a href="">
             <img src="	https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/icon-user.svg?1677746368131" alt="">
-                        <span>
+                        <span *ngIf="user == null">
                           <a href="" routerLink="/account/register">đăng ký</a>
                            <span>/</span>
                            <a href="" routerLink="/account/login"> đăng nhập</a>
@@ -246,17 +246,17 @@
 <!--            <span>Cá nhân</span>-->
 
           </a>
-<!--          <div class="list-action">-->
-<!--            <ul>-->
-<!--              <li><a href="">Nguyên võ</a></li>-->
-<!--              <li><a href="">Tài khoản của tôi</a></li>-->
-<!--              <li><a href="">Đổi mật khẩu</a></li>-->
-<!--              <li><a href="">Sổ địa chỉ</a></li>-->
-<!--              <li><a href="">Đã xem gần đây</a></li>-->
-<!--              <li><a href="">Sản phẩm yêu thích</a></li>-->
-<!--              <li class="logout"><a href="">Đăng xuất</a></li>-->
-<!--            </ul>-->
-<!--          </div>-->
+          <div *ngIf="user != null" class="list-action">
+            <ul>
+              <li><a href="">{{user?.value}}</a></li>
+              <li><a href="">Tài khoản của tôi</a></li>
+              <li><a href="">Đổi mật khẩu</a></li>
+              <li><a href="">Sổ địa chỉ</a></li>
+              <li><a href="">Đã xem gần đây</a></li>
+              <li><a href="">Sản phẩm yêu thích</a></li>
+              <li class="logout" (click)="logOut()"><a href="">Đăng xuất</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

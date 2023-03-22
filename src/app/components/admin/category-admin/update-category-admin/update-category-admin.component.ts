@@ -8,7 +8,7 @@ import {find, from} from "rxjs";
 import {log} from "util";
 
 @Component({
-  selector: 'app-update-category-admin',
+  selector: 'app-update-filter-bar-admin',
   templateUrl: './update-category-admin.component.html',
   styleUrls: ['./update-category-admin.component.scss']
 })
