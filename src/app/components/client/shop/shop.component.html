@@ -1,38 +1,101 @@
-<div class=" mt-5 d-flex justify-content-between  container p-0" style="max-width: 1240px; width: 100%; margin: auto; height: fit-content;" >
-  <app-filter-bar class="mt-4" style="width: 15%" ></app-filter-bar>
+<div class=" mt-5 d-flex justify-content-between  container p-0"
+     style="max-width: 1240px; width: 100%; margin: auto; height: fit-content;">
+  <div class="mt-4" style="width: 15%">
+    <div *ngIf=" selectedFilters.length > 0">
+      <span class="title">Bạn đã chọn</span>
+      <div >
+        <span  *ngFor="let item of selectedFilters" class="btn-warning d-inline-block mt-2 me-2 rounded text-light" (click)="deleteAttribute(item)" style="cursor: pointer">
+          x {{item.value}}
+        </span>
+      </div>
+    </div>
 
-  <div  style="width: 80%">
-    <div class="d-flex justify-content-between align-items-center pb-2" >
+    <span class="d-block title ">Loại sản phẩm</span>
+    <div class=" product-type-list filter-items-layout ">
+      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+    </div>
+    <span class="d-block title ">Kích thước</span>
+    <div class="sizing filter-items-layout">
+      <span class="filter-item " (click)="onFilterClick('size', 's')">S</span>
+      <span class="filter-item " (click)="onFilterClick('size', 'M')" >M</span>
+      <span class="filter-item " (click)="onFilterClick('size', 'L')">L</span>
+      <span class="filter-item " (click)="onFilterClick('size', 'XL')">XL</span>
+      <span class="filter-item " (click)="onFilterClick('size', 'XXL')">XXL</span>
+      <span class="filter-item " (click)="onFilterClick('size', '4XL')">4XL</span>
+    </div>
+    <span class="d-block  title">Màu sắc</span>
+    <div class="sizing filter-items-layout">
+  <span class="filter-item">
+    <div (click)="onFilterClick('color', 'Đen')" class="d-flex justify-content-between align-items-center gap-2">
+      <span class="filter-color bg-color-black" ></span> Đen</div>
+  </span>
+      <span class="filter-item">
+    <div (click)="onFilterClick('color', 'Trắng')" class="d-flex justify-content-between align-items-center gap-2">
+      <span class="filter-color bg-color-white" ></span> Trắng</div>
+  </span>
+      <span class="filter-item">
+    <div (click)="onFilterClick('color', 'Vàng')" class="d-flex justify-content-between align-items-center gap-2">
+      <span class="filter-color bg-color-yellow" ></span> Vàng</div>
+  </span>
+      <span class="filter-item">
+    <div (click)="onFilterClick('color', 'Đỏ')" class="d-flex justify-content-between align-items-center gap-2">
+      <span class="filter-color bg-color-red " ></span> Đỏ</div>
+  </span>
+      <span class="filter-item">
+    <div (click)="onFilterClick('color', 'Xanh la')" class="d-flex justify-content-between align-items-center gap-2">
+      <span class="filter-color bg-color-green" ></span> Xanh lá</div>
+  </span>
+
+    </div>
+
+
+  </div>
+
+  <div style="width: 80%">
+    <div class="d-flex justify-content-between align-items-center pb-2">
       <div>
         112 sản phẩm
       </div>
       <div class="d-flex align-items-center" style="width: 30%;">
         <span class="me-2" style="font-size: 16px; font-weight: 500;">Sắp xếp theo</span>
-        <div class="selection-sort d-flex justify-content-between align-items-center border border-1 p-2  rounded flex-fill position-relative ">
+        <div
+          class="selection-sort d-flex justify-content-between align-items-center border border-1 p-2  rounded flex-fill position-relative ">
           <span class=" " style="font-size: 16px; font-weight: 500;">Mặc định</span>
           <span><i class="fas fa-angle-down pe-1"></i></span>
           <ul class="selection-sort-list border border-1 p-2 ">
-            <li class="d-flex justify-content-between align-items-center selection-active"><span>Mặc định</span> <i class="fas fa-check selection-icon"></i> </li>
-            <li class="d-flex justify-content-between align-items-center"><span>Từ A-Z</span> <i class="fas fa-check selection-icon"></i> </li>
-            <li class="d-flex justify-content-between align-items-center"><span>Từ Z-A</span> <i class="fas fa-check selection-icon"></i> </li>
-            <li class="d-flex justify-content-between align-items-center"><span>Rẻ nhất</span><i class="fas fa-check selection-icon"></i> </li>
-            <li class="d-flex justify-content-between align-items-center"><span>Mới nhất</span><i class="fas fa-check selection-icon"></i> </li>
+            <li class="d-flex justify-content-between align-items-center selection-active"><span>Mặc định</span> <i
+              class="fas fa-check selection-icon"></i></li>
+            <li class="d-flex justify-content-between align-items-center"><span>Từ A-Z</span> <i
+              class="fas fa-check selection-icon"></i></li>
+            <li class="d-flex justify-content-between align-items-center"><span>Từ Z-A</span> <i
+              class="fas fa-check selection-icon"></i></li>
+            <li class="d-flex justify-content-between align-items-center"><span>Rẻ nhất</span><i
+              class="fas fa-check selection-icon"></i></li>
+            <li class="d-flex justify-content-between align-items-center"><span>Mới nhất</span><i
+              class="fas fa-check selection-icon"></i></li>
           </ul>
         </div>
       </div>
     </div>
-      <app-product-list></app-product-list>
-      <div class="d-flex justify-content-center mt-3 mb-3">
-        <div class="custom-pagination " >
-          <a  class="custom-pagination-item "><i class="fas fa-arrow-left"></i></a>
-          <a  class="custom-pagination-item activated">1</a>
-          <a  class="custom-pagination-item">2</a>
-          <a  class="custom-pagination-item">3</a>
-          <a class="custom-pagination-item">4</a>
-          <a  class="custom-pagination-item">5</a>
-          <a  class="custom-pagination-item"><i class="fas fa-arrow-right"></i></a>
-        </div>
-
+    <app-product-list [products$]="products$"></app-product-list>
+    <div class="d-flex justify-content-center mt-3 mb-3">
+      <div class="custom-pagination ">
+        <a class="custom-pagination-item "><i class="fas fa-arrow-left"></i></a>
+        <a class="custom-pagination-item activated">1</a>
+        <a class="custom-pagination-item">2</a>
+        <a class="custom-pagination-item">3</a>
+        <a class="custom-pagination-item">4</a>
+        <a class="custom-pagination-item">5</a>
+        <a class="custom-pagination-item"><i class="fas fa-arrow-right"></i></a>
       </div>
+
+    </div>
   </div>
 </div>
