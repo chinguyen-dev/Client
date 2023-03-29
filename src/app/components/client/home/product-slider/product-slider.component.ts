@@ -28,8 +28,7 @@ export class ProductSliderComponent implements OnInit {
     this.productService.getAllProduct().subscribe({
       next: value => {
         value.forEach((item: any, index: number) => {
-          if (index < 4) this.listProductFirst?.push(item);
-          this.listProductLast?.push(item);
+          index < 4 ? this.listProductFirst?.push(item) : this.listProductLast?.push(item);
         })
       },
       error: err => console.log(err),

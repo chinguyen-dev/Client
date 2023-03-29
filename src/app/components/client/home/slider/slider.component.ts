@@ -35,7 +35,10 @@ export class SliderComponent {
 
   sliders: any = [
     {
-      'image' : 'https://bizweb.dktcdn.net/100/438/408/themes/899432/assets/slider_1.jpg?1679215608377'
+      'image': 'https://bizweb.dktcdn.net/100/438/408/themes/899432/assets/slider_1.jpg?1679215608377'
+    },
+    {
+      'image': 'https://bizweb.dktcdn.net/100/438/408/themes/900748/assets/slider_1.jpg?1680081667198'
     },
     {
       'image': 'https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/slider_1.jpg?1677837132233'
@@ -44,8 +47,7 @@ export class SliderComponent {
       'image': 'https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/slider_2.jpg?1677837132233'
     },
     {
-      'image': 'https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/slider_3.jpg?1677837132233'
+      'image': 'https://bizweb.dktcdn.net/100/438/408/themes/900748/assets/slider_2.jpg?1680081667198'
     },
-
   ]
 }

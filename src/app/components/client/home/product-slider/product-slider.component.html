@@ -11,10 +11,10 @@
     </div>
     <div class="product-slider">
       <owl-carousel-o [options]="productSliderOption">
-        <ng-template carouselSlide>
+        <ng-template carouselSlide *ngIf="listProductFirst.length > 0">
           <app-product [listItem]="listProductFirst"></app-product>
         </ng-template>
-        <ng-template carouselSlide>
+        <ng-template carouselSlide *ngIf="listProductLast.length > 0">
           <app-product [listItem]="listProductLast"></app-product>
         </ng-template>
       </owl-carousel-o>

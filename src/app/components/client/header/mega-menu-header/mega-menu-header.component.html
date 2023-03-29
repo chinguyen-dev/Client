@@ -1,0 +1,29 @@
+<div id="mega-menu">
+  <ul id="main-menu">
+    <li>
+      <a href="" class="sale">Sale 50%</a>
+    </li>
+    <li class="hover" *ngFor="let category of categoriesParent$ | async">
+      <a href="" routerLink="{{ category.slug }}">{{ category.name }}</a>
+      <ul class="sub-menu">
+        <li class="mega-menu">
+          <ul>
+            <li class="item-1" *ngFor="let child of getChildren(category.id) | async">
+              <a href="" routerLink="{{ child.slug }}">{{ child.name }}</a>
+              <ul>
+                <li *ngFor="let subChild of getChildren(child.id) | async">
+                  <a href="" routerLink="{{ subChild.slug }}">{{ subChild.name }}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="thumbnail">
+          <img
+            src="https://bizweb.dktcdn.net/thumb/grande/100/438/408/themes/897269/assets/link_image_2_1.jpg?1677753100854"
+            alt="">
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

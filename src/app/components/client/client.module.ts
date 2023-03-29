@@ -4,14 +4,17 @@ import {RouterModule} from "@angular/router";
 import {clientRoutes} from "./client.routes";
 import { ProductComponent } from './home/product-slider/product/product.component';
 import { FilterBarComponent } from './shop/filter-bar/filter-bar.component';
+import { MegaMenuHeaderComponent } from './header/mega-menu-header/mega-menu-header.component';
 
 @NgModule({
     declarations: [
-        ProductComponent
+        ProductComponent,
+        MegaMenuHeaderComponent
     ],
-    exports: [
-        ProductComponent
-    ],
+  exports: [
+    ProductComponent,
+    MegaMenuHeaderComponent
+  ],
     imports: [
         CommonModule,
         RouterModule.forChild(clientRoutes)
