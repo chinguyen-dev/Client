@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
-import {StoreService} from "../../services/store.service";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit{
   loginForm !: FormGroup;
   constructor(private fb : FormBuilder,
               private authenticate : AuthenticationService,
-              private storeService: StoreService,
+              private storeService: StorageService,
               private router: Router) {
   }
  ngOnInit() {

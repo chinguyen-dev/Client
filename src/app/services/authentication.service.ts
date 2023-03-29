@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,4 +17,5 @@ export class AuthenticationService {
   register(user: any): Observable<any> {
     return this.http.post(this.auth_api + '/register', user);
   }
+
 }

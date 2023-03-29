@@ -7,16 +7,10 @@ import {Observable} from "rxjs";
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent{
 
   @Input() listItem: Array<any> | undefined;
-  products$ !: Observable<any>;
+  @Input() products$ !: Observable<any>;
   constructor(private productService: ProductService) {
-  }
-  ngOnInit() {
-    this.products$ = this.getAllProduct();
-  }
-  getAllProduct() : Observable<any>{
-    return this.productService.getAllProduct();
   }
 }

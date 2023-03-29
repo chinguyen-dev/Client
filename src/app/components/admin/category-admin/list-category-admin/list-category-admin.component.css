@@ -1,0 +1,44 @@
+.material-icons {
+  font-family: Material Icons Round, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  display: inline-block;
+}
+
+.btn {
+  padding: 6px 16px;
+  color: #ec407a;
+  border: 1px solid #ec407a;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.table tbody tr:last-child td {
+  border-width: 0;
+  padding-bottom: 0;
+}
+
+.table thead th {
+  padding: 0.75rem 1.5rem;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #f0f2f5;
+  vertical-align: middle;
+}
+
+.text-xxs {
+  font-size: 0.75rem !important;
+}
+
+.table > :not(caption) > * > * {
+  padding: 0.5rem 1.4rem;
+  border-bottom-width: 1px;
+}
+
+i {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=list-category-admin.component.css.map */
