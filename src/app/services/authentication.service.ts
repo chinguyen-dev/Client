@@ -8,7 +8,6 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 export class AuthenticationService {
   auth_api = 'http://localhost:8080/api/v1/auth';
 
-
   constructor(private http: HttpClient) {}
 
   login(authenticationRequest: any): Observable<any> {
