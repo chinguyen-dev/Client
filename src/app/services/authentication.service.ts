@@ -6,7 +6,7 @@ import {Observable, of} from "rxjs";
   providedIn: 'root'
 })
 export class AuthenticationService {
-  auth_api = 'http://localhost:8080/api/v1/admin/users';
+  auth_api = 'http://localhost:8080/api/v1/auth';
 
   constructor(private http: HttpClient) {}
 
