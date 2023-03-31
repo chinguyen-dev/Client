@@ -1,13 +1,15 @@
-$color-gray : #333;
-$color-white : #fff;
-$color-black : #000;
+$color-gray: #333;
+$color-blue: blue;
+$color-white: #fff;
+$color-black: #000;
 $color-green: green;
-$color-red : red;
+$color-red: red;
 $color-yellow: yellow;
-.title{
+.title {
   font-size: 16px;
   font-weight: 500;
 }
+
 .product-type-list {
   max-height: 300px;
   overflow-y: scroll;
@@ -22,8 +24,10 @@ $color-yellow: yellow;
   }
 
 }
-.filter-items-layout{
+
+.filter-items-layout {
   margin-bottom: 25px;
+
   .filter-item {
     background-color: #F2F2F2;
     border-radius: 4px;
@@ -34,6 +38,51 @@ $color-yellow: yellow;
     font-size: 14px;
     min-width: initial;
     display: inline-block;
+    margin: 6px 6px 0 0;
+
+    .filter-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .bg-color-green {
+      background-color: $color-green;
+
+
+    }
+
+    .bg-color-black {
+      background-color: $color-black;
+
+
+    }
+
+    .bg-color-red {
+      background-color: $color-red;
+
+
+    }
+
+    .bg-color-yellow {
+      background-color: $color-yellow;
+
+
+    }
+
+    .bg-color-white {
+      background-color: $color-white;
+
+
+    }
+
+    .bg-color-blue {
+      background-color: $color-blue;
+
+
+    }
+
     &:hover {
       color: #fcaf17;
       background: transparent;
@@ -41,49 +90,9 @@ $color-yellow: yellow;
       cursor: pointer;
     }
   }
-  .filter-item {
-    margin: 6px 6px 0 0;
-    .filter-color{
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .bg-color-green{
-      background-color: $color-green;
-      &:hover{
-        border: 1px solid $color-green;
-      }
-    }
-    .bg-color-black{
-      background-color: $color-black;
-      &:hover{
-        border: 1px solid $color-black;
-      }
-    }
-    .bg-color-red{
-      background-color: $color-red;
-      &:hover{
-        border: 1px solid $color-red;
-      }
-    }
-    .bg-color-yellow{
-      background-color: $color-yellow;
-      &:hover{
-        border: 1px solid $color-yellow;
-      }
-    }
-    .bg-color-white{
-      background-color: $color-white;
-      &:hover{
-        border: 1px solid $color-white;
-      }
-    }
-  }
 }
 
-
-.custom-pagination-item{
+.custom-pagination-item {
   width: 41px;
   display: inline-block;
   text-align: center;
@@ -96,17 +105,20 @@ $color-yellow: yellow;
   height: 37px;
   border-radius: 4px;
   cursor: pointer;
-  &:hover{
+
+  &:hover {
     background-color: #fcaf17;
     color: #fff;
   }
-  &.activated{
+
+  &.activated {
     background-color: #fcaf17;
     color: #fff;
   }
 }
-.selection-sort{
-  .selection-sort-list{
+
+.selection-sort {
+  .selection-sort-list {
     z-index: 99999;
     background-color: #fff;
     border-bottom-left-radius: 4px;
@@ -119,29 +131,36 @@ $color-yellow: yellow;
     width: 100%;
     font-size: 14px;
     left: 0;
-    li{
+
+    li {
       cursor: pointer;
       margin: 6px 0;
       font-size: 14px;
-      i{
+
+      i {
         display: none;
       }
-      &:hover{
+
+      &:hover {
         color: #fcaf17;
-        i{
+
+        i {
           display: block;
         }
       }
-      &.selection-active{
+
+      &.selection-active {
         color: #fcaf17;
-        i{
+
+        i {
           display: block;
         }
       }
     }
   }
-  &:hover{
-    .selection-sort-list{
+
+  &:hover {
+    .selection-sort-list {
       display: block;
     }
   }
