@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../services/product.service";
-import {Observable} from "rxjs";
-import {filter} from "rxjs/operators";
+import {fromEvent, Observable} from "rxjs";
+import {filter, map} from "rxjs/operators";
 
 interface sortingType {
   type: string;
@@ -22,9 +22,9 @@ export class ShopComponent implements OnInit {
     {type: 'PRICE_DESC', value: 'Giá tăng dần'},
   ]
   sizes = ['S', 'M', 'L'];
-  colors = ['red', 'green', 'blue'];
-  sizesFilter : string[] = []
-  colorsFilter : string[] = []
+  colors = ['RED', 'GREEN', 'BLUE'];
+  sizesFilter: string[] = []
+  colorsFilter: string[] = []
   sort = window.sessionStorage.getItem('sortingType') || this.sortingTypes[0].value
   page: number = 0;
   isActive = true;
@@ -35,46 +35,91 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
     this.products$ = this.productService.getAllProduct().pipe(
-      filter(
-        product => this.checkFilter(this.colors, product.variant.color)
-          && this.checkFilter(this.sizes, product.variant.size)
-      )
+      map(products => {
+        return products.sort((a: any, b: any) => {
+          let result
+          switch (this.sort) {
+            case 'Mặc định':
+              result = 0;
+              break;
+            case 'Từ A - Z' :
+              result = b.name - a.name;
+              break;
+            case 'Từ Z - A' :
+              result = a.name - b.name;
+              break;
+            case 'Giá tăng dần' :
+              result = a.price - b.price;
+              break;
+            case 'Giá giảm dần' :
+              result = b.price - a.price
+              break
+          }
+          return result
+        })
+      }),
+      map(products => {
+        return products.filter((product: any) => {
+          return this.checkFilter(this.colorsFilter, product.variants, 'color')
+            && this.checkFilter(this.sizesFilter, product.variants, 'size')
+        })
+      })
     );
   }
 
+  checkFilter(filter: any, variants: any, type: string) {
+    if (filter.length == 0) return true;
+    return variants.some((variant: any) => {
+      let variantAttribute = ''
+      switch (type) {
+        case 'color':
+          variantAttribute = variant.color
+          break;
+        case 'size':
+          variantAttribute = variant.size
+          break;
+        case 'category' :
+          variantAttribute = variant.category
+          break;
+      }
+      console.log(filter + " " + variantAttribute)
+      return filter.includes(variantAttribute)
+    })
+  }
+
   sortingTypeChange(type: string) {
-    this.sort = type
-    window.sessionStorage.setItem('sortingType', type)
+    this.sort = type;
+    window.sessionStorage.setItem('sortingType', type);
+    this.getProducts();
   }
 
-  checkFilter(attributeFilter: any, attribute: any) {
-    if (attributeFilter.length === 0 || attributeFilter.includes(attribute)) {
-      return true;
-    }
-      return false;
-  }
-
-  addFilterSize(size: string) {
-    this.sizes.push(size);
-  }
 
   removeSize(size: string) {
-    let index = this.sizesFilter.indexOf(size,0);
+    let index = this.sizesFilter.indexOf(size, 0);
     this.sizesFilter.splice(index, 1);
+    this.getProducts()
   }
 
   removeColor(color: string) {
-    let index = this.colorsFilter.indexOf(color,0);
+    let index = this.colorsFilter.indexOf(color, 0);
     this.colorsFilter.splice(index, 1);
+    this.getProducts()
   }
 
   addSize(size: string) {
     let exSize = this.sizesFilter.includes(size);
     if (!exSize) this.sizesFilter.push(size)
+    this.getProducts()
   }
+
   addColor(color: string) {
     let exColor = this.colorsFilter.includes(color);
     if (!exColor) this.colorsFilter.push(color)
+    this.getProducts()
   }
 }
