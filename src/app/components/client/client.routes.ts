@@ -6,6 +6,7 @@ import {LoginComponent} from "../login/login.component";
 import {RegisterComponent} from "../register/register.component";
 import {ProductDetailsComponent} from "./shop/product-list/product-item/product-details/product-details.component";
 import {ShopComponent} from "./shop/shop.component";
+import {CheckoutComponent} from "./checkout/checkout.component";
 
 export const clientRoutes : Routes = [
   {
@@ -17,6 +18,7 @@ export const clientRoutes : Routes = [
       {path: 'account/register', component: RegisterComponent},
       {path: 'product/:id', component: ProductDetailsComponent},
       {path: 'shop', component: ShopComponent},
+      {path: 'checkout', component: CheckoutComponent}
     ]
   }
 ]

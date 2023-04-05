@@ -14,11 +14,6 @@ export class CartService {
   constructor() {
     this.getData()
     this.setData();
-    this.subject.next([
-      new Item(new Product(1, "áo", 200000,'https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn6008-tpv-7.jpg?v=1678671119000'), 2),
-      new Item(new Product(2, "áo len", 200000,'https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn6008-tpv-7.jpg?v=1678671119000'), 3),
-      new Item(new Product(3, "áo oversize", 200000,'https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn6008-tpv-7.jpg?v=1678671119000'), 1),
-    ])
   }
 
   addToCart(product: Product, quantity: number) {
