@@ -25,16 +25,12 @@ export class ProductSliderComponent implements OnInit {
   }
 
   public getProducts() {
-    this.productService.getAllProduct().subscribe({
-      next: value => {
-        value.forEach((item: any, index: number) => {
-          index < 4 ? this.listProductFirst?.push(item) : this.listProductLast?.push(item);
-        })
-      },
-      error: err => console.log(err),
-    });
+    this.productService.getProductByCategorySlug(this.category).subscribe({
+      next: response => response.forEach((item: any, index: number) =>
+        index < 4 ? this.listProductFirst.push(item) : this.listProductLast.push(item)),
+      error: err => console.log(err)
+    })
   }
-
 
   productSliderOption: OwlOptions = {
     loop: false,
