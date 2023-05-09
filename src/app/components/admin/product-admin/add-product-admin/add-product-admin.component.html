@@ -1,0 +1,146 @@
+<app-label-admin [title]="'Thêm sản phẩm'"></app-label-admin>
+<div class="card-body px-0 pb-2">
+  <div class="row">
+    <div class="col-md-12">
+      <form class="ps-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Tên sản phẩm</h6>
+            <input mdbInput type="text" class="form-control" formControlName="name" placeholder="Tên sản phẩm"/>
+            <ng-container *ngIf="form.controls.name.invalid && form.controls.name.touched">
+              <div *ngIf="form.controls.name.errors?.['required']">
+                <small>* Vui lòng nhập tên sản phẩm.</small>
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-5">
+            <h6>Size</h6>
+            <mdb-form-control>
+              <mdb-select multiple formControlName="sizes">
+                <mdb-select-all-option>Chọn tất cả</mdb-select-all-option>
+                <mdb-option *ngFor="let option of dataSize" [value]="option">
+                  {{option.label}}
+                </mdb-option>
+              </mdb-select>
+              <label class="form-label"></label>
+            </mdb-form-control>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <h6>Giá bán</h6>
+            <input mdbInput type="number" class="form-control" formControlName="price" placeholder="Giá bán"/>
+            <ng-container *ngIf="form.controls.price.invalid && form.controls.price.touched">
+              <div *ngIf="form.controls.price.errors?.['required']">
+                <small>* Vui lòng nhập giá sản phẩm.</small>
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-5">
+            <h6>Màu sắc</h6>
+            <mdb-form-control>
+              <mdb-select multiple formControlName="colors" (ngModelChange)="onChooseOption()">
+                <mdb-select-all-option>Chọn tất cả</mdb-select-all-option>
+                <mdb-option *ngFor="let option of dataColors" [value]="option">
+                  {{option.label}}
+                </mdb-option>
+              </mdb-select>
+              <label class="form-label"></label>
+            </mdb-form-control>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <h6>Danh mục</h6>
+            <select formControlName="parentId" [ngModel]="0">
+              <option *ngFor="let item of categories" value="{{ item.id }}">{{ item.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-3">
+          <mdb-tabs>
+            <mdb-tab title="Mô tả & chi tiết sản phẩm">
+              <div class="row">
+                <div class="col-md-12 mt-4">
+                  <h6 class="mb-0">Mô tả sản phẩm</h6>
+                </div>
+                <div class="col-md-12 p-0">
+                  <div style="width: 100%; padding: 0 30px 0 10px;">
+                    <mdb-wysiwyg formControlName="description"></mdb-wysiwyg>
+                    <ng-container *ngIf="form.controls.description.invalid && form.controls.description.touched">
+                      <div *ngIf="form.controls.description.errors?.['required']">
+                        <small>* Vui lòng nhập mô tả sản phẩm.</small>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </mdb-tab>
+            <mdb-tab title="Tùy chọn sản phẩm">
+              <div class="row">
+                <div class="col-md-12 p-0">
+                  <div style="width: 100%; padding: 0 30px 0 10px;">
+                    <div class="datatable mt-4">
+                      <table
+                        class="table datatable-table"
+                        mdbTable
+                        mdbTableSort
+                        #table="mdbTable"
+                      >
+                        <thead class="datatable-header">
+                        <tr>
+                          <th *ngFor="let header of headers" [mdbTableSortHeader]="header" scope="col">
+                            {{ header | titlecase }}
+                          </th>
+                        </tr>
+                        </thead>
+                        <tbody class="datatable-body">
+                        <tr *ngFor="let data of variant$ | async ; let i = index" scope="row">
+                          <td class="align-middle">
+                            {{ i + 1 }}
+                          </td>
+                          <td class="align-middle">
+                            {{ data.color }}
+                          </td>
+                          <td class="align-middle">
+                            {{ data.size }}
+                          </td>
+                          <td class="align-middle">
+                            {{data.sku}}
+                          </td>
+                          <td class="align-middle">
+                            <button type="button" class="btn mt-0" (click)="removeVariant(data)">Hủy</button>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mdb-tab>
+            <mdb-tab title="Ảnh sản phẩm">
+              <div class="row" *ngFor="let data of image$ | async ; let i = index">
+                <div class="col-md-6 d-flex align-items-center pb-3">
+                  <h6 class="mb-0 pe-2">Sku:</h6>
+                  <span>{{ data.sku }}</span>
+                  <button type="button" class="btn mt-0 ms-3" (click)="uploadFile(data.sku)">Tải ảnh</button>
+                </div>
+                <div class="col-md-12 p-0 mb-2">
+                  <div style="padding: 0 30px 0 10px;">
+                    <mdb-file-upload [multiple]="true"
+                                     [maxFileQuantity]="6"
+                                     (fileAdded)="onFileSelected($event,data.sku)"
+                                     (fileRemoved)="onFileRemove($event)"
+                    ></mdb-file-upload>
+                  </div>
+                </div>
+              </div>
+            </mdb-tab>
+          </mdb-tabs>
+        </div>
+        <button type="submit" class="btn" [disabled]="form.invalid">Thêm mới</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {map, of} from "rxjs";
+import {from, map} from "rxjs";
 
 @Component({
   selector: 'app-sidebar',
@@ -8,22 +8,38 @@ import {map, of} from "rxjs";
 })
 export class SidebarComponent implements OnInit {
 
+
   constructor() {
   }
 
+
   ngOnInit(): void {
+    const indexStorage = localStorage.getItem('index');
+    if (indexStorage) {
+      const arr: any = [];
+      from(this.dataSource)
+        .pipe(
+          map((item: any, index: number) => index === JSON.parse(indexStorage) ?
+            {...item, "isActive": "active"} : {...item, "isActive": ""}
+          ),
+        ).subscribe({next: value => arr.push(value)});
+      this.dataSource = arr;
+    }
   }
 
   isActive(value: any) {
-    let arr$: any = [];
-    of(...this.dataSource).pipe(map((item) => {
-      return item.name == value.name ? {...item, "isActive": "active"} : {...item, "isActive": ""};
-    })).subscribe({
-      next: val => arr$.push(val)
+    let arr: any = [];
+    localStorage.removeItem('index');
+    from(this.dataSource)
+      .pipe(
+        map((item) => item.name == value.name ? {...item, "isActive": "active"} : {...item, "isActive": ""}),
+      ).subscribe({
+      next: val => arr.push(val),
+      error: err => console.log(err),
     });
-    this.dataSource = arr$;
+    arr.map((item: any, index: number) => item.isActive == "active" ? localStorage.setItem('index', JSON.stringify(index)) : '');
+    this.dataSource = arr;
   }
-
 
   dataSource = [
     {
@@ -35,7 +51,7 @@ export class SidebarComponent implements OnInit {
     {
       "name": "Sản phẩm",
       "material": "table_view",
-      "url": "/admin",
+      "url": "products",
       "isActive": ""
     },
     {

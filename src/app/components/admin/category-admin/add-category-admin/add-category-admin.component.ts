@@ -30,7 +30,6 @@ export class AddCategoryAdminComponent implements OnInit {
     this.getCategories();
   }
 
-
   public onSubmit() {
     this.categoryService.addCategory(this.form.value).subscribe({
       next: (res: Category) => this.router.navigateByUrl("/admin/categories"),
@@ -38,29 +37,13 @@ export class AddCategoryAdminComponent implements OnInit {
     });
   }
 
-
   public getCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (response: Category[]) => {
-        this.transformData(response);
-        this.categories = [{id: 0, name: 'Danh mục cha'}, ...this.categories];
+        this.categoryService.transformData(response);
+        this.categories = [{id: 0, name: 'Danh mục cha'}, ...this.categoryService.sortParentChild(response)];
       },
       error: (error: HttpErrorResponse) => console.log(error)
     });
-  }
-
-  public transformData(data: any, id: number = 0, str: string = '|--') {
-    for (let item of data) {
-      if (item.parentId == id) {
-        item.name = str + item.name;
-        this.categories?.push(item);
-        if (this.hasChild(data, item)) this.transformData(data, item.id, str + '--')
-      }
-    }
-  }
-
-  public hasChild(data: any, category: Category): boolean {
-    for (let item of data) if (item.parentId == category.id) return true;
-    return false;
   }
 }

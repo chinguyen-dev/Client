@@ -8,10 +8,6 @@ import {Component} from '@angular/core';
 export class HomeComponent {
 
   category = [
-    'Hàng mới về',
-    'Bán chạy nhất',
-    'Áo Polo Yody',
-    'thời trang công sở',
-    'YODY SPORT'
+    'Áo polo',
   ]
 }

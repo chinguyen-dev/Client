@@ -34,7 +34,6 @@ export class MegaMenuHeaderComponent implements OnInit {
           next: res => {
             payLoad.push(res);
             this.categoriesParent$ = of(payLoad);
-            console.log(payLoad)
           }
         });
       },
