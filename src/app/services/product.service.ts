@@ -31,4 +31,7 @@ export class ProductService {
     this.http.get(this.API_URL + '/' + id).subscribe(value => console.log(value))
     return this.http.get(this.API_URL + '/' + id)
   }
+  getVariantsByProductId(id : any){
+    return this.http.get(this.PRODUCT_API + '/' + id +"/variants")
+  }
 }
