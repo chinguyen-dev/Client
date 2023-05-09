@@ -7,5 +7,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./category-admin.component.scss']
 })
 export class CategoryAdminComponent {
-
+  title: string  = "Danh mục sản phẩm";
 }

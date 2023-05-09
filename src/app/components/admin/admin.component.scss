@@ -1,24 +1,21 @@
-:host {
-  --bs-font-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --bs-body-font-family: var(--bs-font-sans-serif);
-  --bs-body-font-size: 1rem;
-  --bs-body-font-weight: 400;
-  --bs-body-line-height: 1.5;
-  --bs-body-color: #7b809a;
-  --bs-body-bg: #fff;
-}
+$bs-font-sans-serif: "Roboto", Helvetica, Arial, sans-serif;
+$bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+$bs-body-font-family: var($bs-font-sans-serif);
+$bs-body-font-size: 1rem;
+$bs-body-font-weight: 400;
+$bs-body-line-height: 1.5;
+$bs-body-color: #7b809a;
+$bs-body-bg: #fff;
 
 #wp-admin {
   margin: 0;
   height: 100vh;
   background-color: #f0f2f5 !important;
-  font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  text-align: var(--bs-body-text-align);
+  font-family: $bs-body-font-family;
+  font-size: $bs-body-font-size;
+  font-weight: $bs-body-font-weight;
+  line-height: $bs-body-line-height;
 }
 
 *,
@@ -38,5 +35,6 @@ hr {
 .wp-content {
   margin-left: 17.125rem;
 }
+
 
 

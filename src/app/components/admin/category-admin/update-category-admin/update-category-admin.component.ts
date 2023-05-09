@@ -2,10 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {CategoryService} from "../../../../services/category.service";
 import {Category} from "../../../../model/Category";
-import {HttpErrorResponse} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
-import {find, from} from "rxjs";
-import {log} from "util";
 
 @Component({
   selector: 'app-update-category-admin',
@@ -46,8 +43,8 @@ export class UpdateCategoryAdminComponent {
   public getCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (response: Category[]) => {
-        this.transformData(response);
-        this.categories = [{id: 0, name: 'Danh mục cha'}, ...this.categories];
+        this.categoryService.transformData(response);
+        this.categories = [{id: 0, name: 'Danh mục cha'}, ...this.categoryService.sortParentChild(response)];
       },
       error: err => console.log(err),
     });
@@ -59,20 +56,5 @@ export class UpdateCategoryAdminComponent {
       next: value => this.category = value,
       error: err => console.log(err),
     })
-  }
-
-  public transformData(data: any, id: number = 0, str: string = '|--'): void {
-    for (let item of data) {
-      if (item.parentId == id) {
-        item.name = str + item.name;
-        this.categories?.push(item);
-        if (this.hasChild(data, item)) this.transformData(data, item.id, str + '--')
-      }
-    }
-  }
-
-  public hasChild(data: any, category: Category): boolean {
-    for (let item of data) if (item.parentId == category.id) return true;
-    return false;
   }
 }
