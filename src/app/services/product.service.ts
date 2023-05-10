@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import {IProduct} from "../model/IProduct";
+import {IProductVariant} from "../model/IProductVariant";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   private API_URL = environment.apiURL + '/admin/products';
-  private API_SELL = environment.apiURL + '/product';
+  private API_SELL = environment.apiURL + '/products';
 
   constructor(private http: HttpClient) {
   }
@@ -29,13 +31,13 @@ export class ProductService {
 
   getProductById(id: any) {
     this.http.get(this.API_URL + '/' + id).subscribe(value => console.log(value))
-    return this.http.get(this.API_URL + '/' + id)
+    return this.http.get<IProduct>(this.API_URL + '/' + id)
   }
   getVariantsByProductId(id : any){
-    return this.http.get(this.API_URL + '/' + id +"/variants")
+    return this.http.get<IProductVariant[]>(this.API_URL + '/' + id +"/variants")
   }
-  filterProduct(cateId: string, sortType: string, colors : string[], sizes : string[]){
+  filterProduct(cateId: number[], sortType: string, colors : string[], sizes : string[]){
     const params = {cateId : cateId, sortType : sortType, colors : colors, sizes : sizes}
-    return this.http.get(this.API_SELL + '/' + 'search', {params});
+    return this.http.get<IProduct[]>(this.API_SELL + '/' + 'search', {params});
   }
 }
