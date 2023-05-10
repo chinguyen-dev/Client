@@ -40,13 +40,9 @@
         style="width: 50px; border-radius: 3px; cursor: pointer; margin-right: 20px;"
         src="{{variant.image}}" class="img-fluid" alt="">
     </div>
-    <span class="mt-3 d-block">Kích thước: <span class="text-uppercase">M</span></span>
+    <span class="mt-3 d-block">Kích thước: <span class="text-uppercase">{{currentVariant.size}}</span></span>
     <div class="mt-3">
-      <button class="btn btn-secondary me-2">M</button>
-      <button class="btn btn-secondary me-2">L</button>
-      <button class="btn btn-secondary me-2">XL</button>
-      <button class="btn btn-secondary me-2">XXL</button>
-      <button class="btn btn-secondary me-2">S</button>
+      <button (click)="variantChange(variant)" *ngFor="let variant of variantSizes" class="btn btn-secondary me-2">{{variant.size}}</button>
     </div>
     <div class="d-flex justify-content-between align-items-center mt-3" >
       <div class="border-1 border d-flex h-100 justify-content-between align-items-center col-5">
