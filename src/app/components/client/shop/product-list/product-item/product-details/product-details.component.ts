@@ -18,9 +18,9 @@ export class ProductDetailsComponent implements OnInit{
   product !: IProduct;
   variantsColors : IProductVariant[] = []
   selectedVariants !: any;
-  variantsImage : string[] = []
   currentVariant !: IProductVariant
   variantImages: string[]= [];
+  variantSizes = new Set<IProductVariant>();
   constructor(private activateRoute: ActivatedRoute, private productService : ProductService, private carService: CartService) {
   }
   ngOnInit() {
@@ -31,18 +31,27 @@ export class ProductDetailsComponent implements OnInit{
           this.getVariantColor();
           if (this.variantsColors.length > 0){
             this.currentVariant = this.variantsColors[0];
-            this.getVariantImags()
+            this.getVariantImages()
+            this.getVariantSizes()
           }
         })
       }
     )
   }
-  getVariantImags(){
+  getVariantImages(){
     this.product.images.map(img =>{
       if (img.name.includes(this.currentVariant.sku)){
         this.variantImages.push(img.src);
       }
     })
+  }
+  getVariantSizes(){
+    this.product.variants.map(variant =>{
+      if ( this.currentVariant.color === variant.color){
+        this.variantSizes.add(variant)
+      }
+    })
+
   }
   getVariantColor(){
     let colors = new Set();
@@ -73,7 +82,10 @@ export class ProductDetailsComponent implements OnInit{
 
   variantChange(variant: IProductVariant) {
     this.variantImages = []
+    this.variantSizes.clear()
     this.currentVariant = variant;
-    this.getVariantImags();
+    this.getVariantImages();
+    this.getVariantSizes()
   }
+
 }
