@@ -1,15 +1,16 @@
 <ul class="list-product">
   <div class="row">
-    <div *ngFor="let item of listItem" class="col-md-3">
+    <div *ngFor="let item of listItem; index as index;" class="col-md-3">
       <li>
         <div class="thumbnail">
-          <img src="{{ item.variants[0].image }}" alt="{{ item.name }}">
+          <img [src]="imageURL[index]" alt="{{ item.name }}">
         </div>
         <h5>{{ item.name }}</h5>
         <p class="item-price">{{item.price | number: '1.0-0'}}đ</p>
         <div class="option-swatch">
-          <div class="swatch-item" *ngFor="let variant of transformVariant(item.variants)">
-            <img src="{{variant.image}}" alt="" class="active">
+          <div class="swatch-item" *ngFor="let variant of variants[index]">
+            <img src="{{variant.image}}" [class.active]="variant.selected" alt=""
+                 (click)="chooseOption($event, index, variant.sku)">
           </div>
         </div>
       </li>
