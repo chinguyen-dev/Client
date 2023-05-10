@@ -1,9 +1,7 @@
 import {IProductVariant} from "./IProductVariant";
+import {Category} from "./Category";
 
 interface IImages {
-  id: number,
-  createAt: string,
-  updateAt: string,
   name: string,
   src: string
 }
@@ -12,10 +10,11 @@ export interface IProduct{
   id : number,
   createAt: string,
   updateAt: string,
+  category : Category,
   name: string,
   price: number,
-  slug: string,
   description: string,
-  productVariants: IProductVariant[],
-  productImages : IImages[]
+  slug : string,
+  variants: IProductVariant[],
+  images : IImages[]
 }

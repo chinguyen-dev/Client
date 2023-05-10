@@ -1,9 +1,9 @@
-<div class="container position-relative d-flex justify-content-between mt-5">
+<div *ngIf="product != null" class="container position-relative d-flex justify-content-between mt-5">
   <div style="width: 69%"
     >
     <div class="class= d-flex flex-wrap justify-content-between gap-3">
-      <img
-        src="https://bizweb.dktcdn.net/100/438/408/products/ao-polo-nam-apm5351-nav-9-yodyvn.jpg?v=1675326637917"
+      <img *ngFor="let img of variantImages"
+        src="{{img}}"
         alt=""
         class="img-fluid d-block"
         style="width: 49%"
@@ -12,15 +12,7 @@
 
     </div>
     <div>
-      <span class="text-uppercase mt-3 d-block">Đặc tính nổi bật</span>
-      <ul class="mt-3 d-block" style="font-size: 14px;">
-        <li>Chất liệu vải: Airycool có thành phần 85% Polyamide và 15% spandex</li>
-        <li>Chất liệu vải: Airycool có thành phần 85% Polyamide và 15% spandex</li>
-        <li>Chất liệu vải: Airycool có thành phần 85% Polyamide và 15% spandex</li>
-        <li>Chất liệu vải: Airycool có thành phần 85% Polyamide và 15% spandex</li>
-        <li>Chất liệu vải: Airycool có thành phần 85% Polyamide và 15% spandex</li>
-        <li>Chất liệu vải: Airycool có thành phần 85% Polyamide và 15% spandex</li>
-      </ul>
+     {{product.description}}
     </div>
 
 
@@ -28,9 +20,9 @@
   <div
     style="width: 29%; height: fit-content; position: sticky; top: 150px;"
     class="">
-    <span class="fw-bold fs-6">{{(product$ | async)?.name}}</span>
+    <span class="fw-bold fs-6">{{product.name}}</span>
     <div  class="">
-      <span>{{(product$ | async)?.slug}}</span>
+      <span>{{product.slug}}</span>
       <span class="border-end border-start border-2 pe-2 ps-2 me-2 ms-2">Đã bán 126k</span>
       <span class="text-warning">
         <i class="fas fa-star"></i>
@@ -41,12 +33,12 @@
       </span>
       <span> (15)</span>
     </div>
-    <div class="mt-2 fs-5 fw-bold">{{(product$ | async)?.price}}đ</div>
-    <span class="mt-3 d-block">Màu sắc: Navy</span>
+    <div class="mt-2 fs-5 fw-bold">{{product.price | currency: 'VND'}}</div>
+    <span class="mt-3 d-block">Màu sắc: {{currentVariant.color}}</span>
     <div class="mt-3">
-      <img *ngFor="let variant of variants | async"
+      <img *ngFor="let variant of variantsColors" (click)="variantChange(variant)"
         style="width: 50px; border-radius: 3px; cursor: pointer; margin-right: 20px;"
-        src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/bln6030-ncf-sjn4004-tra-10-ao-ba-lo-nu-yodyvn.jpg?v=1677547681000" class="img-fluid" alt="">
+        src="{{variant.image}}" class="img-fluid" alt="">
     </div>
     <span class="mt-3 d-block">Kích thước: <span class="text-uppercase">M</span></span>
     <div class="mt-3">
@@ -64,7 +56,7 @@
         <button type="button" (click)="plus()" class="btn border-start flex-fill shadow-none">+
         </button>
       </div>
-      <button class="btn btn-warning h-100" (click)="addToCart(product$, selectedVariants)">Thêm vào giỏ hàng</button>
+<!--      <button class="btn btn-warning h-100" (click)="addToCart( , selectedVariants)">Thêm vào giỏ hàng</button>-->
     </div>
   </div>
 </div>
