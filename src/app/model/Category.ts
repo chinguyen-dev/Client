@@ -6,5 +6,4 @@ export interface Category {
   parentName: string;
   createAt: string;
   updateAt: string;
-
 }

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../services/product.service";
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {IProduct} from "../../../model/IProduct";
+import {Category} from "../../../model/Category";
+import {ActivatedRoute} from "@angular/router";
+import {CategoryService} from "../../../services/category.service";
 
-interface sortingType {
-  type: string;
-  value: string;
-}
+
 
 @Component({
   selector: 'app-shop',
@@ -14,38 +14,39 @@ interface sortingType {
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  sortingTypes: sortingType[] = [
-    {type: 'DEFAULT', value: 'Mặc định'},
-    {type: 'ALPHA_ASC', value: 'Từ A - Z'},
-    {type: 'ALPHA_DESC', value: 'Từ Z - A'},
-    {type: 'PRICE_ASC', value: 'Giá giảm dần'},
-    {type: 'PRICE_DESC', value: 'Giá tăng dần'},
+  sortingTypes: string[] = [
+    'MẶC ĐỊNH', 'TỪ A - Z', 'TỪ Z - A', 'GIÁ GIẢM DẦN', 'GIÁ TĂNG DẦN'
   ];
+  subCategory$ ! : Observable<any>;
+  categoryIds: number[] = [];
   sizes = ['S', 'M', 'L'];
-  colors = ['RED', 'GREEN', 'BLUE'];
+  colors = ['ĐỎ', 'VÀNG', 'XANH'];
   sizesFilter: string[] = [];
   colorsFilter: string[] = [];
-  sort = window.sessionStorage.getItem('sortingType') || this.sortingTypes[0].value
+  sort = window.sessionStorage.getItem('sortingType') || this.sortingTypes[0]
   page: number = 0;
   isActive = true;
   sizePerPage: number = 10;
-  products$ !: Observable<any>;
+  products$ !: Observable<IProduct[]>;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private categoryService : CategoryService,private router : ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.products$ = this.productService.getAllProduct();
+    this.router.params.subscribe(params =>{
+      let id = params['id'];
+      console.log(id)
+      this.categoryIds.push(id);
+    })
+    this.getProducts();
   }
-
+  getCategoryByParentId(id : number){
+    this.subCategory$ = this.categoryService.getCategory(id);
+  }
   getProducts() {
-    if (this.colorsFilter.length == 0 && this.sizesFilter.length == 0 && this.sort != 'DEFAULT'){
-      this.products$ = this.productService.getAllProduct();
-      return
-    }
-    this.products$ = this.productService.filterProduct('',this.sort, this.colorsFilter, this.sizesFilter);
-  }
+    this.products$ = this.productService.filterProduct(this.categoryIds,this.sort, this.colorsFilter, this.sizesFilter);
 
+  }
 
 
   sortingTypeChanged(type: string) {

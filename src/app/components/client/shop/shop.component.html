@@ -13,24 +13,16 @@
                (click)="removeColor(color)"
                class="d-inline-block btn-warning ps-2 pe-2 mt-2 mb-2 btn-rounded me-2" style="border-radius: 4px; cursor: pointer">
           x {{
-          color.toLocaleLowerCase() == 'black' ? 'Đen' :
-          color.toLocaleLowerCase() == 'red' ? 'Đỏ':
-            color.toLocaleLowerCase() == 'green' ? 'Xanh lá cây' :
-              'Xanh biển'}}
+          color}}
         </span>
+
       </div>
     </div>
 
     <span class="d-block title ">Loại sản phẩm</span>
     <div class=" product-type-list filter-items-layout ">
-      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
-      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
-      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
-      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
-      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
-      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
-      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
-      <span class="filter-item ">Áo ba lỗ - 2 dây nữ</span>
+      <span *ngFor="let category of subCategory$ | async" class="filter-item ">{{category.name}}</span>
+
     </div>
     <span class="d-block title ">Kích thước</span>
     <div class="sizing filter-items-layout">
@@ -45,12 +37,9 @@
       class="d-flex justify-content-between align-items-center gap-2">
       <span
 
-        class="filter-color bg-color-{{color.toLocaleLowerCase()}}"
+        class="filter-color bg-color-{{color.toUpperCase()}}"
       ></span>{{
-        color.toLocaleLowerCase() == 'black' ? 'Đen' :
-          color.toLocaleLowerCase() == 'red' ? 'Đỏ':
-            color.toLocaleLowerCase() == 'green' ? 'Xanh lá cây' :
-              'Xanh biển'
+        color
       }}</div>
 
   </span>
@@ -74,9 +63,9 @@
           <ul class="selection-sort-list border border-1 p-2 ">
             <li class="d-flex justify-content-between align-items-center"
                 *ngFor="let item of sortingTypes"
-                [ngClass]="{'selection-active': sort == item.value}"
-                (click)="sortingTypeChanged(item.value)"
-            ><span>{{item.value}}</span> <i
+                [ngClass]="{'selection-active': sort == item}"
+                (click)="sortingTypeChanged(item)"
+            ><span>{{item}}</span> <i
               class="fas fa-check selection-icon"></i></li>
 
           </ul>

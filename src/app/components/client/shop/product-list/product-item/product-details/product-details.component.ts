@@ -4,6 +4,8 @@ import {ProductService} from "../../../../../../services/product.service";
 import {Observable} from "rxjs";
 import {CartService} from "../../../../../../services/cart.service";
 import {Product} from "../../../../../../model/Product";
+import {IProduct} from "../../../../../../model/IProduct";
+import {IProductVariant} from "../../../../../../model/IProductVariant";
 
 @Component({
   selector: 'app-product-details',
@@ -12,8 +14,8 @@ import {Product} from "../../../../../../model/Product";
 })
 export class ProductDetailsComponent implements OnInit{
   quantity: number = 1;
-  product$ !: Observable<any>
-  variants !: Observable<any>
+  product$ !: Observable<IProduct>
+  variants !: Observable<IProductVariant[]>
   selectedVariants !: any;
   constructor(private activateRoute: ActivatedRoute, private productService : ProductService, private carService: CartService) {
   }

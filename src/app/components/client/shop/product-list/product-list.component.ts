@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProductService} from "../../../../services/product.service";
 import {Observable} from "rxjs";
+import {IProduct} from "../../../../model/IProduct";
 
 @Component({
   selector: 'app-product-list',
@@ -10,7 +11,7 @@ import {Observable} from "rxjs";
 export class ProductListComponent{
 
   @Input() listItem: Array<any> | undefined;
-  @Input() products$ !: Observable<any>;
+  @Input() products$ !: Observable<IProduct[]>;
   constructor(private productService: ProductService) {
   }
 }
