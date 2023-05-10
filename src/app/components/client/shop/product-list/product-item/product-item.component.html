@@ -9,7 +9,7 @@
     <h6 class="card-title">{{product.name}}</h6>
     <span class="fw-bold fs-6"> {{product.price | currency : 'VND'}}</span>
     <div class="d-flex align-items-center">
-      <button *ngFor="let variant of product.variants | slice:0:3 " type="button" class="btn btn-dark btn-floating overflow-hidden ms-1 me-1 mt-1 ">
+      <button *ngFor="let variant of variantsColors| slice:0:3 " type="button" class="btn btn-dark btn-floating overflow-hidden ms-1 me-1 mt-1 ">
         <img src="{{variant.image}}" class="img-fluid"  alt="">
       </button>
 
