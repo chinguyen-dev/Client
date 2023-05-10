@@ -35,61 +35,18 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.products$ = this.productService.getAllProduct();
   }
 
   getProducts() {
-    this.products$ = this.productService.getAllProduct().pipe(
-      map(products => {
-        return products.sort((a: any, b: any) => {
-          let result
-          switch (this.sort) {
-            case 'Mặc định':
-              result = 0;
-              break;
-            case 'Từ A - Z' :
-              result = b.name - a.name;
-              break;
-            case 'Từ Z - A' :
-              result = a.name - b.name;
-              break;
-            case 'Giá tăng dần' :
-              result = a.price - b.price;
-              break;
-            case 'Giá giảm dần' :
-              result = b.price - a.price
-              break
-          }
-          return result
-        })
-      }),
-      map(products => {
-        return products.filter((product: any) => {
-          return this.checkFilter(this.colorsFilter, product.variants, 'color')
-            && this.checkFilter(this.sizesFilter, product.variants, 'size')
-        })
-      })
-    );
+    if (this.colorsFilter.length == 0 && this.sizesFilter.length == 0 && this.sort != 'DEFAULT'){
+      this.products$ = this.productService.getAllProduct();
+      return
+    }
+    this.products$ = this.productService.filterProduct('',this.sort, this.colorsFilter, this.sizesFilter);
   }
 
-  checkFilter(filter: any, variants: any, type: string) {
-    if (filter.length == 0) return true;
-    return variants.some((variant: any) => {
-      let variantAttribute = ''
-      switch (type) {
-        case 'color':
-          variantAttribute = variant.color;
-          break;
-        case 'size':
-          variantAttribute = variant.size;
-          break;
-        case 'category' :
-          variantAttribute = variant.category;
-          break;
-      }
-      return filter.includes(variantAttribute);
-    })
-  }
+
 
   sortingTypeChanged(type: string) {
     this.sort = type;

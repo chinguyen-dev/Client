@@ -34,4 +34,8 @@ export class ProductService {
   getVariantsByProductId(id : any){
     return this.http.get(this.API_URL + '/' + id +"/variants")
   }
+  filterProduct(cateId: string, sortType: string, colors : string[], sizes : string[]){
+    const params = {cateId : cateId, sortType : sortType, colors : colors, sizes : sizes}
+    return this.http.get(this.API_SELL + '/' + 'search', {params});
+  }
 }

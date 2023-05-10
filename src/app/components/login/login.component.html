@@ -3,7 +3,11 @@
     <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h4>đăng <span>nhập</span></h4>
       <div class="form-input">
-        <input type="text" id="email"  formControlName="email" placeholder="Email" >
+        <input
+          [ngClass]="{'red-border':loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched) }"
+          type="text" id="email"  formControlName="email" placeholder="Email" >
+        <div *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.dirty || loginForm.controls.email?.touched)" class="text-danger">Email không hợp lệ </div>
+
       </div>
       <div class="form-input form-input--eye">
         <input [type]="type"  id="password" formControlName="password" placeholder="Mật khẩu">

@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -77,7 +77,11 @@ import {ProductSliderComponent} from './components/client/home/product-slider/pr
 import {ClientModule} from "./components/client/client.module";
 import {AuthInterceptor} from "./services/auth.interceptor";
 import {AdminModule} from "./components/admin/admin.module";
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
 
+registerLocaleData(localeDe, 'vi-VN', localeDeExtra);
 @NgModule({
   declarations: [
     AppComponent,
@@ -159,7 +163,14 @@ import {AdminModule} from "./components/admin/admin.module";
     ReactiveFormsModule
   ],
 
-  providers: [MdbCookiesManagementService, MdbStorageManagementService, MdbScrollStatusService, AuthInterceptor],
+  providers: [MdbCookiesManagementService,
+    MdbStorageManagementService,
+    MdbScrollStatusService,
+    {
+      provide: LOCALE_ID,
+      useValue: 'vi-VN'
+    },
+    AuthInterceptor],
   bootstrap: [AppComponent],
 })
 export class AppModule {

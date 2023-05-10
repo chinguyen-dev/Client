@@ -6,12 +6,16 @@
       <form action="" #f="ngForm" (ngSubmit)="onSubmit(f)"  id="form-register">
         <div class="form-input">
           <input type="text" ngModel id="full_name" placeholder="Họ và tên" name="full_name">
+          <div *ngIf="f.controls.full_name?.value.trim().length == 0 && (f.controls.full_name?.dirty || f.controls.full_name?.touched)" class="text-danger">Vui lòng nhập họ tên </div>
         </div>
+
         <div class="form-input">
           <input type="text" ngModel id="phone_number" placeholder="Số điện thoại" name="phone_number">
         </div>
         <div class="form-input">
-          <input type="text" ngModel id="email" placeholder="Địa chỉ email" name="email">
+          <input type="email" ngModel email required id="email" placeholder="Địa chỉ email" name="email">
+          <div *ngIf="f.controls.email?.invalid && (f.controls.email?.dirty || f.controls.email?.touched)" class="text-danger">Email không hợp lệ </div>
+
         </div>
         <div class="form-input form-input--eye">
           <input [type]="type" ngModel id="password" placeholder="Mật khẩu" name="password">
