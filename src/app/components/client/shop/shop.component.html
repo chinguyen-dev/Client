@@ -1,19 +1,28 @@
 <div class=" mt-5 d-flex justify-content-between  container p-0"
      style="max-width: 1240px; width: 100%; margin: auto; height: fit-content;">
   <div class="mt-4" style="width: 15%">
-    <div *ngIf=" colorsFilter.length > 0 || sizesFilter.length > 0">
+    <div *ngIf=" colorsFilter.length > 0 || sizesFilter.length > 0 || categoryFilter.length > 0">
       <span class="title">Bạn đã chọn</span>
-      <div >
-        <span  *ngFor="let size of sizesFilter"
-               (click)="removeSize(size)"
-          class="d-inline-block btn-warning ps-2 pe-2 mt-2 mb-2 btn-rounded me-2" style="border-radius: 4px; cursor: pointer;">
+      <div>
+
+        <span *ngFor="let size of sizesFilter"
+              (click)="removeSize(size)"
+              class="d-inline-block btn-warning ps-2 pe-2 mt-2 mb-2 btn-rounded me-2"
+              style="border-radius: 4px; cursor: pointer;">
           x {{size}}
         </span>
-        <span  *ngFor="let color of colorsFilter"
-               (click)="removeColor(color)"
-               class="d-inline-block btn-warning ps-2 pe-2 mt-2 mb-2 btn-rounded me-2" style="border-radius: 4px; cursor: pointer">
+        <span *ngFor="let color of colorsFilter"
+              (click)="removeColor(color)"
+              class="d-inline-block btn-warning ps-2 pe-2 mt-2 mb-2 btn-rounded me-2"
+              style="border-radius: 4px; cursor: pointer">
           x {{
           color}}
+        </span>
+        <span *ngFor="let category of categoryFilter"
+              (click)="removeCategory(category)"
+              class="d-inline-block btn-warning ps-2 pe-2 mt-2 mb-2 btn-rounded me-2"
+              style="border-radius: 4px; cursor: pointer;">
+          x {{category.name}}
         </span>
 
       </div>
@@ -21,12 +30,12 @@
 
     <span class="d-block title ">Loại sản phẩm</span>
     <div class=" product-type-list filter-items-layout ">
-      <span *ngFor="let category of subCategory$ | async" class="filter-item ">{{category.name}}</span>
+      <span (click)="addCategory(category)" *ngFor="let category of subCategory$ | async" class="filter-item ">{{category.name}}</span>
 
     </div>
     <span class="d-block title ">Kích thước</span>
     <div class="sizing filter-items-layout">
-      <span class="filter-item " *ngFor="let size of sizes" (click)="addSize(size)" >{{size}}</span>
+      <span class="filter-item " *ngFor="let size of sizes" (click)="addSize(size)">{{size}}</span>
     </div>
     <span class="d-block  title">Màu sắc</span>
     <div class="sizing filter-items-layout">
@@ -39,7 +48,7 @@
 
         class="filter-color bg-color-{{color.toUpperCase()}}"
       ></span>{{
-        color
+      color
       }}</div>
 
   </span>
