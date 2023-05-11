@@ -152,6 +152,9 @@ export class AddProductAdminComponent implements OnInit {
     {value: '7', label: 'Trắng'},
     {value: '8', label: 'Xanh'},
     {value: '9', label: 'Vàng'},
+    {value: '10', label: 'Xám'},
+    {value: '11', label: 'Tím than'},
+
   ];
 
   public getCategories(): void {

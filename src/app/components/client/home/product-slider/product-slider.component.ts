@@ -1,10 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ProductService} from "../../../../services/product.service";
-import {from, Observable, of, takeLast} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
-import {take} from "rxjs/operators";
-
 @Component({
   selector: 'app-product-slider',
   templateUrl: './product-slider.component.html',
