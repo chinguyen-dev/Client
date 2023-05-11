@@ -17,9 +17,6 @@ export class ListProductAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.product$ = this.getProducts();
-    this.product$.subscribe({
-      next:(res: any) => console.log(res)
-    })
   }
 
   getProducts(): Observable<any> {
