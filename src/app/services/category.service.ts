@@ -11,7 +11,7 @@ export class CategoryService {
   categories: Category[] = [];
 
   private url = environment.apiURL + '/admin/categories';
-
+  private url_sell = environment.apiURL + '/categories';
   constructor(private http: HttpClient) {
   }
 
@@ -58,5 +58,10 @@ export class CategoryService {
       }
     }
     return this.categories;
+  }
+
+  getSubCategories(slug: any) {
+    console.log(slug)
+    return this.http.get<Category[]>(`${this.url_sell}/${slug}`);
   }
 }

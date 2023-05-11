@@ -17,7 +17,7 @@ export const clientRoutes : Routes = [
       {path: 'account/login', component: LoginComponent},
       {path: 'account/register', component: RegisterComponent},
       {path: 'product/:id', component: ProductDetailsComponent},
-      {path: 'shop/:id', component: ShopComponent},
+      {path: ':slug', component: ShopComponent},
       {path: 'checkout', component: CheckoutComponent}
     ]
   }
