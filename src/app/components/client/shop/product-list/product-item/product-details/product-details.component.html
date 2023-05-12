@@ -22,7 +22,7 @@
     class="">
     <span class="fw-bold fs-6">{{product.name}}</span>
     <div  class="">
-      <span>{{product.slug}}</span>
+      <span>{{currentVariant.sku}}</span>
       <span class="border-end border-start border-2 pe-2 ps-2 me-2 ms-2">Đã bán 126k</span>
       <span class="text-warning">
         <i class="fas fa-star"></i>
@@ -34,13 +34,13 @@
       <span> (15)</span>
     </div>
     <div class="mt-2 fs-5 fw-bold">{{product.price | currency: 'VND'}}</div>
-    <span class="mt-3 d-block">Màu sắc: {{currentVariant.color}}</span>
+    <span class="mt-3 d-block "><span class="fw-bold">Màu sắc: {{currentVariant.color}}</span></span>
     <div class="mt-3">
       <img *ngFor="let variant of variantsColors" (click)="variantChange(variant)"
         style="width: 50px; border-radius: 3px; cursor: pointer; margin-right: 20px;"
         src="{{variant.image}}" class="img-fluid" alt="">
     </div>
-    <span class="mt-3 d-block">Kích thước: <span class="text-uppercase">{{currentVariant.size}}</span></span>
+    <span class="mt-3 d-block ">Kích thước: <span class="text-uppercase fw-bold">{{currentVariant.size}}</span></span>
     <div class="mt-3">
       <button (click)="variantChange(variant)" *ngFor="let variant of variantSizes" class="btn btn-secondary me-2">{{variant.size}}</button>
     </div>
@@ -52,7 +52,7 @@
         <button type="button" (click)="plus()" class="btn border-start flex-fill shadow-none">+
         </button>
       </div>
-<!--      <button class="btn btn-warning h-100" (click)="addToCart( , selectedVariants)">Thêm vào giỏ hàng</button>-->
+      <button  class="btn btn-warning h-100" (click)="addToCart( currentVariant, quantity)">Thêm vào giỏ hàng</button>
     </div>
   </div>
 </div>

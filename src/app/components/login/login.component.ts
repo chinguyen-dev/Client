@@ -38,8 +38,7 @@ export class LoginComponent implements OnInit{
     let user = this.loginForm.value
     this.authenticate.login(user).subscribe({
       next : res => {
-        this.storeService.saveToken(res.token)
-        this.storeService.saveUser(user)
+        this.storeService.saveUser(res)
         this.router.navigateByUrl('')
       },
       error: err => {

@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
+import {IItem} from "../model/IItem";
+import {IUser} from "../model/IUser";
 
 @Injectable({
   providedIn: 'root'
@@ -8,33 +10,24 @@ export class StorageService {
   static TOKEN_KEY = 'auth-token';
   static USER_KEY = 'auth-user';
   stored = window.sessionStorage;
-  constructor() {
+  isAuthenticate : BehaviorSubject<IUser> = new BehaviorSubject(this.getUser())
+
+  signOut(): void {
+    window.sessionStorage.removeItem(StorageService.USER_KEY);
     this.isAuthenticate.next( this.getUser())
   }
 
-  isAuthenticate = new BehaviorSubject(null);
-
-  signOut(): void {
-    window.sessionStorage.clear();
-  }
-
-  public saveToken(token: string): void {
-    window.sessionStorage.removeItem(StorageService.TOKEN_KEY);
-    window.sessionStorage.setItem(StorageService.TOKEN_KEY, token);
-  }
-
-  public getToken(): string | null {
-    return window.sessionStorage.getItem(StorageService.TOKEN_KEY);
-  }
-
-  public saveUser(user: any): void {
+  public saveUser(user: IUser): void {
     window.sessionStorage.removeItem(StorageService.USER_KEY);
     window.sessionStorage.setItem(StorageService.USER_KEY, JSON.stringify(user));
-    this.isAuthenticate.next(user)
+    this.isAuthenticate.next(this.getUser())
   }
 
-  public getUser(): any{
+  public getUser(): IUser{
     const user = JSON.parse(window.sessionStorage.getItem(StorageService.USER_KEY) || 'null')
     return user;
+  }
+  public saveCart(items : Map<number, IItem>){
+    window.sessionStorage.setItem('cart' ,JSON.stringify(items))
   }
 }

@@ -40,15 +40,15 @@
     <span class="d-block  title">Màu sắc</span>
     <div class="sizing filter-items-layout">
   <span *ngFor="let color of colors"
-        (click)="addColor(color)"
+        (click)="addColor(color.label)"
         class="filter-item">
     <div
       class="d-flex justify-content-between align-items-center gap-2">
       <span
 
-        class="filter-color bg-color-{{color.toUpperCase()}}"
+        class="filter-color bg-color-{{color.value}}"
       ></span>{{
-      color
+      color.label
       }}</div>
 
   </span>
@@ -82,17 +82,16 @@
       </div>
     </div>
     <app-product-list [products$]="products$"></app-product-list>
-    <div class="d-flex justify-content-center mt-3 mb-3">
-      <div class="custom-pagination ">
-        <a class="custom-pagination-item "><i class="fas fa-arrow-left"></i></a>
-        <a class="custom-pagination-item activated">1</a>
-        <a class="custom-pagination-item">2</a>
-        <a class="custom-pagination-item">3</a>
-        <a class="custom-pagination-item">4</a>
-        <a class="custom-pagination-item">5</a>
-        <a class="custom-pagination-item"><i class="fas fa-arrow-right"></i></a>
-      </div>
-
-    </div>
+<!--    <div class="d-flex justify-content-center mt-3 mb-3">-->
+<!--      <div class="custom-pagination ">-->
+<!--        <a class="custom-pagination-item "><i class="fas fa-arrow-left"></i></a>-->
+<!--        <a class="custom-pagination-item activated">1</a>-->
+<!--        <a class="custom-pagination-item">2</a>-->
+<!--        <a class="custom-pagination-item">3</a>-->
+<!--        <a class="custom-pagination-item">4</a>-->
+<!--        <a class="custom-pagination-item">5</a>-->
+<!--        <a class="custom-pagination-item"><i class="fas fa-arrow-right"></i></a>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>

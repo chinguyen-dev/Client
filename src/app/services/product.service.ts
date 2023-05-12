@@ -30,7 +30,6 @@ export class ProductService {
   }
 
   getProductById(id: any) {
-    this.http.get(this.API_URL + '/' + id).subscribe(value => console.log(value))
     return this.http.get<IProduct>(this.API_URL + '/' + id)
   }
   getVariantsByProductId(id : any){
@@ -39,5 +38,9 @@ export class ProductService {
   filterProduct(slugs: string[], sortType: string, colors : string[], sizes : string[]){
     const params = {slugs : slugs, sortType : sortType, colors : colors, sizes : sizes}
     return this.http.get<IProduct[]>(this.API_SELL + '/' + 'search', {params});
+  }
+
+  getProductByVariantId(id: number) {
+    return this.http.get<IProduct>(`${environment.apiURL}/variants/${id}`);
   }
 }

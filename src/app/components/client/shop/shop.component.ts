@@ -5,8 +5,6 @@ import {IProduct} from "../../../model/IProduct";
 import {Category} from "../../../model/Category";
 import {ActivatedRoute} from "@angular/router";
 import {CategoryService} from "../../../services/category.service";
-
-
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -16,10 +14,23 @@ export class ShopComponent implements OnInit {
   sortingTypes: string[] = [
     'MẶC ĐỊNH', 'TỪ A - Z', 'TỪ Z - A', 'GIÁ GIẢM DẦN', 'GIÁ TĂNG DẦN'
   ];
+  sizes = ['S', 'M', 'L', 'XL'];
+  colors = [
+    {value: '1', label: 'Nâu'},
+    {value: '2', label: 'Đỏ'},
+    {value: '3', label: 'Đen'},
+    {value: '4', label: 'Cam'},
+    {value: '5', label: 'Tím'},
+    {value: '6', label: 'Hồng'},
+    {value: '7', label: 'Trắng'},
+    {value: '8', label: 'Xanh'},
+    {value: '9', label: 'Vàng'},
+    {value: '10', label: 'Xám'}
+
+  ];
   subCategory$ !: Observable<Category[]>;
   categorySlugs: string[] = [];
-  sizes = ['S', 'M', 'L'];
-  colors = ['ĐỎ', 'VÀNG', 'XANH'];
+  slug : any;
   sizesFilter: string[] = [];
   colorsFilter: string[] = [];
   categoryFilter : Category[] = [];
@@ -38,13 +49,20 @@ export class ShopComponent implements OnInit {
       let slug = params['slug'];
       this.categorySlugs = []
       this.categorySlugs.push(slug)
-      this.getProducts();
+      this.getProductByCategory();
       this.getSubcategories(slug);
     })
   }
+  getProductByCategory(){
+    this.products$ = this.productService.getAllProduct();
 
+  }
   getProducts() {
-    this.products$ = this.productService.filterProduct(this.categorySlugs, this.sort, this.colorsFilter, this.sizesFilter);
+    if (this.categoryFilter.length > 0 || this.colorsFilter.length > 0 || this.sizesFilter.length > 0){
+      this.products$ = this.productService.filterProduct(this.categorySlugs, this.sort, this.colorsFilter, this.sizesFilter);
+    } else{
+      this.getProductByCategory();
+    }
 
   }
 

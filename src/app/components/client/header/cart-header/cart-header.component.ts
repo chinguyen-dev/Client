@@ -13,10 +13,10 @@ export class CartHeaderComponent {
   }
 
   ngOnInit() {
-    this.cart.subject.subscribe(
-      value => {
-        this.qty = value.length
-      }
-    );
+    // this.cart.subject.subscribe(
+    //   value => {
+    //     this.qty = value.length
+    //   }
+    // );
   }
 }

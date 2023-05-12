@@ -47,25 +47,36 @@ $color-yellow: yellow;
       display: inline-block;
     }
 
-    .bg-color-XANH {
+    .bg-color-8 {
       background-color: $color-green;
 
 
     }
+    .bg-color-4{
+      background-color: orange;
+    }
 
-    .bg-color-ĐEN{
+    .bg-color-3{
       background-color: $color-black;
-
-
+    }
+    .bg-color-5{
+      background-color: purple;
+    }
+    .bg-color-7{
+      background-color: $color-white;
+    }
+    .bg-color-8{
+      background-color: $color-blue;
     }
 
-    .bg-color-ĐỎ {
+    .bg-color-2 {
       background-color: $color-red;
-
-
+    }
+    .bg-color-10 {
+      background-color: $color-gray;
     }
 
-    .bg-color-VÀNG {
+    .bg-color-9 {
       background-color: $color-yellow;
 
 
@@ -77,10 +88,11 @@ $color-yellow: yellow;
 
     }
 
-    .bg-color-XANH BIỂN{
+    .bg-color-XANHBIỂN{
       background-color: $color-blue;
-
-
+    }
+    .bg-color-1{
+      background-color: #d49488;
     }
 
     &:hover {
