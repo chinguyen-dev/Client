@@ -16,9 +16,9 @@ export const clientRoutes : Routes = [
       {path: 'cart', component: CartComponent},
       {path: 'account/login', component: LoginComponent},
       {path: 'account/register', component: RegisterComponent},
-      {path: 'product/:id', component: ProductDetailsComponent},
+      {path: 'san-pham/:id', component: ProductDetailsComponent},
       {path: ':slug', component: ShopComponent},
-      {path: 'checkout', component: CheckoutComponent}
+      {path: 'thanh-toan', component: CheckoutComponent}
     ]
   }
 ]

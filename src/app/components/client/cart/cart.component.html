@@ -3,19 +3,19 @@
     <div class="bg-light rounded-5 me-5 col-8">
       <h6 class="mt-4 ms-4">
         <span class="text-uppercase fw-bold me-3">giỏ hàng</span>
-        (3) Sản phẩm
+        ({{items.length}}) Sản phẩm
       </h6>
       <table class=" table table-borderless mb-0 bg-white" style="height: 1px;">
         <thead >
-        <tr >
-          <th class="fw-bold" >Sản phẩm</th>
-          <th class="fw-bold" >Đơn giá</th>
-          <th class="fw-bold">Số lượng</th>
-          <th class="fw-bold">Tổng tiền</th>
-        </tr>
+          <tr >
+            <th class="fw-bold" >Sản phẩm</th>
+            <th class="fw-bold" >Đơn giá</th>
+            <th class="fw-bold">Số lượng</th>
+            <th class="fw-bold">Tổng tiền</th>
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of items" app-cart-item [item]="item" >
+        <tr *ngFor="let item of items " app-cart-item (itemToRemove)="removeItem($event)" [product]="product" [item]="item" >
         </tr>
         </tbody>
       </table>
@@ -23,7 +23,7 @@
     <div class="bg-light p-3 rounded-5 col-3" style="height: fit-content;">
       <div class="d-flex justify-content-between align-items-center text-dart fw-bold">
         <span>Tổng đơn hàng (Tạm tính) :</span>
-        <span>{{total()}}đ</span>
+        <span> {{getTotal() | currency:'VND'}}</span>
       </div>
       <button class="btn p-3 fs-6  mt-3 text-light w-100" style="background-color: #fcaf17">Đặt hàng (2)</button>
     </div>

@@ -5,28 +5,36 @@
       <h1> đăng <span>ký</span></h1>
       <form action="" #f="ngForm" (ngSubmit)="onSubmit(f)"  id="form-register">
         <div class="form-input">
-          <input type="text" ngModel id="full_name" placeholder="Họ và tên" name="full_name">
+          <input type="text" ngModel required id="full_name" placeholder="Họ và tên" name="full_name">
           <div *ngIf="f.controls.full_name?.value.trim().length == 0 && (f.controls.full_name?.dirty || f.controls.full_name?.touched)" class="text-danger">Vui lòng nhập họ tên </div>
         </div>
 
-        <div class="form-input">
-          <input type="text" ngModel id="phone_number" placeholder="Số điện thoại" name="phone_number">
-        </div>
         <div class="form-input">
           <input type="email" ngModel email required id="email" placeholder="Địa chỉ email" name="email">
           <div *ngIf="f.controls.email?.invalid && (f.controls.email?.dirty || f.controls.email?.touched)" class="text-danger">Email không hợp lệ </div>
 
         </div>
+
         <div class="form-input form-input--eye">
-          <input [type]="type" ngModel id="password" placeholder="Mật khẩu" name="password">
+          <input [type]="type" ngModel required id="password" placeholder="Mật khẩu" name="password">
           <span (click)="toggleEye()" *ngIf="!isEye; else openEye;"></span>
           <ng-template #openEye>
             <span class="open-eye" (click)="toggleEye()"></span>
           </ng-template>
         </div>
-        <div class="form-button">
-          <button type="ngSubmit">Đăng ký</button>
+        <div *ngIf="f.controls.password?.value.trim().length == 0 && (f.controls.password?.dirty || f.controls.password?.touched)" class="text-danger">Vui lòng nhập mật khẩu </div>
+        <div class="form-input form-input--eye">
+          <input [type]="type" ngModel required id="re_password" placeholder="Nhập lại mật khẩu" name="re_password">
+          <span (click)="toggleEye()" *ngIf="!isEye; else openEye;"></span>
+          <ng-template #openEye>
+            <span class="open-eye" (click)="toggleEye()"></span>
+          </ng-template>
         </div>
+        <div *ngIf="f.controls.re_password?.value.trim().length == 0 && (f.controls.re_password?.dirty || f.controls.re_password?.touched)" class="text-danger">Mật khẩu không khớp </div>
+        <div class="form-button">
+          <button class="btn btn-warning" [disabled]="f.invalid" type="ngSubmit">Đăng ký</button>
+        </div>
+
         <div class="box-social-login">
           <div class="separator-or">
             <p>Hoặc đăng ký bằng</p>

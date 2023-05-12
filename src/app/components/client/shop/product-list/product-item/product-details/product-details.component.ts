@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../../../../../services/product.service";
-import {Observable} from "rxjs";
 import {CartService} from "../../../../../../services/cart.service";
-import {Product} from "../../../../../../model/Product";
 import {IProduct} from "../../../../../../model/IProduct";
 import {IProductVariant} from "../../../../../../model/IProductVariant";
-import {color} from "chart.js/types/helpers";
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +18,10 @@ export class ProductDetailsComponent implements OnInit{
   currentVariant !: IProductVariant
   variantImages: string[]= [];
   variantSizes = new Set<IProductVariant>();
-  constructor(private activateRoute: ActivatedRoute, private productService : ProductService, private carService: CartService) {
+  user : any;
+  constructor(private activateRoute: ActivatedRoute,
+              private productService : ProductService,
+              private carService: CartService) {
   }
   ngOnInit() {
     this.activateRoute.params.subscribe(
@@ -73,11 +73,8 @@ export class ProductDetailsComponent implements OnInit{
     this.quantity++;
   }
 
-  addToCart(product$: Observable<any>, selectedVariants: any) {
-    product$.subscribe( p  => {
-      let product: Product = new Product(p.id, p.name, p.price, p.imgUrl, selectedVariants.size, selectedVariants.color)
-      this.carService.addToCart(product, this.quantity)
-    });
+  addToCart(variant : IProductVariant , quantity : number) {
+    this.carService.addToCart(variant, quantity);
   }
 
   variantChange(variant: IProductVariant) {
