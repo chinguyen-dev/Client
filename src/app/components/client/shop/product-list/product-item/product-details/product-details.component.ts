@@ -10,79 +10,100 @@ import {IProductVariant} from "../../../../../../model/IProductVariant";
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit{
+export class ProductDetailsComponent implements OnInit {
   quantity: number = 1;
   product !: IProduct;
-  variantsColors : IProductVariant[] = []
+  variantsColors: IProductVariant[] = []
   selectedVariants !: any;
   currentVariant !: IProductVariant
-  variantImages: string[]= [];
+  variantImages: string[] = [];
+  isSizeActive: string = '';
   variantSizes = new Set<IProductVariant>();
-  user : any;
+  isColorActive: string = '';
+
   constructor(private activateRoute: ActivatedRoute,
-              private productService : ProductService,
+              private productService: ProductService,
               private carService: CartService) {
   }
+
   ngOnInit() {
     this.activateRoute.params.subscribe(
       value => {
-        this.productService.getProductById(value.id).subscribe((product: IProduct) =>{
+        this.productService.getProductById(value.id).subscribe((product: IProduct) => {
           this.product = product;
           this.getVariantColor();
-          if (this.variantsColors.length > 0){
+          if (this.variantsColors.length > 0) {
             this.currentVariant = this.variantsColors[0];
-            this.getVariantImages()
-            this.getVariantSizes()
+            this.setSizeActive();
+            this.setColorActive();
+            this.getVariantImages();
+            this.getVariantSizes();
           }
         })
       }
     )
   }
-  getVariantImages(){
-    this.product.images.map(img =>{
-      if (img.name.includes(this.currentVariant.sku)){
+
+  getVariantImages() {
+    this.product.images.map(img => {
+      if (img.name.includes(this.currentVariant.sku)) {
         this.variantImages.push(img.src);
       }
     })
   }
-  getVariantSizes(){
-    this.product.variants.map(variant =>{
-      if ( this.currentVariant.color === variant.color){
+
+  getVariantSizes() {
+    this.product.variants.map(variant => {
+      if (this.currentVariant.color === variant.color) {
         this.variantSizes.add(variant)
       }
     })
 
   }
-  getVariantColor(){
+
+  getVariantColor() {
     let colors = new Set();
     this.product.variants.map(value => {
       colors.add(value.color);
     })
     colors.forEach(value => {
-      let variantColor = this.product.variants.find( variant => variant.color == value)
-      if (variantColor){
+      let variantColor = this.product.variants.find(variant => variant.color == value)
+      if (variantColor) {
         this.variantsColors.push(variantColor);
       }
     })
 
   }
+
   minus() {
-    if (this.quantity>1) this.quantity--;
+    if (this.quantity > 1) this.quantity--;
   }
-  plus(){
+
+  plus() {
     this.quantity++;
   }
 
-  addToCart(variant : IProductVariant , quantity : number) {
+  addToCart(variant: IProductVariant, quantity: number) {
     this.carService.addToCart(variant, quantity);
   }
 
   variantChange(variant: IProductVariant) {
+
     this.variantImages = []
     this.variantSizes.clear()
     this.currentVariant = variant;
+    this.setColorActive()
+    this.setSizeActive()
     this.getVariantImages();
     this.getVariantSizes()
+  }
+
+  setSizeActive() {
+    this.isSizeActive = this.currentVariant.size;
+  }
+
+  setColorActive() {
+    this.isColorActive = this.currentVariant.color
   }
 
 }

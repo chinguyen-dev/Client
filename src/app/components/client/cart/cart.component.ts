@@ -37,12 +37,7 @@ export class CartComponent implements OnInit{
       })
     }
     removeItem(item :IItem){
-      this.cartService.remove(item).subscribe((deletedItem:any) => {
-        const index = this.items.findIndex(i => i.id === deletedItem.id);
-        if (index !== -1) {
-          this.items.splice(index, 1);
-        }
-      });
+      this.cartService.remove(item)
     }
     getTotal(){
       let total = 0;
