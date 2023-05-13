@@ -80,6 +80,7 @@ import {AdminModule} from "./components/admin/admin.module";
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
+import {CheckoutComponent} from "./components/client/checkout/checkout.component";
 
 registerLocaleData(localeDe, 'vi-VN', localeDeExtra);
 @NgModule({
@@ -92,6 +93,7 @@ registerLocaleData(localeDe, 'vi-VN', localeDeExtra);
     FilterBarComponent,
     ProductItemComponent,
     LoginComponent,
+    CheckoutComponent,
     ProductDetailsComponent,
     HeaderComponent,
     CartComponent,

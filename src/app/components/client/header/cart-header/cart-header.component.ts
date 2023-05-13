@@ -20,8 +20,6 @@ export class CartHeaderComponent {
   }
   ngOnInit() {
     this.getCart();
-    this.getTotalQuantity()
-
   }
   getCart(){
     this.cartService.getCartByUserEmail(this.storageService.getUser().principle);
@@ -32,6 +30,11 @@ export class CartHeaderComponent {
         this.productService.getProductByVariantId(this.items[0].variant.id).subscribe((product ) =>{
           this.product = product;
         });
+        let quantity = 0;
+        items.map(item =>{
+          quantity += item.quantity
+        })
+        this.qty = quantity;
       }
     })
   }
@@ -45,14 +48,5 @@ export class CartHeaderComponent {
     })
     return total
   }
-  getTotalQuantity() {
-    this.cartService.subject.subscribe( items =>{
-      this.items = items
-      let quantity = 0;
-      items.map(item =>{
-        quantity += item.quantity
-      })
-      this.qty = quantity;
-    })
-  }
+
 }

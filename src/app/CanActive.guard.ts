@@ -1,20 +1,20 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
-import {AuthenticationService} from "./services/authentication.service";
+import {StorageService} from "./services/storage.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class GuardGuard implements CanActivate {
+export class CanActiveGuard implements CanActivate {
 
-  constructor(private auth: AuthenticationService, private router: Router) {
+  constructor(private storageService: StorageService, private router: Router) {
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    return this.storageService.getUser() != null ? true : false;
   }
 
 }

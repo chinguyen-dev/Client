@@ -1,7 +1,7 @@
 import {Routes} from "@angular/router";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AdminComponent} from "./admin.component";
-import {GuardGuard} from "../../guard.guard";
+import {CanActiveGuard} from "../../CanActive.guard";
 
 export const adminRoutes: Routes = [
   {
@@ -19,6 +19,6 @@ export const adminRoutes: Routes = [
         loadChildren: () => import('./product-admin/product-admin-routing.module').then(m => m.ProductAdminRoutingModule)
       }
     ],
-    canActivate: [GuardGuard]
+    canActivate: [CanActiveGuard]
   },
 ]

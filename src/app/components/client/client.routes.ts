@@ -7,6 +7,7 @@ import {RegisterComponent} from "../register/register.component";
 import {ProductDetailsComponent} from "./shop/product-list/product-item/product-details/product-details.component";
 import {ShopComponent} from "./shop/shop.component";
 import {CheckoutComponent} from "./checkout/checkout.component";
+import {CanActiveGuard} from "../../CanActive.guard";
 
 export const clientRoutes : Routes = [
   {
@@ -14,11 +15,11 @@ export const clientRoutes : Routes = [
     children: [
       {path: '', component: HomeComponent},
       {path: 'cart', component: CartComponent},
+      {path: 'thanh-toan', component: CheckoutComponent,},
       {path: 'account/login', component: LoginComponent},
       {path: 'account/register', component: RegisterComponent},
       {path: 'san-pham/:id', component: ProductDetailsComponent},
       {path: ':slug', component: ShopComponent},
-      {path: 'thanh-toan', component: CheckoutComponent}
     ]
   }
 ]
