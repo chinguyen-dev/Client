@@ -12,7 +12,7 @@
     <div class="under">
       <div class="subtotal">
         Tổng cộng:
-        <span>{{qty| currency : 'VND'}}</span>
+        <span>{{getTotal()| currency : 'VND'}}</span>
       </div>
       <button routerLink="/cart" type="button" id="checkout" title="Xem giỏ hàng">Xem giỏ hàng</button>
     </div>

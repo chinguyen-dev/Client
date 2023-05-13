@@ -6,6 +6,7 @@ import {IProduct} from "../../../model/IProduct";
 import {CartService} from "../../../services/cart.service";
 import {ProductService} from "../../../services/product.service";
 import {StorageService} from "../../../services/storage.service";
+import {Subscription} from "rxjs";
 
 interface IOrder {
   id : number
@@ -29,6 +30,14 @@ export class CheckoutComponent implements OnInit{
   items : IItem[] = []
   product !: IProduct
   qty = 0;
+  subscribes : Subscription[] = [] ;
+
+
+  ngOnDestroy(): void {
+    this.subscribes.forEach(s => {
+      s.unsubscribe();
+    });
+  }
   constructor(private checkoutService : CheckoutService,
               private cartService : CartService,
               private productService : ProductService,
@@ -36,7 +45,7 @@ export class CheckoutComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.cartService.subject.subscribe(items => {
+    let subscribe = this.cartService.subject.subscribe(items => {
       this.items = items
       let variantId = this.items[0]?.variant.id;
       if (variantId){
@@ -50,11 +59,13 @@ export class CheckoutComponent implements OnInit{
       })
       this.qty = quantity;
     })
+    this.subscribes.push(subscribe)
   }
   onSubmit(f: NgForm) {
-    this.checkoutService.checkout(f.value, this.items, this.storageService.getUser()).subscribe( (order : any) => {
+    let subscribe = this.checkoutService.checkout(f.value, this.items, this.storageService.getUser()).subscribe( (order : any) => {
       this.order = order;
     })
+    this.subscribes.push(subscribe)
   }
   getTotal(){
     let total = 0;

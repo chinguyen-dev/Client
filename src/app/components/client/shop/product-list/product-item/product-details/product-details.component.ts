@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../../../../../services/product.service";
 import {CartService} from "../../../../../../services/cart.service";
 import {IProduct} from "../../../../../../model/IProduct";
 import {IProductVariant} from "../../../../../../model/IProductVariant";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
   quantity: number = 1;
   product !: IProduct;
   variantsColors: IProductVariant[] = []
@@ -20,16 +21,21 @@ export class ProductDetailsComponent implements OnInit {
   isSizeActive: string = '';
   variantSizes = new Set<IProductVariant>();
   isColorActive: string = '';
+  subscribes : Subscription[] = [] ;
 
   constructor(private activateRoute: ActivatedRoute,
               private productService: ProductService,
               private carService: CartService) {
   }
-
+  ngOnDestroy(): void {
+    this.subscribes.forEach(s => {
+      s.unsubscribe();
+    });
+  }
   ngOnInit() {
-    this.activateRoute.params.subscribe(
+    let paramSub = this.activateRoute.params.subscribe(
       value => {
-        this.productService.getProductById(value.id).subscribe((product: IProduct) => {
+        let productSub = this.productService.getProductById(value.id).subscribe((product: IProduct) => {
           this.product = product;
           this.getVariantColor();
           if (this.variantsColors.length > 0) {
@@ -40,8 +46,10 @@ export class ProductDetailsComponent implements OnInit {
             this.getVariantSizes();
           }
         })
+        this.subscribes.push(productSub)
       }
     )
+    this.subscribes.push(paramSub)
   }
 
   getVariantImages() {
