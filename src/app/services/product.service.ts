@@ -31,6 +31,10 @@ export class ProductService {
     return this.http.post<ProductSearch[]>(`${this.API_SELL}/search-by-name`, {name: value});
   }
 
+  getProducts(page: any): Observable<any> {
+    return this.http.get<any>(`${this.API_URL}?page=${page}`);
+  }
+
   getAllProduct(): Observable<any> {
     return this.http.get<any>(this.API_URL);
   }
