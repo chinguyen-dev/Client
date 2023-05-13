@@ -1,20 +1,20 @@
 <div class="cart" >
   <a routerLink="/cart">
     <img src="https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/icon-cart-header.svg?1677746368131" alt="">
-    <span class="number">2</span>
+    <span class="number">{{qty}}</span>
     <span class="title">giỏ hàng</span>
   </a>
   <div class="cart-item">
     <img src="https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/arrow-cart-white.png?1677753100854" alt="">
     <ul class="list-item">
-      <app-cart-header-item></app-cart-header-item>
+      <app-cart-header-item *ngFor="let item of items" [item]="item" [product]="product" (itemToRemove)="removeItem($event)" ></app-cart-header-item>
     </ul>
     <div class="under">
       <div class="subtotal">
         Tổng cộng:
-        <span>1.127.000đ</span>
+        <span>{{getTotal()| currency : 'VND'}}</span>
       </div>
-      <button type="button" id="checkout" title="Xem giỏ hàng">Xem giỏ hàng</button>
+      <button routerLink="/cart" type="button" id="checkout" title="Xem giỏ hàng">Xem giỏ hàng</button>
     </div>
   </div>
 </div>

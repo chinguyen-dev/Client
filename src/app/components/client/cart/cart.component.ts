@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subscription} from "rxjs";
 import {CartService} from "../../../services/cart.service";
 import {Item} from "../../../model/Item";
 import {log} from "util";
@@ -13,36 +13,43 @@ import {IProduct} from "../../../model/IProduct";
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit, OnDestroy{
     items : IItem[] = [];
-    product !: IProduct
-    constructor(private cartService: CartService,
-                private productService : ProductService,
-                private storageService : StorageService) {
-    }
+    product !: IProduct;
+    subscribes : Subscription[] = [];
+
+
+  ngOnDestroy(): void {
+    this.subscribes.forEach(s => {
+      s.unsubscribe();
+    });
+  }
+  constructor(private cartService: CartService,
+              private productService : ProductService,
+              private storageService : StorageService) {
+  }
     ngOnInit() {
       this.getCart();
 
     }
     getCart(){
+      let cartSub : Subscription
+      let productSub : Subscription
       this.cartService.getCartByUserEmail(this.storageService.getUser().principle);
-      this.cartService.subject.subscribe( items =>{
+      cartSub = this.cartService.subject.subscribe(items =>{
         this.items = items
         let variantId = this.items[0]?.variant.id;
         if (variantId){
-          this.productService.getProductByVariantId(this.items[0].variant.id).subscribe((product ) =>{
+         productSub = this.productService.getProductByVariantId(this.items[0].variant.id).subscribe((product ) =>{
             this.product = product;
           });
+         this.subscribes.push(productSub);
         }
       })
+      this.subscribes.push(cartSub);
     }
     removeItem(item :IItem){
-      this.cartService.remove(item).subscribe((deletedItem:any) => {
-        const index = this.items.findIndex(i => i.id === deletedItem.id);
-        if (index !== -1) {
-          this.items.splice(index, 1);
-        }
-      });
+      this.cartService.remove(item)
     }
     getTotal(){
       let total = 0;

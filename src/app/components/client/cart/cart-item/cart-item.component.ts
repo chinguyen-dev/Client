@@ -13,19 +13,15 @@ export class CartItemComponent implements OnInit{
   @Input() item !: IItem;
   @Input() product !: IProduct
   @Output() itemToRemove : EventEmitter<IItem> = new EventEmitter<IItem>();
-  constructor(private cartService : CartService, private productService: ProductService) {
+  constructor(private cartService : CartService) {
   }
   ngOnInit(): void {
   }
   minus(qty: number) {
-    this.cartService.minus(this.item, qty).subscribe( item =>{
-      this.item = item;
-    });
+    this.cartService.minus(this.item, qty)
   }
   plus(qty : number){
-    this.cartService.plus(this.item, qty).subscribe( item =>{
-      this.item = item;
-    });
+    this.cartService.plus(this.item, qty)
   }
 
   removeItem() {

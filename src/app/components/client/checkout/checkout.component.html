@@ -1,4 +1,4 @@
-<form class="container  d-flex justify-content-center " style="height: 90vh;">
+<form *ngIf="order == null" #f="ngForm" (ngSubmit)="onSubmit(f)"  class="container  d-flex justify-content-center " style="min-height: 90vh;">
   <div class="col-8 me-5 pt-2">
     <div class="text-center">
       <a> <img src="https://bizweb.dktcdn.net/100/438/408/themes/902401/assets/checkout_logo.png?1680424368159"
@@ -8,29 +8,27 @@
     </div>
     <div class="row">
       <div class="col-6">
-        <h5 class="fw-bold">Thông tin giao hàng</h5>
-        <input type="text" placeholder="Họ và tên" name="full_name"
-               style="outline: none; border-radius: 4px; border: 1px solid #999;"
-               class="w-100 p-2 mt-2 mb-1">
-        <input type="number" placeholder="Số điện thoại" name="phone_number"
-               style="outline: none; border-radius: 4px; border: 1px solid #999;"
-               class="w-100 p-2 mt-2 mb-2">
-        <input type="text" placeholder="Địa chỉ" name="address"
-               style="outline: none; border-radius: 4px; border: 1px solid #999;"
-               class="w-100 p-2 mt-2 mb-2">
-        <input type="text" placeholder="Tỉnh" name="province"
-               style="outline: none; border-radius: 4px; border: 1px solid #999;"
-               class="w-100 p-2 mt-2 mb-2">
-        <input type="text" placeholder="Quận huyện" name="district"
-               style="outline: none; border-radius: 4px; border: 1px solid #999;"
-               class="w-100 p-2 mt-2 mb-2">
-        <input type="text" placeholder="Phường xã" name="commune"
-               style="outline: none; border-radius: 4px; border: 1px solid #999;"
-               class="w-100 p-2 mt-2 mb-2">
-        <textarea
-          placeholder="Ghi chú (tùy chọn)"
-          style="outline: none"
-          class="w-100 ps-2"></textarea>
+        <h5 class="fw-bold mb-3">Thông tin giao hàng</h5>
+        <small class="text-danger" *ngIf="fullName?.value?.length == 0 && fullName?.touched">Vui lòng nhập tên</small>
+        <mdb-form-control class="mb-3">
+          <input mdbInput type="text" id="orderUsername" ngModel required #fullName = "ngModel" name="orderUsername" class="form-control" />
+          <label mdbLabel class="form-label" for="orderUsername">Họ và tên</label>
+        </mdb-form-control>
+        <small class="text-danger" *ngIf="phone?.value?.length == 0 && phone?.touched">Vui lòng nhập nhập số điện thoại </small>
+        <mdb-form-control class="mb-3">
+          <input mdbInput type="text" id="phone" required ngModel #phone= "ngModel" name="phone" class="form-control" />
+          <label mdbLabel class="form-label" for="phone">Số điện thoại</label>
+        </mdb-form-control>
+        <small class="text-danger" *ngIf="address?.value?.length == 0 && address?.touched">Vui lòng nhập nhập địa chỉ </small>
+        <mdb-form-control class="mb-3">
+          <input mdbInput type="text" id="form1" required ngModel #address = "ngModel" name="address" class="form-control" />
+          <label mdbLabel class="form-label" for="form1">Địa chỉ</label>
+        </mdb-form-control>
+
+        <mdb-form-control>
+          <textarea mdbInput ngModel class="form-control" id="textAreaExample" name="note" rows="4"></textarea>
+          <label mdbLabel class="form-label" for="textAreaExample">Ghi chú</label>
+        </mdb-form-control>
       </div>
       <div class="col-6">
         <h5 class="fw-bold">Vận chuyển</h5>
@@ -47,17 +45,17 @@
       </div>
     </div>
   </div>
-  <div class="col-4 pt-2 p-4"
+  <div class="col-4 pt-2 p-4" *ngIf="items.length > 0 && product != null"
        style="background-color: #e7e8fc;
              border-radius: 4px;">
-    <h5 class="fw-bold ps-2 pb-5" style="border-bottom: 1px solid #fff">Đơn hàng (1 sản phẩm)</h5>
-    <div class="d-flex justify-content-between ps-2 pe-2 "  style="border-bottom: 1px solid #fff;">
-      <div class="d-flex pb-2" >
+    <h5 class="fw-bold ps-2 pb-5" style="border-bottom: 1px solid #fff">Đơn hàng ({{qty}} sản phẩm)</h5>
+    <div *ngFor="let item of items" class="d-flex justify-content-between ps-2 pe-2 "  style="border-bottom: 1px solid #fff;">
+      <div class="d-flex pb-2"  >
         <a class="position-relative">
           <img
             class="img-fluid me-2 "
-            style="border-radius: 4px;"
-            src="https://bizweb.dktcdn.net/thumb/thumb/100/438/408/products/ao-polo-nam-apm3635-tny-8-yodyvn.jpg?v=1676025634140"
+            style="border-radius: 4px; width: 40px;"
+            src="{{item.variant.image}}"
             alt="">
           <span style="background-color: #fcaf17;
                        border-radius: 50%;
@@ -70,33 +68,74 @@
                        top: 0;
                         right: 2px;
           ">
-            1
+            {{item.quantity}}
           </span>
         </a>
-        <div>
-          <div class="fw-bold"> Áo Polo Nam Cafe Phối Nẹp Thấm Hút Mồ Hôi</div>
-          <div style="font-size: 12px; color: grey;">Trắng phối navy / L</div>
+        <div class="ms-2">
+          <div class="fw-bold"> {{product.name}}</div>
+          <div style="font-size: 12px; color: grey;">{{item.variant.color}} / {{item.variant.size}}</div>
         </div>
       </div>
-      <span class="fw-bold flex-1 ms-2">299.999đ</span>
+      <span class="fw-bold flex-1 ms-2">{{item.quantity * product.price | currency : 'VND'}}</span>
     </div>
     <div class="d-flex justify-content-between mt-4 ps-2 pe-2 fw-bold" >
       <span>Tạm tính</span>
-      <span>290.000đ</span>
+      <span>{{getTotal() | currency : 'VND'}}</span>
     </div>
     <div class="d-flex justify-content-between mt-2 ps-2 pe-2 pb-3 fw-bold" style="border-bottom: 1px solid #fff;">
       <span>Phí vận chuyển</span>
-      <span>20.000đ</span>
+      <span>{{20000 | currency: 'VND'}}</span>
     </div>
     <div class="d-flex justify-content-between mt-2 ps-2 pe-2 pb-3 fw-bold fs-5">
       <span>Tổng cộng</span>
-      <span style="color : #fcaf17">319.000đ</span>
+      <span style="color : #fcaf17">{{getTotal() + 20000 | currency : 'VND'}}</span>
     </div>
     <div class="d-flex justify-content-between mt-2 ps-2 pe-2 pb-3 fw-bold">
-      <a style="color:#fcaf17; "> < Quay lại giỏ hàng </a>
-      <button class="btn btn-warning text-dark fs-6"
-        style="background-color : #fcaf17">319.000đ</button>
+      <a routerLink="/cart" style="color:#fcaf17; "> < Quay lại giỏ hàng </a>
+      <button type="submit" [disabled]="f.invalid" class="btn btn-warning text-dark fs-6"
+        style="background-color : #fcaf17">Thanh toán</button>
     </div>
   </div>
 
 </form>
+<div *ngIf="order !=null && product != null" class="container-fluid p-5" style="min-height: 100vh;">
+  <div class="d-flex gap-3 h-100">
+    <div class="col-8">
+      <table class="table fs-6">
+        <thead>
+        <tr><span class="fs-5  fw-bold text-uppercase">Đơn hàng của bạn</span></tr>
+        <tr>
+          <th class="text-uppercase " scope="col">Sản phẩm</th>
+          <th scope="col">Tổng</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr class="fs-6" *ngFor="let item of order.items">
+            <td>{{product.name}} ({{item.variant.color}} / {{item.variant.size}}) <span class="fw-bold">x {{item.quantity}}</span></td>
+            <td>{{product.price * item.quantity | currency: 'VND'}}</td>
+          </tr>
+          <tr class="fs-6">
+            <th class="border-bottom-0" scope="col">Tổng cộng</th>
+            <th class="border-bottom-0" scope="col">{{getTotal() | currency: 'VND'}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class=" w-50 ">
+      <div class="bg-warning rounded p-4">
+        <div class="text-center">
+          <i class="fa-solid fa-circle-check text-light fs-1 mb-3"></i>
+          <h4 class="text-light">Đặt hàng thành công</h4>
+        </div>
+        <div class="text-light">
+          <ul>
+            <li>Mã đơn hàng: {{order.id }}</li>
+            <li>Ngày: {{order.createAt |  date:'short' : '' }} </li>
+            <li>Tổng cộng: {{getTotal() | currency : 'VND'}} </li>
+            <li>Phương thức thanh toán : COD</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

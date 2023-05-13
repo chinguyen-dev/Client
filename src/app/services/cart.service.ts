@@ -53,16 +53,36 @@ export class CartService {
   }
 
   remove(item: IItem) {
-    return  this.http.delete(this.api_url + "/carts" + "/" + item.id)
+    return  this.http.delete(this.api_url + "/carts" + "/" + item.id).subscribe((deletedItem:any) => {
+      const index = this.items.findIndex(i => i.id === deletedItem.id);
+      if (index !== -1) {
+        this.items.splice(index, 1);
+        this.subject.next(this.items)
+      }
+    });
   }
 
   minus(item: IItem, quantity : number) {
-   return  this.http.get<any>(this.api_url + "/carts" +"/minus" +"/" + item.id + "/" + quantity)
+   return  this.http.get<any>(this.api_url + "/carts" +"/minus" +"/" + item.id + "/" + quantity).subscribe( item =>{
+     this.items.forEach(i =>{
+       if (i.id === item.id) {
+         i.quantity = item.quantity;
+         this.subject.next(this.items)
+       }
+     })
+   });
 
   }
 
   plus(item: IItem , quantity : number) {
-    return  this.http.get<any>(this.api_url + "/carts" +"/plus" +"/" + item.id + "/" + quantity)
+    return  this.http.get<any>(this.api_url + "/carts" +"/plus" +"/" + item.id + "/" + quantity).subscribe( item =>{
+      this.items.forEach(i =>{
+        if (i.id === item.id) {
+          i.quantity = item.quantity;
+          this.subject.next(this.items)
+        }
+      })
+    });
   }
 
 
