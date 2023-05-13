@@ -11,7 +11,6 @@ import {Router} from "@angular/router";
 import {IUser} from "../model/IUser";
 
 export interface AddToCartRequest {
-  email : string
   variantId: number
   quantity: number
 }
@@ -27,8 +26,8 @@ export class CartService {
               private router : Router,
               private http: HttpClient) {
   }
-  getCartByUserEmail(email : string){
-    this.http.get<any>(this.api_url + "/carts/user/" + email).subscribe(cart =>{
+  getCartByUser(){
+    this.http.get<any>(this.api_url + "/carts").subscribe(cart =>{
       this.items = cart.items;
       this.subject.next(this.items)
     })
@@ -38,7 +37,8 @@ export class CartService {
   addToCart(variant: IProductVariant, quantity: number) {
     let user : IUser = this.storageService.getUser();
     if (user) {
-      let request :AddToCartRequest = {email: user.principle, quantity : quantity, variantId: variant.id}
+      console.log(user.token)
+      let request :AddToCartRequest = {quantity : quantity, variantId: variant.id}
       let res =  this.http.post<any>(`${this.api_url}/carts`, request);
       res.subscribe(cart => {
         this.items = cart.items;

@@ -1,10 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {CartService} from "../../../services/cart.service";
-import {Item} from "../../../model/Item";
-import {log} from "util";
 import {IItem} from "../../../model/IItem";
-import {StorageService} from "../../../services/storage.service";
 import {ProductService} from "../../../services/product.service";
 import {IProduct} from "../../../model/IProduct";
 
@@ -26,7 +23,7 @@ export class CartComponent implements OnInit, OnDestroy{
   }
   constructor(private cartService: CartService,
               private productService : ProductService,
-              private storageService : StorageService) {
+              ) {
   }
     ngOnInit() {
       this.getCart();
@@ -35,7 +32,7 @@ export class CartComponent implements OnInit, OnDestroy{
     getCart(){
       let cartSub : Subscription
       let productSub : Subscription
-      this.cartService.getCartByUserEmail(this.storageService.getUser().principle);
+      this.cartService.getCartByUser();
       cartSub = this.cartService.subject.subscribe(items =>{
         this.items = items
         let variantId = this.items[0]?.variant.id;

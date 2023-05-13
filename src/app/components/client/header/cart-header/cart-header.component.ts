@@ -3,8 +3,8 @@ import {CartService} from "../../../../services/cart.service";
 import {IItem} from "../../../../model/IItem";
 import {IProduct} from "../../../../model/IProduct";
 import {ProductService} from "../../../../services/product.service";
-import {StorageService} from "../../../../services/storage.service";
 import {Subscription} from "rxjs";
+import {StorageService} from "../../../../services/storage.service";
 
 @Component({
   selector: 'app-cart-header',
@@ -19,7 +19,8 @@ export class CartHeaderComponent {
 
   constructor(private cartService: CartService,
               private productService: ProductService,
-              private storageService: StorageService) {
+              private storageService : StorageService
+             ) {
   }
 
   ngOnDestroy(): void {
@@ -29,11 +30,14 @@ export class CartHeaderComponent {
   }
 
   ngOnInit() {
-    this.getCart();
+    let userSub =  this.storageService.isAuthenticate.subscribe(user => {
+      if (user) this.getCart();
+    })
+    this.subscribes.push(userSub);
   }
 
   getCart() {
-    this.cartService.getCartByUserEmail(this.storageService.getUser().principle);
+    this.cartService.getCartByUser();
     let sub = this.cartService.subject.subscribe(items => {
       this.items = items
       let variantId = this.items[0]?.variant.id;
@@ -42,12 +46,12 @@ export class CartHeaderComponent {
           this.product = product;
         });
        this.subscribes.push(productSub)
-        let quantity = 0;
-        items.map(item => {
-          quantity += item.quantity
-        })
-        this.qty = quantity;
       }
+      let quantity = 0;
+      items.map(item => {
+        quantity += item.quantity
+      })
+      this.qty = quantity;
     })
     this.subscribes.push(sub);
   }

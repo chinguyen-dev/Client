@@ -75,7 +75,7 @@ import {SliderComponent} from './components/client/home/slider/slider.component'
 import {HomeComponent} from "./components/client/home/home.component";
 import {ProductSliderComponent} from './components/client/home/product-slider/product-slider.component';
 import {ClientModule} from "./components/client/client.module";
-import {AuthInterceptor} from "./services/auth.interceptor";
+import {AuthInterceptor, authInterceptorProviders} from "./services/auth.interceptor";
 import {AdminModule} from "./components/admin/admin.module";
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
@@ -168,6 +168,7 @@ registerLocaleData(localeDe, 'vi-VN', localeDeExtra);
   providers: [MdbCookiesManagementService,
     MdbStorageManagementService,
     MdbScrollStatusService,
+    authInterceptorProviders,
     {
       provide: LOCALE_ID,
       useValue: 'vi-VN'

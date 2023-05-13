@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IItem} from "../../../../../model/IItem";
 import {IProduct} from "../../../../../model/IProduct";
 import {CartService} from "../../../../../services/cart.service";
-import {ProductService} from "../../../../../services/product.service";
 
 @Component({
   selector: 'app-cart-header-item',
