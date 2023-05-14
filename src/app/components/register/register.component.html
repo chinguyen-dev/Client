@@ -10,8 +10,8 @@
         </div>
 
         <div class="form-input">
-          <input type="email" ngModel email required id="email" placeholder="Địa chỉ email" name="email">
-          <div *ngIf="f.controls.email?.invalid && (f.controls.email?.dirty || f.controls.email?.touched)" class="text-danger">Email không hợp lệ </div>
+          <input type="email" (ngModelChange)="validate($event)" ngModel email required id="email" placeholder="Địa chỉ email" name="email">
+          <div *ngIf="!isEmailValid || (f.controls.email?.invalid  && (f.controls.email?.dirty || f.controls.email?.touched))" class="text-danger">Email không thể sử dụng </div>
 
         </div>
 
@@ -30,9 +30,9 @@
             <span class="open-eye" (click)="toggleEye()"></span>
           </ng-template>
         </div>
-        <div *ngIf="f.controls.re_password?.value.trim().length == 0 && (f.controls.re_password?.dirty || f.controls.re_password?.touched)" class="text-danger">Mật khẩu không khớp </div>
+        <div *ngIf=" (f.controls.password?.value != f.controls.re_password?.value) ||  f.controls.re_password?.value.trim().length == 0 && (f.controls.re_password?.dirty || f.controls.re_password?.touched)" class="text-danger">Mật khẩu không khớp </div>
         <div class="form-button">
-          <button class="btn btn-warning" [disabled]="f.invalid" type="ngSubmit">Đăng ký</button>
+          <button class="btn btn-warning" [disabled]="f.invalid || (f.controls.password?.value != f.controls.re_password?.value)" type="ngSubmit">Đăng ký</button>
         </div>
 
         <div class="box-social-login">

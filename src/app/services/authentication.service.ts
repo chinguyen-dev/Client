@@ -17,5 +17,8 @@ export class AuthenticationService {
   register(user: any): Observable<any> {
     return this.http.post(this.auth_api + '/register', user);
   }
+  validateEmail(email : any) {
+    return  this.http.get(this.auth_api + "/validate" + "/" + email)
+  }
 
 }
