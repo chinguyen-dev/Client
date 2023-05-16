@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../../services/storage.service";
 import {ProductService} from "../../../services/product.service";
-import {fromEvent, Observable} from "rxjs";
-import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import {Observable} from "rxjs";
 import {ProductSearch} from "../../../model/ProductSearch";
 
 @Component({
