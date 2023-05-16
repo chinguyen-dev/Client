@@ -1,5 +1,10 @@
 import {Component} from '@angular/core';
 
+export interface Slug {
+  id: number | undefined;
+  name: string | undefined;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,7 +12,7 @@ import {Component} from '@angular/core';
 })
 export class HomeComponent {
 
-  category = [
-    'Áo polo',
+  slugs: Slug[] = [
+    {id: 5, name: 'Áo polo'}
   ]
 }

@@ -21,14 +21,12 @@ export class ProductService {
     return this.http.post<any>(this.API_URL, product);
   }
 
-  getProductByCategorySlug(param: string | undefined): Observable<any> {
-    const slug = param?.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s+/g, '-').toLowerCase();
-    return this.http.get<any>(`${this.API_SELL}/category/${slug}`)
+  getProductByCategory(id : number | undefined): Observable<any> {
+    return this.http.get<any>(`${this.API_SELL}/${id}/show`)
   }
 
   searchByName(value: any): Observable<any> {
-    return this.http.post<ProductSearch[]>(`${this.API_SELL}/search-by-name`, {name: value});
+    return this.http.post<ProductSearch[]>(`${this.API_SELL}/search`, {name: value});
   }
 
   getProducts(page: any): Observable<any> {
