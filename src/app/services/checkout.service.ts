@@ -27,6 +27,6 @@ export class CheckoutService {
       note: formValue.note,
       items : itemsRequest
     }
-    return  this.http.post(environment.apiURL + "/orders", checkoutRequest)
+    return  this.http.post(environment.apiURL + "/auth/orders", checkoutRequest)
   }
 }

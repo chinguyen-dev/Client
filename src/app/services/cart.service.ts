@@ -19,7 +19,7 @@ export interface AddToCartRequest {
   providedIn: 'root'
 })
 export class CartService {
-  private api_url = environment.apiURL
+  private api_url = environment.apiURL + '/auth/carts'
   items : IItem[] = [];
   subject :BehaviorSubject<IItem[]> = new BehaviorSubject(this.items);
   constructor(private storageService: StorageService,
@@ -27,7 +27,7 @@ export class CartService {
               private http: HttpClient) {
   }
   getCartByUser(){
-    this.http.get<any>(this.api_url + "/carts").subscribe(cart =>{
+    this.http.get<any>(this.api_url).subscribe(cart =>{
       this.items = cart.items;
       this.subject.next(this.items)
     })
@@ -39,7 +39,7 @@ export class CartService {
     if (user) {
       console.log(user.token)
       let request :AddToCartRequest = {quantity : quantity, variantId: variant.id}
-      let res =  this.http.post<any>(`${this.api_url}/carts`, request);
+      let res =  this.http.post<any>(`${this.api_url}`, request);
       res.subscribe(cart => {
         this.items = cart.items;
         this.subject.next(this.items);
@@ -53,7 +53,7 @@ export class CartService {
   }
 
   remove(item: IItem) {
-    return  this.http.delete(this.api_url + "/carts" + "/" + item.id).subscribe((deletedItem:any) => {
+    return  this.http.delete(this.api_url +   "/" + item.id).subscribe((deletedItem:any) => {
       const index = this.items.findIndex(i => i.id === deletedItem.id);
       if (index !== -1) {
         this.items.splice(index, 1);
@@ -63,7 +63,7 @@ export class CartService {
   }
 
   minus(item: IItem, quantity : number) {
-   return  this.http.get<any>(this.api_url + "/carts" +"/minus" +"/" + item.id + "/" + quantity).subscribe( item =>{
+   return  this.http.get<any>(this.api_url  +"/minus" +"/" + item.id + "/" + quantity).subscribe( item =>{
      this.items.forEach(i =>{
        if (i.id === item.id) {
          i.quantity = item.quantity;
@@ -75,7 +75,7 @@ export class CartService {
   }
 
   plus(item: IItem , quantity : number) {
-    return  this.http.get<any>(this.api_url + "/carts" +"/plus" +"/" + item.id + "/" + quantity).subscribe( item =>{
+    return  this.http.get<any>(this.api_url +"/plus" +"/" + item.id + "/" + quantity).subscribe( item =>{
       this.items.forEach(i =>{
         if (i.id === item.id) {
           i.quantity = item.quantity;
