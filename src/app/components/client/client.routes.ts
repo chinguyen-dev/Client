@@ -15,7 +15,7 @@ export const clientRoutes : Routes = [
     children: [
       {path: '', component: HomeComponent},
       {path: 'cart', component: CartComponent},
-      {path: 'thanh-toan', component: CheckoutComponent,},
+      {path: 'thanh-toan', component: CheckoutComponent, canActivate : [CanActiveGuard]},
       {path: 'account/login', component: LoginComponent},
       {path: 'account/register', component: RegisterComponent},
       {path: 'san-pham/:id', component: ProductDetailsComponent},

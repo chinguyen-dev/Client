@@ -5,7 +5,6 @@ import {IItem} from "../../../model/IItem";
 import {IProduct} from "../../../model/IProduct";
 import {CartService} from "../../../services/cart.service";
 import {ProductService} from "../../../services/product.service";
-import {StorageService} from "../../../services/storage.service";
 import {Subscription} from "rxjs";
 
 interface IOrder {
@@ -41,7 +40,7 @@ export class CheckoutComponent implements OnInit{
   constructor(private checkoutService : CheckoutService,
               private cartService : CartService,
               private productService : ProductService,
-              private storageService : StorageService) {
+           ) {
   }
 
   ngOnInit(): void {
@@ -62,14 +61,17 @@ export class CheckoutComponent implements OnInit{
     this.subscribes.push(subscribe)
   }
   onSubmit(f: NgForm) {
-    let subscribe = this.checkoutService.checkout(f.value, this.items, this.storageService.getUser()).subscribe( (order : any) => {
-      this.order = order;
+    let subscribe = this.checkoutService.checkout(f.value, this.items).subscribe( (order : any) => {
+      if (order){
+        this.order = order;
+        this.cartService.subject.next([])
+      }
     })
     this.subscribes.push(subscribe)
   }
   getTotal(){
     let total = 0;
-    this.items.map(item => {
+    this.order.items.map(item => {
       total += item.quantity * this.product?.price;
     })
     return total

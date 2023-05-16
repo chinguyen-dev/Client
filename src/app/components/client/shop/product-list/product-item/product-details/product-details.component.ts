@@ -18,9 +18,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   selectedVariants !: any;
   currentVariant !: IProductVariant
   variantImages: string[] = [];
-  isSizeActive: string = '';
   variantSizes = new Set<IProductVariant>();
-  isColorActive: string = '';
   subscribes : Subscription[] = [] ;
 
   constructor(private activateRoute: ActivatedRoute,
@@ -40,8 +38,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           this.getVariantColor();
           if (this.variantsColors.length > 0) {
             this.currentVariant = this.variantsColors[0];
-            this.setSizeActive();
-            this.setColorActive();
             this.getVariantImages();
             this.getVariantSizes();
           }
@@ -100,18 +96,11 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.variantImages = []
     this.variantSizes.clear()
     this.currentVariant = variant;
-    this.setColorActive()
-    this.setSizeActive()
+
     this.getVariantImages();
     this.getVariantSizes()
   }
 
-  setSizeActive() {
-    this.isSizeActive = this.currentVariant.size;
-  }
 
-  setColorActive() {
-    this.isColorActive = this.currentVariant.color
-  }
 
 }

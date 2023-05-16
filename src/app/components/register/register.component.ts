@@ -14,6 +14,7 @@ export class RegisterComponent {
 
   isEye = false;
   type = 'password';
+  isEmailValid: boolean = true;
 
   toggleEye() {
     this.isEye = !this.isEye;
@@ -23,6 +24,14 @@ export class RegisterComponent {
   onSubmit(f: NgForm) {
     this.authService.register(f.value).subscribe(value => {
       if (value) this.router.navigateByUrl('/account/login');
+    })
+
+  }
+
+  validate($event: any) {
+    let email = $event;
+    this.authService.validateEmail(email).subscribe( (value : any) =>{
+      this.isEmailValid = value
     })
 
   }

@@ -14,7 +14,12 @@ export class CanActiveGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.storageService.getUser() != null ? true : false;
+    let user = this.storageService.getUser();
+    if (user){
+      return true
+    }
+    this.router.navigateByUrl('')
+    return false;
   }
 
 }
