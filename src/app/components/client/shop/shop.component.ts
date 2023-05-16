@@ -28,10 +28,10 @@ export class ShopComponent implements OnInit {
     {value: '10', label: 'Xám'}
 
   ];
-  subCategory$ !: Observable<Category[]>;
-  categorySlugs: string[] = [];
-  slug : any;
+  subCategories : Category[] = [];
+  categoryIds: number[] = [];
   sizesFilter: string[] = [];
+  currentCateId !: number
   colorsFilter: string[] = [];
   categoryFilter : Category[] = [];
   sort = window.sessionStorage.getItem('sortingType') || this.sortingTypes[0]
@@ -46,24 +46,23 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.params.subscribe(params => {
-      let slug = params['slug'];
-      this.categorySlugs = []
-      this.categorySlugs.push(slug)
-      this.getProductByCategory();
-      this.getSubcategories(slug);
+      let cateId : number = params['cateId'];
+      this.currentCateId = cateId;
+      this.categoryIds = []
+      this.categoryIds.push(cateId)
+      this.categoryService.getSubCategories(cateId).subscribe( res => {
+        this.subCategories = res
+        if (this.subCategories){
+          this.subCategories.map(sub =>{
+            this.categoryIds.push(sub.id)
+          })
+          this.getProducts();
+        }
+      })
     })
   }
-  getProductByCategory(){
-    this.products$ = this.productService.getAllProduct();
-
-  }
   getProducts() {
-    if (this.categoryFilter.length > 0 || this.colorsFilter.length > 0 || this.sizesFilter.length > 0){
-      this.products$ = this.productService.filterProduct(this.categorySlugs, this.sort, this.colorsFilter, this.sizesFilter);
-    } else{
-      this.getProductByCategory();
-    }
-
+      this.products$ = this.productService.filterProduct(this.categoryIds, this.sort, this.colorsFilter, this.sizesFilter);
   }
 
   sortingTypeChanged(type: string) {
@@ -102,22 +101,21 @@ export class ShopComponent implements OnInit {
 
   }
 
-  private getSubcategories(slug: any) {
-    this.subCategory$ = this.categoryService.getSubCategories(slug);
-  }
-
   addCategory(category: Category) {
+    if (this.categoryFilter.length <= 0 ) this.categoryIds = []
     let exCate = this.categoryFilter.includes(category);
     if(!exCate) {
       this.categoryFilter.push(category);
-      this.categorySlugs.push(category.slug)
+      this.categoryIds.push(category.id)
       this.getProducts();
     }
   }
 
   removeCategory(category: Category) {
-    let index = this.categoryFilter.indexOf(category, 0);
-    this.categoryFilter.splice(index, 1);
+    let filterIndex = this.categoryFilter.indexOf(category, 0);
+    let idIndex = this.categoryIds.indexOf(category.id, 0);
+    this.categoryFilter.splice(filterIndex, 1);
+    this.categoryIds.splice(idIndex, 1);
     this.getProducts();
   }
 }

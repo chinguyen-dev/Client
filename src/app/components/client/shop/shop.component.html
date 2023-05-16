@@ -30,7 +30,7 @@
 
     <span class="d-block title ">Loại sản phẩm</span>
     <div class=" product-type-list filter-items-layout ">
-      <span (click)="addCategory(category)" *ngFor="let category of subCategory$ | async" class="filter-item ">{{category.name}}</span>
+      <span (click)="addCategory(category)" *ngFor="let category of subCategories" class="filter-item ">{{category.name}}</span>
 
     </div>
     <span class="d-block title ">Kích thước</span>

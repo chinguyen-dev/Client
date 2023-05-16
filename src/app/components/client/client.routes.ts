@@ -19,7 +19,7 @@ export const clientRoutes : Routes = [
       {path: 'account/login', component: LoginComponent},
       {path: 'account/register', component: RegisterComponent},
       {path: 'san-pham/:id', component: ProductDetailsComponent},
-      {path: 'tong-san-pham/:slug', component: ShopComponent},
+      {path: 'tong-san-pham/:cateId', component: ShopComponent},
     ]
   }
 ]
