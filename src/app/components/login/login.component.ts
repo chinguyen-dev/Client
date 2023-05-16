@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
 import {StorageService} from "../../services/storage.service";
+import {IUser} from "../../model/IUser";
 
 @Component({
   selector: 'app-login',
@@ -37,9 +38,13 @@ export class LoginComponent implements OnInit{
   onSubmit() {
     let user = this.loginForm.value
     this.authenticate.login(user).subscribe({
-      next : res => {
+      next : (res : IUser) => {
         this.storeService.saveUser(res)
-        this.router.navigateByUrl('')
+        if (res.roles.includes('ADMIN')){
+          this.router.navigateByUrl('admin')
+        } else{
+          this.router.navigateByUrl('')
+        }
       },
       error: err => {
         alert("Tài khoản hoặc mật khẩu không đúng")
