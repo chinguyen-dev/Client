@@ -4,16 +4,14 @@
     <div class="special">đặc biệt</div>
     <div class="box-program-discount">
       <div class="sale">
-        <img src="https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/home_khuyenmai_2_image.png?1677896452512"
-             alt="">
+        <img src="https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/home_khuyenmai_2_image.png?1677896452512" alt="">
         <p>Sale 50%</p>
       </div>
       <div class="sale">
-        <img src="https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/home_khuyenmai_1_image.png?1677896452512"
-             alt="">
+        <img src="https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/home_khuyenmai_1_image.png?1677896452512" alt="">
         <p>Xã hàng lẻ size</p>
       </div>
     </div>
   </div>
-  <app-product-slider *ngFor="let item of category" [category]="item"></app-product-slider>
+  <app-product-slider *ngFor="let item of slugs" [slug]="item"></app-product-slider>
 </div>

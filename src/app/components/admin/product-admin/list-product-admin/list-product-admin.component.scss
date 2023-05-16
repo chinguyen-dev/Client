@@ -47,3 +47,21 @@ td > img {
   height: 100px;
   display: block;
 }
+
+.custom-pagination-item {
+  width: 40px;
+  height: 37px;
+  color: #333;
+  line-height: 36px;
+  font-size: 16px;
+  margin: 0 4px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid #DDE1EF;
+  cursor: pointer;
+
+  &:hover, &.active {
+    background-color: #ec407a;
+    color: #fff;
+  }
+}

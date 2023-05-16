@@ -20,6 +20,11 @@ export class CategoryService {
     return this.http.get<Category[]>(`${this.url}`);
   }
 
+  public getSaleCategories(): Observable<Category[]> {
+    this.categories = [];
+    return this.http.get<Category[]>(`${environment.apiURL}/categories`);
+  }
+
   public getCategory(id: number): Observable<Category> {
     return this.http.get<Category>(`${this.url}/${id}`);
   }

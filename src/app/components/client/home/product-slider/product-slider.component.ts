@@ -1,13 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ProductService} from "../../../../services/product.service";
+import {Slug} from "../home.component";
 @Component({
   selector: 'app-product-slider',
   templateUrl: './product-slider.component.html',
   styleUrls: ['./product-slider.component.scss']
 })
 export class ProductSliderComponent implements OnInit {
-  @Input() category: string | undefined;
+  @Input() slug: Slug | undefined;
   isActive: boolean | undefined;
 
   listProductFirst: Array<any> = [];
@@ -21,9 +22,11 @@ export class ProductSliderComponent implements OnInit {
   }
 
   public getProducts() {
-    this.productService.getProductByCategorySlug(this.category).subscribe({
-      next: response => response.forEach((item: any, index: number) =>
-        index < 4 ? this.listProductFirst.push(item) : this.listProductLast.push(item)),
+    this.productService.getProductByCategory(this.slug?.id).subscribe({
+      next: response => {
+        response.forEach((item: any, index: number) =>
+          index < 4 ? this.listProductFirst.push(item) : this.listProductLast.push(item))
+      },
       error: err => console.log(err)
     })
   }
@@ -52,5 +55,4 @@ export class ProductSliderComponent implements OnInit {
     },
     nav: true
   }
-
 }

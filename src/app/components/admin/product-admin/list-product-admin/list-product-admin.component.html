@@ -6,7 +6,8 @@
       <tr>
         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">stt</th>
         <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">Hình ảnh</th>
-        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">Tên sản phẩm</th>
+        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7 ps-2">Tên sản phẩm
+        </th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Giá</th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">danh mục</th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">thời gian</th>
@@ -26,7 +27,7 @@
         </td>
         <td class="ps-0">
           <img src="{{ product.variants[0].image}}"
-            alt="">
+               alt="">
         </td>
         <td class="align-middle text-center">
           <p class="text-xs font-weight-bold mb-0">{{ product.name }}</p>
@@ -49,5 +50,15 @@
     </table>
   </div>
 </div>
-
-
+<ng-container *ngIf="isActive">
+  <div class="d-flex justify-content-center mt-3 mb-3">
+    <div class="custom-pagination d-flex">
+      <a class="custom-pagination-item text-center" *ngIf="pre" (click)="changePage(true)"><i
+        class="fas fa-arrow-left"></i></a>
+      <a *ngFor="let page of pagination$ | async;" (click)="onPageChange(page.page)"
+         class="custom-pagination-item text-center" [class.active]="page.active">{{page.page}}</a>
+      <a class="custom-pagination-item text-center" *ngIf="next" (click)="changePage(false)"><i
+        class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</ng-container>

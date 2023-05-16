@@ -24,7 +24,7 @@ export class MegaMenuHeaderComponent implements OnInit {
 
 
   public getCategories() {
-    this.categoryService.getCategories().subscribe({
+    this.categoryService.getSaleCategories().subscribe({
       next: (res: Category[]) => {
         this.categories = res;
         const payLoad: any = [];

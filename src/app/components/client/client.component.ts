@@ -9,4 +9,6 @@ export class ClientComponent implements OnInit {
   ngOnInit(): void {
     localStorage.removeItem('index')
   }
+
+
 }
