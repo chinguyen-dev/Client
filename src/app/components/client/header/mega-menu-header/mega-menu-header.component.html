@@ -4,7 +4,7 @@
       <a href="" class="sale">Sale 50%</a>
     </li>
     <li class="hover" *ngFor="let category of categoriesParent$ | async">
-      <a href="" routerLink="/{{ category.slug }}">{{ category.name }}</a>
+      <a href="" routerLink="tong-san-pham/{{ category.slug }}">{{ category.name }}</a>
       <ul class="sub-menu">
         <li class="mega-menu">
           <ul>
@@ -12,7 +12,7 @@
               <a href="" routerLink="/{{ child.slug }}">{{ child.name }}</a>
               <ul>
                 <li *ngFor="let subChild of getChildren(child.id) | async">
-                  <a href="" routerLink="/{{ subChild.slug }}">{{ subChild.name }}</a>
+                  <a href="" routerLink="tong-san-pham/{{ subChild.slug }}">{{ subChild.name }}</a>
                 </li>
               </ul>
             </li>
