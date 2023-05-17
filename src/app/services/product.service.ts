@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {IProduct} from "../model/IProduct";
 import {IProductVariant} from "../model/IProductVariant";
+import {ProductSearch} from "../model/ProductSearch";
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +21,16 @@ export class ProductService {
     return this.http.post<any>(this.API_URL, product);
   }
 
-  getProductByCategorySlug(param: string | undefined): Observable<any> {
-    const slug = param?.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s+/g, '-').toLowerCase();
-    return this.http.get<any>(`${this.API_SELL}/category/${slug}`)
+  getProductByCategory(id : number | undefined): Observable<any> {
+    return this.http.get<any>(`${this.API_SELL}/${id}/show`)
+  }
+
+  searchByName(value: any): Observable<any> {
+    return this.http.post<ProductSearch[]>(`${this.API_SELL}/search`, {name: value});
+  }
+
+  getProducts(page: any): Observable<any> {
+    return this.http.get<any>(`${this.API_URL}?page=${page}`);
   }
 
   getAllProduct(): Observable<any> {
@@ -32,18 +40,13 @@ export class ProductService {
   getProductById(id: any) {
     return this.http.get<IProduct>(this.API_URL + '/' + id)
   }
-  getVariantsByProductId(id : any){
-    return this.http.get<IProductVariant[]>(this.API_URL + '/' + id +"/variants")
+
+  getVariantsByProductId(id: any) {
+    return this.http.get<IProductVariant[]>(this.API_URL + '/' + id + "/variants")
   }
   filterProduct(cateIds: number[], sortType: string, colors : string[], sizes : string[], page : number){
     const params = {cateIds : cateIds, sortType : sortType, colors : colors, sizes : sizes, page : page}
     return this.http.get<any>(this.API_SELL + '/' + 'search/filter', {params});
-  }
-  getAllProductByCategoryId(id : number, sort: string){
-    const  params = {cateId : id, sort : sort}
-    this.http.get<IProduct[]>(`${this.API_SELL}/category`, {params}).subscribe(value => {
-    })
-    return this.http.get<IProduct[]>(`${this.API_SELL}/category`, {params})
   }
 
   getProductByVariantId(id: number) {
