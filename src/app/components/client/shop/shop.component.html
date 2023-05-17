@@ -61,7 +61,7 @@
   <div style="width: 80%">
     <div class="d-flex justify-content-between align-items-center pb-2">
       <div>
-        {{(products$ | async)?.length}} sản phẩm
+        {{products.length}} sản phẩm
       </div>
       <div class="d-flex align-items-center" style="width: 30%;">
         <span class="me-2" style="font-size: 16px; font-weight: 500;">Sắp xếp theo</span>
@@ -81,17 +81,19 @@
         </div>
       </div>
     </div>
-    <app-product-list [products$]="products$"></app-product-list>
-<!--    <div class="d-flex justify-content-center mt-3 mb-3">-->
-<!--      <div class="custom-pagination ">-->
-<!--        <a class="custom-pagination-item "><i class="fas fa-arrow-left"></i></a>-->
-<!--        <a class="custom-pagination-item activated">1</a>-->
-<!--        <a class="custom-pagination-item">2</a>-->
-<!--        <a class="custom-pagination-item">3</a>-->
-<!--        <a class="custom-pagination-item">4</a>-->
-<!--        <a class="custom-pagination-item">5</a>-->
-<!--        <a class="custom-pagination-item"><i class="fas fa-arrow-right"></i></a>-->
-<!--      </div>-->
-<!--    </div>-->
+    <app-product-list [products]="products"></app-product-list>
+    <div class="d-flex justify-content-center mt-3 mb-3">
+      <div *ngIf="totalPage> 1" class="custom-pagination ">
+        <a (click)="minusOnePage()" *ngIf="page > 1" class="custom-pagination-item"><i class="fas fa-arrow-left"></i></a>
+        <a (click)="setPage(page - 2)" *ngIf="page >= 3"  class="custom-pagination-item "> {{page - 2}}</a>
+        <a (click)="setPage(page - 1)" *ngIf="page >= 2" class="custom-pagination-item "> {{page - 1}}</a>
+        <a class="custom-pagination-item activated ">{{page}}</a>
+        <a (click)="setPage(page + 1)" *ngIf="totalPage - page >= 1" class="custom-pagination-item ">{{page + 1}}</a>
+        <a (click)="setPage(page + 2)" *ngIf="totalPage - page >= 2" class="custom-pagination-item ">{{page + 2}}</a>
+        <a (click)="setPage(page + 3)" *ngIf="totalPage >= 5 && page < 3" class="custom-pagination-item ">{{page + 3}}</a>
+        <a  (click)="setPage(page + 4)" *ngIf="totalPage >= 5 && page < 2" class="custom-pagination-item ">{{page + 4}}</a>
+        <a (click)="plusOnePage()" *ngIf="page < totalPage" class="custom-pagination-item"><i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
   </div>
 </div>
