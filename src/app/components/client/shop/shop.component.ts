@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from "../../../services/product.service";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {IProduct} from "../../../model/IProduct";
 import {Category} from "../../../model/Category";
 import {ActivatedRoute} from "@angular/router";
@@ -10,7 +10,7 @@ import {CategoryService} from "../../../services/category.service";
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit, OnDestroy {
   sortingTypes: string[] = [
     'MẶC ĐỊNH', 'TỪ A - Z', 'TỪ Z - A', 'GIÁ GIẢM DẦN', 'GIÁ TĂNG DẦN'
   ];
@@ -35,14 +35,19 @@ export class ShopComponent implements OnInit {
   colorsFilter: string[] = [];
   categoryFilter : Category[] = [];
   sort = window.sessionStorage.getItem('sortingType') || this.sortingTypes[0]
-  page: number = 0;
+  page: number = 1;
+  totalPage !: number;
   isActive = true;
-  products$ !: Observable<IProduct[]>;
+
+  products : IProduct[] = [];
+  subscribes : Subscription[] = [];
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
               private router: ActivatedRoute) {
   }
+
+
 
   ngOnInit(): void {
     this.router.params.subscribe(params => {
@@ -62,7 +67,11 @@ export class ShopComponent implements OnInit {
     })
   }
   getProducts() {
-      this.products$ = this.productService.filterProduct(this.categoryIds, this.sort, this.colorsFilter, this.sizesFilter);
+      let productSub = this.productService.filterProduct(this.categoryIds, this.sort, this.colorsFilter, this.sizesFilter , this.page).subscribe( page =>{
+        this.products = page.products;
+        this.totalPage = page.totalPages
+      });
+      this.subscribes.push(productSub);
   }
 
   sortingTypeChanged(type: string) {
@@ -117,5 +126,24 @@ export class ShopComponent implements OnInit {
     this.categoryFilter.splice(filterIndex, 1);
     this.categoryIds.splice(idIndex, 1);
     this.getProducts();
+  }
+
+  ngOnDestroy(): void {
+    this.subscribes.forEach(s => {
+      s.unsubscribe();
+    });
+  }
+
+  setPage(number: number) {
+    this.page = number;
+    this.getProducts();
+  }
+
+  minusOnePage() {
+    this.page = this.page -1;
+  }
+
+  plusOnePage() {
+    this.page++;
   }
 }

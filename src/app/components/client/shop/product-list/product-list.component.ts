@@ -11,7 +11,7 @@ import {IProduct} from "../../../../model/IProduct";
 export class ProductListComponent{
 
   @Input() listItem: Array<any> | undefined;
-  @Input() products$ !: Observable<IProduct[]>;
+  @Input() products !: IProduct[];
   constructor(private productService: ProductService) {
   }
 }
