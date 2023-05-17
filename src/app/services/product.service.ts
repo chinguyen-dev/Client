@@ -48,10 +48,10 @@ export class ProductService {
   getVariantsByProductId(id: any) {
     return this.http.get<IProductVariant[]>(this.API_URL + '/' + id + "/variants")
   }
-
-  filterProduct(slugs: string[], sortType: string, colors: string[], sizes: string[]) {
-    const params = {slugs: slugs, sortType: sortType, colors: colors, sizes: sizes}
-    return this.http.get<IProduct[]>(this.API_SELL + '/' + 'search', {params});
+  filterProduct(cateIds: number[], sortType: string, colors : string[], sizes : string[]){
+    const params = {cateIds : cateIds, sortType : sortType, colors : colors, sizes : sizes}
+    console.log(params)
+    return this.http.get<IProduct[]>(this.API_SELL + '/' + 'search/filter', {params});
   }
 
   getProductByVariantId(id: number) {
