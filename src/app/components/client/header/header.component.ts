@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
   search(event: any) {
     let value = event.target.value;
-    if (value) this.search$ = this.productService.searchByName(value);
+    if (value) this.search$ = this.productService.search(value);
   }
 
   onBlur(){

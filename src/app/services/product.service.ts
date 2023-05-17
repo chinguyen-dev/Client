@@ -21,16 +21,20 @@ export class ProductService {
     return this.http.post<any>(this.API_URL, product);
   }
 
-  getProductByCategory(id : number | undefined): Observable<any> {
+  getProductByCategory(id: number | undefined): Observable<any> {
     return this.http.get<any>(`${this.API_SELL}/${id}/show`)
   }
 
-  searchByName(value: any): Observable<any> {
-    return this.http.post<ProductSearch[]>(`${this.API_SELL}/search`, {name: value});
+  search(name: string | undefined): Observable<ProductSearch[]> {
+    return this.http.post<ProductSearch[]>(`${this.API_SELL}/search`, {name});
   }
 
-  getProducts(page: any): Observable<any> {
+  getProducts(page: number | undefined): Observable<any> {
     return this.http.get<any>(`${this.API_URL}?page=${page}`);
+  }
+
+  deleteProductById(id: number | undefined): Observable<any> {
+    return this.http.get<any>(this.API_URL + '/delete/' + id);
   }
 
   getAllProduct(): Observable<any> {

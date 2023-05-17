@@ -31,6 +31,18 @@ export class ListProductAdminComponent implements OnInit {
     this.getProducts(pageDefault - 1, pageDefault);
   }
 
+  delete(id: number | undefined) {
+    const page = this.route.snapshot.queryParamMap.get('page');
+    let pageDefault: number = page == null ? 1 : parseInt(page);
+    this.productService.deleteProductById(id).subscribe({
+      next: response => {
+        console.log(response);
+        this.getProducts(pageDefault - 1, pageDefault);
+      },
+      error: err => console.log(err)
+    });
+  }
+
   getProducts(page: number, pageCurrent: number) {
     this.pages = [];
     this.productService.getProducts(page).subscribe({
