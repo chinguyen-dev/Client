@@ -52,6 +52,7 @@ export class ListProductAdminComponent implements OnInit {
           page: i,
           active: i == pageCurrent
         })
+        console.log(res)
         this.pagination$ = of(this.pages);
         this.product$ = of(res.products);
         this.pre = pageCurrent != 1;

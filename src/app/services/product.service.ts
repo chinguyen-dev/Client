@@ -34,7 +34,7 @@ export class ProductService {
   }
 
   deleteProductById(id: number | undefined): Observable<any> {
-    return this.http.get<any>(this.API_URL + '/delete/' + id);
+    return this.http.delete<any>(this.API_URL + '/delete/' + id);
   }
 
   getAllProduct(): Observable<any> {

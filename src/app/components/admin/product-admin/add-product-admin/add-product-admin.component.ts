@@ -69,16 +69,20 @@ export class AddProductAdminComponent implements OnInit {
   }
 
   uploadFile(sku: string) {
-    const file = this.files.find((file: any) => file.sku === sku);
-    if (file) {
-      this.fileUploadService.uploadMultipleFile(file.files).subscribe({
-        next: (res: string[]) => {
-          this.images.map((image: Image) => {
-            if (image.sku === sku) image.paths = res;
-          })
-        },
-        error: (err: any) => console.log(err)
-      });
+    let image: Image| undefined = this.images.find((image : Image) => image.sku == sku);
+    if (image && image?.paths.length == 0) {
+      const file = this.files.find((file: any) => file.sku === sku);
+        if (file) {
+          this.fileUploadService.uploadMultipleFile(file.files).subscribe({
+            next: (res: string[]) => {
+              console.log(res);
+              this.images.map((image: Image) => {
+                if (image.sku === sku) image.paths = res;
+              })
+            },
+            error: (err: any) => console.log(err)
+          });
+        }
     }
   }
 
@@ -119,20 +123,19 @@ export class AddProductAdminComponent implements OnInit {
       fileSize = files.length;
       this.files.push({sku: sku, files: files});
     }
-    // this.images.map((image: Image) => {
-    //   if (image.sku === sku) {
-    //     fileSize === 6 ? image.width = 100 : image.width = fileSize * (100 / 6)
-    //   }
-    // });
   }
 
   onFileRemove(file: File) {
     this.files = this.files.filter((item: File, index: number) => index !== this.files.indexOf(file));
-    // this.width = this.files.length > 0 ? this.width - (100 / 6) : 100;
   }
 
   removeVariant(obj: Variant) {
+    let images: Image[] = [];
     this.variant = this.variant.filter((variant: Variant) => variant !== obj);
+    for (let image of this.images) {
+      if (this.variant.filter((variant: Variant) => variant.sku == image.sku).length > 0) images.push(image);
+    }
+    this.image$ = of(images);
     this.variant$ = of(this.variant);
   }
 
