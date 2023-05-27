@@ -36,8 +36,7 @@ export class ListProductAdminComponent implements OnInit {
     let pageDefault: number = page == null ? 1 : parseInt(page);
     this.productService.deleteProductById(id).subscribe({
       next: response => {
-        console.log(response);
-        this.getProducts(pageDefault - 1, pageDefault);
+        if(response) this.getProducts(pageDefault - 1, pageDefault);
       },
       error: err => console.log(err)
     });

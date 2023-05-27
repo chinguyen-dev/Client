@@ -70,29 +70,34 @@ export class ShopComponent implements OnInit, OnDestroy {
       let productSub = this.productService.filterProduct(this.categoryIds, this.sort, this.colorsFilter, this.sizesFilter , this.page).subscribe( page =>{
         this.products = page.products;
         this.totalPage = page.totalPages
+        console.log(this.products)
       });
       this.subscribes.push(productSub);
   }
 
   sortingTypeChanged(type: string) {
     this.sort = type;
+    this.page = 1;
     window.sessionStorage.setItem('sortingType', type);
     this.getProducts();
   }
 
   removeSize(size: string) {
+    this.page = 1;
     let index = this.sizesFilter.indexOf(size, 0);
     this.sizesFilter.splice(index, 1);
     this.getProducts();
   }
 
   removeColor(color: string) {
+    this.page = 1;
     let index = this.colorsFilter.indexOf(color, 0);
     this.colorsFilter.splice(index, 1);
     this.getProducts();
   }
 
   addSize(size: string) {
+    this.page = 1;
     let exSize = this.sizesFilter.includes(size);
     if (!exSize){
       this.sizesFilter.push(size);
@@ -102,6 +107,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   addColor(color: string) {
+    this.page = 1;
     let exColor = this.colorsFilter.includes(color);
     if (!exColor) {
       this.colorsFilter.push(color);
@@ -111,6 +117,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   addCategory(category: Category) {
+    this.page = 1;
     if (this.categoryFilter.length <= 0 ) this.categoryIds = []
     let exCate = this.categoryFilter.includes(category);
     if(!exCate) {
@@ -121,6 +128,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   removeCategory(category: Category) {
+    this.page = 1;
     let filterIndex = this.categoryFilter.indexOf(category, 0);
     let idIndex = this.categoryIds.indexOf(category.id, 0);
     this.categoryFilter.splice(filterIndex, 1);

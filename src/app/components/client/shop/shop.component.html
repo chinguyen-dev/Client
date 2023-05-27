@@ -90,7 +90,7 @@
         <a class="custom-pagination-item activated ">{{page}}</a>
         <a (click)="setPage(page + 1)" *ngIf="totalPage - page >= 1" class="custom-pagination-item ">{{page + 1}}</a>
         <a (click)="setPage(page + 2)" *ngIf="totalPage - page >= 2" class="custom-pagination-item ">{{page + 2}}</a>
-        <a (click)="setPage(page + 3)" *ngIf="totalPage >= 5 && page < 3" class="custom-pagination-item ">{{page + 3}}</a>
+        <a (click)="setPage(page + 3)" *ngIf="totalPage >= 4 && page < 3" class="custom-pagination-item ">{{page + 3}}</a>
         <a  (click)="setPage(page + 4)" *ngIf="totalPage >= 5 && page < 2" class="custom-pagination-item ">{{page + 4}}</a>
         <a (click)="plusOnePage()" *ngIf="page < totalPage" class="custom-pagination-item"><i class="fas fa-arrow-right"></i></a>
       </div>
