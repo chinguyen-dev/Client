@@ -10,7 +10,7 @@ import {environment} from "../../environments/environment";
 export class CategoryService {
   categories: Category[] = [];
 
-  private url = environment.apiURL + '/admin/categories';
+  private url = environment.apiURL + '/auth/admin/categories';
   private url_sell = environment.apiURL + '/categories';
   constructor(private http: HttpClient) {
   }

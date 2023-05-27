@@ -35,7 +35,9 @@ export class HeaderComponent implements OnInit {
   }
 
   onBlur(){
-    this.search$ = undefined;
-    this.toggle = !this.toggle;
+    setTimeout(() => {
+      this.search$ = undefined;
+      this.toggle = !this.toggle;
+    } ,500);
   }
 }

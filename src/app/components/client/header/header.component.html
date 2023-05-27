@@ -7,8 +7,7 @@
         </div>
         <div class="box-search">
           <form>
-            <input type="text" placeholder="Tìm kiếm" (keyup)="search($event)" (focus)="toggle = !toggle"
-                   (blur)="onBlur()">
+            <input type="text" placeholder="Tìm kiếm" (keyup)="search($event)" (focus)="toggle = !toggle" (blur)="onBlur()">
             <button type="submit"></button>
           </form>
           <ng-container *ngIf="toggle">

@@ -4,14 +4,13 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {IProduct} from "../model/IProduct";
 import {IProductVariant} from "../model/IProductVariant";
-import {ProductSearch} from "../model/ProductSearch";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private API_URL = environment.apiURL + '/admin/products';
+  private API_URL = environment.apiURL + '/auth/admin/products';
   private API_SELL = environment.apiURL + '/products';
 
   constructor(private http: HttpClient) {

@@ -29,7 +29,7 @@
           <ng-template #openEye>
             <span class="open-eye" (click)="toggleEye()"></span>
           </ng-template>
-          <div *ngIf=" (f.controls.password?.value != f.controls.re_password?.value) ||  f.controls.re_password.value.trim().length == 0 && (f.controls.re_password?.dirty || f.controls.re_password?.touched)" class="text-danger text-start p-2">Mật khẩu không khớp </div>
+          <div *ngIf=" (f.controls.password?.value != f.controls.re_password?.value) ||  f.controls.re_password.value.trim().length == 0 && (f.controls.re_password?.dirty ||  f.controls.re_password?.touched)" class="text-danger text-start p-2">Mật khẩu không khớp </div>
         </div>
         <div class="form-button">
           <button class="btn btn-warning" [disabled]="f.invalid || (f.controls.password.value != f.controls.re_password.value)" type="ngSubmit">Đăng ký</button>
