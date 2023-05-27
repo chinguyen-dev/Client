@@ -116,7 +116,7 @@
           </tr>
           <tr class="fs-6">
             <th class="border-bottom-0" scope="col">Tổng cộng</th>
-            <th class="border-bottom-0" scope="col">{{getTotal() | currency: 'VND'}}</th>
+            <th class="border-bottom-0" scope="col">{{getTotalOrder() | currency: 'VND'}}</th>
           </tr>
         </tbody>
       </table>
@@ -131,7 +131,7 @@
           <ul>
             <li>Mã đơn hàng: {{order.id }}</li>
             <li>Ngày: {{order.createAt |  date:'short' : '' }} </li>
-            <li>Tổng cộng: {{getTotal() | currency : 'VND'}} </li>
+            <li>Tổng cộng: {{getTotalOrder()| currency : 'VND'}} </li>
             <li>Phương thức thanh toán : COD</li>
           </ul>
         </div>
