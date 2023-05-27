@@ -14,12 +14,12 @@
           <ng-container *ngIf="toggle">
             <div class="result-box">
               <div class="search-result">
-                <a href="" class="item-search" *ngFor="let item of search$ | async;">
+                <a routerLink="/san-pham/{{product.id}}" class="item-search" *ngFor="let product of search$ | async;">
                   <div class="img">
-                    <img src="{{item.image}}" alt="{{item.name}}">
+                    <img src="{{product.variants[0].image}}" alt="{{product.name}}">
                   </div>
-                  <div class="d-title">{{item.name}}</div>
-                  <div class="d-title">{{item.price | number: "1.0-0"}}đ</div>
+                  <div class="d-title">{{product.name}}</div>
+                  <div class="d-title">{{product.price | number: "1.0-0"}}đ</div>
                 </a>
               </div>
             </div>
