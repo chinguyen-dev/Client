@@ -76,4 +76,11 @@ export class CheckoutComponent implements OnInit{
     })
     return total
   }
+  getTotalOrder(){
+    let total = 0;
+    this.order.items.map(item => {
+      total += item.quantity * this.product?.price;
+    })
+    return total
+  }
 }
