@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup,  Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
 import {StorageService} from "../../services/storage.service";
@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit{
       next : (res : IUser) => {
         this.storeService.saveUser(res)
         if (res.roles.includes('ADMIN')){
-          this.router.navigateByUrl('admin')
+          this.router.navigateByUrl('admin/products')
         } else{
           this.router.navigateByUrl('')
         }
       },
       error: err => {
-        alert("Tài khoản hoặc mật khẩu không đúng")
+
       }
     }
     )
