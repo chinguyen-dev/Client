@@ -1,4 +1,5 @@
 export interface ProductSearch {
+  id: number;
   name: string;
   sku: string;
   image: string;

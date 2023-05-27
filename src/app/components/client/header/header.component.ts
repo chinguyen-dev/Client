@@ -3,6 +3,7 @@ import {StorageService} from "../../../services/storage.service";
 import {ProductService} from "../../../services/product.service";
 import {Observable} from "rxjs";
 import {ProductSearch} from "../../../model/ProductSearch";
+import {IProduct} from "../../../model/IProduct";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
 
   user!: any;
   isModal: boolean = false;
-  search$: Observable<ProductSearch[]> | undefined;
+  search$: Observable<IProduct[]> | undefined;
 
   toggle: boolean = false;
 
@@ -34,7 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onBlur(){
-    this.toggle = !this.toggle;
     this.search$ = undefined;
+    this.toggle = !this.toggle;
   }
 }
