@@ -46,12 +46,12 @@ export class ListProductAdminComponent implements OnInit {
     this.pages = [];
     this.productService.getProducts(page).subscribe({
       next: res => {
+        console.log(res)
         this.isActive = res.totalPages > 1;
         if (this.isActive) for (let i = 1; i <= res.totalPages; i++) this.pages.push({
           page: i,
           active: i == pageCurrent
         })
-        console.log(res)
         this.pagination$ = of(this.pages);
         this.product$ = of(res.products);
         this.pre = pageCurrent != 1;

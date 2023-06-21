@@ -1,13 +1,11 @@
 <div class="wp-product-slider">
   <div class="title">
     <h6>{{ slug?.name }}</h6>
-    <p>Xem thêm <i class="fa-solid fa-angle-right"></i></p>
+    <a routerLink="/tong-san-pham/{{slug?.id}}">Xem thêm <i class="fa-solid fa-angle-right"></i></a>
   </div>
   <div class="box-product-banner">
     <div class="banner">
-      <img
-        src="https://bizweb.dktcdn.net/100/438/408/themes/897269/assets/home_preivew_sanpham_3_image_desktop.jpg?1677940801643"
-        alt="">
+      <img src="{{slug?.image}}"  alt="">
     </div>
     <div class="product-slider">
       <owl-carousel-o [options]="productSliderOption">

@@ -2,10 +2,10 @@
   <div class="row">
     <div *ngFor="let item of listItem; index as index;" class="col-md-3">
       <li>
-        <div class="thumbnail">
+        <div class="thumbnail" routerLink="/san-pham/{{item.id}}">
           <img [src]="imageURL[index]" alt="{{ item.name }}">
         </div>
-        <h5>{{ item.name }}</h5>
+        <h5 routerLink="/san-pham/{{item.id}}">{{ item.name }}</h5>
         <p class="item-price">{{item.price | number: '1.0-0'}}đ</p>
         <div class="option-swatch">
           <div class="swatch-item" *ngFor="let variant of variants[index]">
