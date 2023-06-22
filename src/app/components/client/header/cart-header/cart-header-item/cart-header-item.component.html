@@ -1,4 +1,4 @@
-<li *ngIf="product != null && item != null">
+<li *ngIf="item.product != null && item != null">
   <a href="#" class="img-link">
     <img
       src="{{item.variant.image}}"
@@ -6,8 +6,8 @@
   </a>
   <div class="box-infor">
     <div class="infor-item">
-      <a href="">{{product.name}}</a>
-      <span class="price">{{product.price | currency : 'VND'}}</span>
+      <a href="">{{item.product.name}}</a>
+      <span class="price">{{item.product.price | currency : 'VND'}}</span>
       <span class="size">{{item.variant.color}} / {{item.variant.size}}</span>
       <a (click)="removeItem()" class="remove"></a>
     </div>
@@ -19,7 +19,7 @@
       </div>
       <div class="total">
         Tổng cộng:
-        <span>{{item.quantity * product.price | currency: 'VND'}}</span>
+        <span>{{item.quantity * item.product.price | currency: 'VND'}}</span>
       </div>
     </div>
   </div>

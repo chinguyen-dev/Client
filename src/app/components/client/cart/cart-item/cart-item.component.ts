@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CartService} from "../../../../services/cart.service";
 import {IItem} from "../../../../model/IItem";
-import {IProduct} from "../../../../model/IProduct";
 import {ProductService} from "../../../../services/product.service";
 
 @Component({
@@ -11,11 +10,11 @@ import {ProductService} from "../../../../services/product.service";
 })
 export class CartItemComponent implements OnInit{
   @Input() item !: IItem;
-  @Input() product !: IProduct
-  @Output() itemToRemove : EventEmitter<IItem> = new EventEmitter<IItem>();
-  constructor(private cartService : CartService) {
+  constructor(private cartService : CartService,
+              private productService : ProductService) {
   }
   ngOnInit(): void {
+
   }
   minus(qty: number) {
     this.cartService.minus(this.item, qty)
@@ -25,7 +24,7 @@ export class CartItemComponent implements OnInit{
   }
 
   removeItem() {
-   this.itemToRemove.emit(this.item);
+   this.cartService.remove(this.item)
   }
 
 }

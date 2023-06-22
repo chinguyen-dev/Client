@@ -27,8 +27,6 @@ interface IOrder {
 export class CheckoutComponent implements OnInit{
   order !: IOrder;
   items : IItem[] = []
-  product !: IProduct
-  qty = 0;
   subscribes : Subscription[] = [] ;
 
 
@@ -45,18 +43,7 @@ export class CheckoutComponent implements OnInit{
 
   ngOnInit(): void {
     let subscribe = this.cartService.subject.subscribe(items => {
-      this.items = items
-      let variantId = this.items[0]?.variant.id;
-      if (variantId){
-        this.productService.getProductByVariantId(this.items[0].variant.id).subscribe((product ) =>{
-          this.product = product;
-        });
-      }
-      let quantity = 0;
-      items.map(item =>{
-        quantity += item.quantity
-      })
-      this.qty = quantity;
+      this.items = items;
     })
     this.subscribes.push(subscribe)
   }
@@ -72,14 +59,14 @@ export class CheckoutComponent implements OnInit{
   getTotal(){
     let total = 0;
     this.items.map(item => {
-      total += item.quantity * this.product?.price;
+      total += item.quantity * item.product.price;
     })
     return total
   }
   getTotalOrder(){
     let total = 0;
     this.order.items.map(item => {
-      total += item.quantity * this.product?.price;
+      total += item.quantity * item.product.price;
     })
     return total
   }

@@ -41,7 +41,7 @@ export class ProductService {
   }
 
   getProductById(id: any) {
-    return this.http.get<IProduct>(this.API_URL + '/' + id)
+    return this.http.get<IProduct>(this.API_SELL + '/' + id)
   }
 
   getVariantsByProductId(id: any) {

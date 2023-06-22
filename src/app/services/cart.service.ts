@@ -84,7 +84,13 @@ export class CartService {
       })
     });
   }
-
+  getTotal(){
+    let total = 0;
+    this.items.map(item =>{
+      total += item.product.price * item.quantity;
+    })
+    return total;
+  }
 
 
 }

@@ -13,8 +13,6 @@ import {StorageService} from "../../../../services/storage.service";
 })
 export class CartHeaderComponent {
   items: IItem[] = [];
-  product !: IProduct
-  qty = 0
   subscribes: Subscription[] = [];
 
   constructor(private cartService: CartService,
@@ -39,33 +37,13 @@ export class CartHeaderComponent {
   getCart() {
     this.cartService.getCartByUser();
     let sub = this.cartService.subject.subscribe(items => {
-      this.items = items
-      let variantId = this.items[0]?.variant.id;
-      if (variantId) {
-       let productSub = this.productService.getProductByVariantId(this.items[0].variant.id).subscribe((product) => {
-          this.product = product;
-        });
-       this.subscribes.push(productSub)
-      }
-      let quantity = 0;
-      items.map(item => {
-        quantity += item.quantity
-      })
-      this.qty = quantity;
+      this.items = items;
     })
     this.subscribes.push(sub);
   }
 
-  removeItem(item: IItem) {
-    this.cartService.remove(item)
-  }
 
   getTotal() {
-    let total = 0;
-    this.items.map(item => {
-      total += item.quantity * this.product?.price;
-    })
-    return total
+    return this.cartService.getTotal();
   }
-
 }

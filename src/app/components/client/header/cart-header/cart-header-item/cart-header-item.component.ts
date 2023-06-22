@@ -10,8 +10,6 @@ import {CartService} from "../../../../../services/cart.service";
 })
 export class CartHeaderItemComponent implements OnInit{
   @Input() item !: IItem;
-  @Input() product !: IProduct
-  @Output() itemToRemove : EventEmitter<IItem> = new EventEmitter<IItem>();
   constructor(private cartService : CartService) {
   }
   ngOnInit(): void {
@@ -24,6 +22,6 @@ export class CartHeaderItemComponent implements OnInit{
   }
 
   removeItem() {
-    this.itemToRemove.emit(this.item);
+    this.cartService.remove(this.item);
   }
 }
