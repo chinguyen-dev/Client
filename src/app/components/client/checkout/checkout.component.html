@@ -90,10 +90,16 @@
       <span>Tổng cộng</span>
       <span style="color : #fcaf17">{{getTotal() + 20000 | currency : 'VND'}}</span>
     </div>
-    <div class="d-flex justify-content-between mt-2 ps-2 pe-2 pb-3 fw-bold">
-      <a routerLink="/cart" style="color:#fcaf17; "> < Quay lại giỏ hàng </a>
-      <button type="submit" [disabled]="f.invalid" class="btn btn-warning text-dark fs-6"
-        style="background-color : #fcaf17">Thanh toán</button>
+    <div class=" mt-2 ps-2 pe-2 pb-3 fw-bold">
+      <a routerLink="/cart" style="color:#fcaf17;"> < Quay lại giỏ hàng </a>
+      <div class="d-flex justify-content-between gap-3 mt-3">
+        <button type="submit" [disabled]="f.invalid" class="btn btn-warning text-dark fs-6"
+                style="background-color : #fcaf17">Thanh toán COD</button>
+
+        <button type="submit" [disabled]="f.invalid" class="btn btn-warning text-dark fs-6"
+                style="background-color : #fcaf17">Thanh toán VNPAY</button>
+      </div>
+
     </div>
   </div>
 
